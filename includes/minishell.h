@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:27:53 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/01/14 11:35:58 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:41:50 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "../src/builtin/includes/builtin.h"
 # include "../src/execute/includes/execute.h"
 # include "../src/utils/includes/utils.h"
+
+volatile sig_atomic_t	g_exit_status;
 
 /*
 	main.c
