@@ -3,89 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/01/15 08:50:36 by kfumiya          ###   ########.fr        #
+#    Updated: 2022/02/15 18:14:21 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= minishell
 
-ifndef RL_PATH
-	RL_PATH	:=/usr/local/opt/readline
-endif
-
 SRCDIR		:= ./src
-OBJDIR		:= ./obj
 
-SRCS		:= $(SRCDIR)/main.c
-
-
-OBJS		:= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:%.c=%.o)))
+# ファイル名は明示しないといけないらしいのでSRCSは最後に変更します。
+SRCS		:= $(shell find $(SRCDIR) -name "*.c")
+OBJS		:= $(SRCS:.c=.o)
+DEPS		:= $(OBJS:.o=.d)
+LIBFT		:= ./libft/libft.a
+INCLUDES	:= -I./includes -I./libft/includes
 
 RM			:= rm -rf
 
 CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror -I$(RL_PATH)/include/
-
-RFLAGS		:= -L$(RL_PATH)/lib
-LFLAGS		:= -lreadline -lhistory
-# DEPS		:= $(SRCS:%.c=%.d)
-
-LIBFTDIR	:= libft
-LIBFT		:= $(LIBFTDIR)/libft.a
-LIBANADIR	:= $(SRCDIR)/analyzer
-LIBANA		:= $(LIBANADIR)/libana.a
-LIBBLTDIR	:= $(SRCDIR)/builtin
-LIBBLT		:= $(LIBBLTDIR)/libblt.a
-LIBEXEDIR	:= $(SRCDIR)/execute
-LIBEXE		:= $(LIBEXEDIR)/libexe.a
-LIBUTIDIR	:= $(SRCDIR)/utils
-LIBUTI		:= $(LIBUTIDIR)/libuti.a
-
+CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT) $(LIBANA) $(LIBBLT) $(LIBEXE) $(LIBUTI)
-	$(CC) $(CFLAGS) $(RFLAGS) $(LFLAGS) -Iincludes $^ -o $@
+-include $(DEPS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@if [ ! -d $(OBJDIR) ]; then echo "mkdir -p $(OBJDIR)" && mkdir -p $(OBJDIR); fi
-	$(CC) $(CFLAGS) -Iincludes -o $@ -c $<
+$(NAME):	$(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) -lreadline $^ -o $@
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFTDIR)
-
-$(LIBANA):
-	$(MAKE) -C $(LIBANADIR)
-
-$(LIBBLT):
-	$(MAKE) -C $(LIBBLTDIR)
-
-$(LIBEXE):
-	$(MAKE) -C $(LIBEXEDIR)
-
-$(LIBUTI):
-	$(MAKE) -C $(LIBUTIDIR)
-
-# -include $(DEPS)
+	make -C $(LIBFTDIR)
 
 clean:
-	$(RM) $(OBJDIR)
-	$(MAKE) clean -C $(LIBFTDIR)
-	$(MAKE) clean -C $(LIBANADIR)
-	$(MAKE) clean -C $(LIBBLTDIR)
-	$(MAKE) clean -C $(LIBEXEDIR)
-	$(MAKE) clean -C $(LIBUTIDIR)
+	$(RM) $(OBJS) $(DEPS)
+	make clean -C $(LIBFTDIR)
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) fclean -C $(LIBFTDIR)
-	$(MAKE) fclean -C $(LIBANADIR)
-	$(MAKE) fclean -C $(LIBBLTDIR)
-	$(MAKE) fclean -C $(LIBEXEDIR)
-	$(MAKE) fclean -C $(LIBUTIDIR)
+	make fclean -C $(LIBFTDIR)
 
 re: fclean all
 
