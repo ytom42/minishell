@@ -1,13 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/04 08:58:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2021/12/05 08:50:04 by kfumiya          ###   ########.fr       */
+/*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/02/10 14:48:01 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef EXECUTE_H
+# define EXECUTE_H
+
+# include "common.h"
+# include "analyzer.h"
+
+/*
+ *************
+ ** builtin **
+ *************
+ */
+
+/*
+	ms_loop.c
+*/
+void					ms_loop(t_master *master);
+
+#endif

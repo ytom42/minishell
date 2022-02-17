@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   analyzer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 06:27:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/01/19 09:06:46 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/10 14:47:33 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANALYZER_H
 # define ANALYZER_H
 
-# include "../../../includes/common.h"
-# include "../../utils/includes/utils.h"
+# include "common.h"
+# include "utils.h"
 
 /*
  *************

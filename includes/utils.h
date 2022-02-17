@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "../../../includes/minishell.h"
+# include "minishell.h"
 
 /*
  *************

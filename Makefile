@@ -6,13 +6,14 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/02/15 18:14:21 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/02/17 19:13:29 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= minishell
 
 SRCDIR		:= ./src
+LIBFTDIR	:= ./libft
 
 # ファイル名は明示しないといけないらしいのでSRCSは最後に変更します。
 SRCS		:= $(shell find $(SRCDIR) -name "*.c")
