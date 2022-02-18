@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:36:39 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 17:12:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/18 13:35:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char
 	return (NULL);
 }
 
-t_bool
+bool
 	is_valid_identifier(char *arg)
 {
 	size_t	i;
