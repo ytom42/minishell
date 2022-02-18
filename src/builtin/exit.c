@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:25:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 17:23:32 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/18 13:31:40 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 extern t_master	g_master;
 
-static t_bool
+static bool
 	found_error(char **args, int i)
 {
 	if (errno || !str_is_digit(args[i]))

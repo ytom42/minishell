@@ -6,14 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:17:57 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 16:51:13 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/18 13:31:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "libft.h"
 
-static t_bool
+static bool
 	is_valid_opt(char *opt)
 {
 	size_t	i;
@@ -29,7 +29,7 @@ int
 	exec_echo(char **args)
 {
 	size_t	i;
-	t_bool is_opt;
+	bool is_opt;
 
 	i = 1;
 	if (args[i] && args[i][0] == '-')

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:36:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/16 19:09:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/18 13:30:22 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int
 	ft_putchar_fd('\n', STDOUT_FILENO);	
 }
 
-t_bool
+bool
 	append_env(t_environ **envs, t_environ *new)
 {
 	t_environ	*tmp;
