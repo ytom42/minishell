@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:27:53 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/15 18:04:44 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/02/20 17:17:38 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 # include "common.h"
-# include "analyzer.h"
 # include "builtin.h"
 # include "execute.h"
 # include "utils.h"
