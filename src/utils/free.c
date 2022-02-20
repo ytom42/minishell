@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 08:24:53 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/10 14:45:44 by ytomiyos         ###   ########.fr       */
+/*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/02/17 09:08:19 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <utils.h>
+#include "utils.h"
 
 void
-	env_free(t_environ *env)
+	free_set(void **dst, void *src)
 {
-	free(env->key);
-	free(env->value);
-	free(env);
+	free(*dst);
+	*dst = src;
 }
 
 void
-	env_all_free(t_environ *env)
+	instant_free(char **str)
 {
-	t_environ	*tmp;
+	int	i;
 
-	while (env)
-	{
-		tmp = env;
-		env = env->next;
-		env_free(tmp);
-	}
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
 }
