@@ -1,32 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/02/20 09:19:10 by kfumiya          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
-# include "common.h"
+# include "libft.h"
+# include "execute.h"
+
+/* 
+	builtin.c
+ */
+int exec_builtin(char **args);
+int is_builtin(char **args);
+
+/* 
+	builtin_utils.c
+ */
+char *get_env_value(char *key);
+bool is_valid_identifier(char *arg);
+t_environ *get_env(char *target);
+char *get_cwd_path(char *arg);
 
 /*
- *************
- ** builtin **
- *************
+	cd.c
  */
-/* 
-	create_env.c
-*/
-int						create_env(t_master *master);
-int						append_env(t_environ **head, t_environ *new);
-t_environ				*new_env(char *key, char *value);
+int exec_cd(char **args);
+
+/*
+	cd_utils.c
+ */
+bool change_dir(char *dir_path);
 
 /* 
-	create_env.c
-*/
-int						preset_env(t_master *master);
-int						preset_env_pwd_oldpwd(t_master *master);
+	echo.c
+ */
+int exec_echo(char **args);
 
 /* 
-	blt_utils.c
-*/
-void					instant_free(char **str);
-t_environ				*search_key(t_environ *env, char *key);
-void					release_target(t_environ *target);
-void					replace_env_value(t_environ *env, char *new_value);
+	env.c
+ */
+int exec_env(void);
+
+/* 
+	env_utils.c
+ */
+t_environ *new_env (char *key, char *value);
+bool append_env(t_environ **envs, t_environ *new);
+
+/* 
+	exit.c
+ */
+int exec_exit(char **args);
+
+/* 
+	export.c
+ */
+int exec_export(char **args);
+void sort_envs(t_environ *env);
+
+/* 
+	export_utils.c
+ */
+char **split_key_value(char *arg, char *sep, char *value, bool add_request);
+void update_env(char **args);
+bool replace_dup_env(char *key, char *value);
+void restore_arg(char *sep, bool add_request);
+
+
+/* 
+	pwd.c
+ */
+int exec_pwd(void);
+
+/* 
+	unset.c
+ */
+int exec_unset(char **args);
 
 #endif

@@ -6,13 +6,33 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 17:15:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/20 09:47:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "utils.h"
 #include "libft.h"
+
+extern t_master	g_master;
+
+void
+	print_env(t_environ *env)
+{
+	char	*expand_value;
+
+	ft_putstr_fd("declare -x ", STDOUT_FILENO);
+	ft_putstr_fd(env->key, STDOUT_FILENO);
+	if (env->value)
+	{
+		expand_value = expanded_str(env->value, STATUS_DQUOTE, TRUE);
+		ft_putstr_fd("=\"", STDOUT_FILENO);
+		ft_putstr_fd(expand_value, STDOUT_FILENO);
+		ft_putchar_fd('"', STDOUT_FILENO);
+		free(expand_value);
+	}
+	ft_putchar_fd('\n', STDOUT_FILENO);	
+}
 
 void
 	sort_envs(t_environ *env)
@@ -44,23 +64,20 @@ int
 {
 	int		i;
 	int		res;
-	char	**split;
+	bool	add_request;
+	char	*sep;
+	char	*value;
 
 	res = EXIT_SUCCESS;
-	i = 1;
-	while (args[i])
+	i = 0;
+	while (args[++i])
 	{
-		split = split_key_value(args[i]);
-		if (!split || !ft_strcmp(split[0], ""))
-		{
-			print_identifier_error("export", args[i]);
-			res = EXIT_FAILURE;
-		}
+		split_key_value(args[i], &sep, &value, &add_request);
 		if (is_valid_idntifier(args[i]))
-			update_env(split);
+			update_env(arg[i], value, add_request);
 		else
 		{
-			instant_free(split);
+			restore_arg(sep, add_request);
 			print_identifier_error("export", args[i]);
 			res = EXIT_FAILURE;
 		}
@@ -71,20 +88,18 @@ int
 int
 	declare_envs(void)
 {
-	extern t_master	*master;
 	t_environ		*envs;
 	t_environ		*tmp;
 	
-	// リストのコピー
-	envs = dup_envs(master->environs);
-	// ソート
+	envs = dup_envs(g_master.environ);
+	if (!envs)
+		error_exit(NULL);
 	sort_envs(envs);
-	// 一覧表示
 	while (envs)
 	{
 		print_env(envs);
 		tmp = envs->next;
-		free(envs);
+		free_set((void **)&envs, NULL);
 		envs = tmp;
 	}
 	return (EXIT_SUCCESS);

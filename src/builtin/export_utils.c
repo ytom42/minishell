@@ -6,55 +6,63 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 08:56:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/20 09:46:24 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "expansion.h"
+#include "execute.h"
 
 extern t_master	master;
 
-char
-	**split_key_value(char *arg)
+void
+	**split_key_value(char *arg, char *sep, char *value, bool add_request)
 {
-	char	**split;
-	int		i;
-
-	split = malloc(sizeof(char *) * 3);
-	i = 0;
-	while (arg[i] && arg[i] != '=')
-		i++;
-	if (i == 0)
+	*sep = ft_strchr(arg, '=');
+	if (*sep)
 	{
-		free(split);
-		return (NULL);
+		**sep = '\0';
+		if (*sep != arg && *(*sep - 1) == '+')
+		{
+			*(*sep - 1) = '\0';
+			*add_request = TRUE;
+		}
+		*value = *sep + 1;
 	}
-	split[0] = ft_strndup(arg, i);
-	if (ft_strlen(arg) != ft_strlen(split[0]))
-		split[1] = ft_strdup(arg + i + 1);
 	else
-		split[1] = NULL;
-	split[2] = NULL;
-	return (split);
+		*value = NULL;
 }
 
 void
-	update_env(char **args)
+	update_env(char *key, char *new_value, bool add_request)
 {
-	// // keyがpwdだった場合
-	// if (!ft_strcmp(split[0], "PWD"))
-	// 	add_declear_pwd(split, "PWD");
-	// // keyがoldpwdだった場合
-	// else if (!ft_strcmp(split[0], "OLDPWD") && master.oldpwd)
-	// 	add_declear_pwd(split, "OLD");
-	// valueの置き換え
-	if (!replace_dup_env(split[0], split[1]))
-		append_env(&master.environs,
-			new_env(ft_strdup(split[0]), ft_strdup(split[1])));
+	char		*old_value;
+	t_environ	*env;
+
+	env = get_env(key);
+	old_value = env->value;
+	if (add_request)
+	{
+		if (old_value || new_value)
+		{
+			env->value = ft_strjoin(old_value, new_value);
+			if (!env->value)
+				error_exit(NULL);
+		}
+		else
+			env->value = NULL;
+	}
+	else
+	{
+		if (!replace_dup_env(key, new_value))
+			if (!append_env(&master.environs,
+				new_env(ft_strdup(key), ft_strdup(new_value))))
+				error_exit(NULL);
+	}
 }
 
-t_bool
+bool
 	replace_dup_env(char *key, char *value)
 {
 	t_environ	*env;
@@ -75,4 +83,15 @@ t_bool
 		env = env->next;
 	}
 	return (FALSE);
+}
+
+void
+	restore_arg(char *sep, bool add_request)
+{
+	if (sep)
+	{
+		*sep = '=';
+		if (add_request)
+			*(sep - 1) = '+';
+	}
 }

@@ -2,6 +2,8 @@
 # define UTILS_H
 
 # include "minishell.h"
+# include <sys/stat.h>
+# include <stddef.h>
 
 /*
  *************
@@ -11,12 +13,26 @@
 /* 
 	free.c
 */
-void					env_all_free(t_environ *env);
-void					env_free(t_environ *env);
+void free_set(void **dst, void *src);
+void instant_free(char **str);
 
 /* 
-	messeage.c
+	str.c
 */
-int						err_msg(char *msg);
+t_bool str_is_digit(char *str);
+char *ft_strcpy_forward(char *dest, char *src);
+
+
+/* 
+	path.c
+*/
+char *join_path(char *front, char *back);
+bool is_directory(const char *path);
+
+/* 
+	env_utils.c
+*/
+t_environ *dup_envs(t_environ *env);
+t_environ *dup_env(t_environ *env);
 
 #endif

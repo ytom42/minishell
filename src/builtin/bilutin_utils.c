@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:36:39 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 13:35:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/19 18:38:08 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ bool
 	return (TRUE);
 }
 
-
 t_environ
 	*get_env(char *key)
 {
@@ -69,4 +68,15 @@ t_environ
 		env = env->next;
 	}
 	return (NULL);
+}
+
+char
+	*get_cwd_path(char *arg)
+{
+	char	*cwd;
+
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+		print_cwd_error(arg);
+	return (cwd);
 }

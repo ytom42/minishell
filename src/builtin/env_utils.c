@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:36:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 13:30:22 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/20 09:32:08 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,6 @@ t_environ
 	return (new);
 }
 
-int
-	print_env(void)
-{
-	char	*expand_value;
-
-	ft_putstr_fd("declare -x ", STDOUT_FILENO);
-	ft_putstr_fd(env->key, STDOUT_FILENO);
-	// valueの出力
-	if (env->value)
-	{
-		// value文字列の拡張
-		expand_value = expanded_str(env->value, STATUS_DQUOTE, TRUE);
-		ft_putstr_fd("=\"", STDOUT_FILENO);
-		ft_putstr_fd(expand_value, STDOUT_FILENO);
-		ft_putchar_fd('"', STDOUT_FILENO);
-		free(expand_value);
-	}
-	ft_putchar_fd('\n', STDOUT_FILENO);	
-}
-
 bool
 	append_env(t_environ **envs, t_environ *new)
 {
@@ -58,7 +38,7 @@ bool
 		return (FALSE);
 	if (!*envs)
 	{
-		*envs = new_env;
+		*envs = new;
 		return (TRUE);
 	}
 	tmp = *env;
@@ -66,40 +46,4 @@ bool
 		tmp = tmp->next;
 	tmp->next = new;
 	return (TRUE);
-}
-
-t_environ
-	*copy_env(t_environ *env)
-{
-	t_environ *copy;
-
-	copy = (t_environ *)malloc(sizeof(t_environ));
-	if (!copy)
-		exit_error();
-	copy->key = env->key;
-	copy->value = env->value;
-	copy->next = NULL;
-	return (copy);
-}
-
-t_environ
-	*dup_env(t_environ *env)
-{
-	t_environ *res;
-	t_environ *tmp;
-	t_environ *copy;
-
-	res = NULL;
-	tmp = env;
-	while (tmp)
-	{
-		copy = copy_env(tmp);
-		if (append_env(&(res), copy))
-		{
-			set_free(&copy, NULL);
-			// exit_error();
-		}
-		tmp = tmp->next;
-	}
-	return (res);
 }
