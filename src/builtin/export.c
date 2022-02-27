@@ -6,13 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/20 09:47:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/27 14:11:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "utils.h"
 #include "libft.h"
+#include "expansion.h"
 
 extern t_master	g_master;
 
@@ -25,7 +26,7 @@ void
 	ft_putstr_fd(env->key, STDOUT_FILENO);
 	if (env->value)
 	{
-		expand_value = expanded_str(env->value, STATUS_DQUOTE, TRUE);
+		expand_value = create_value_str(env->value, STATE_IN_DQUOTE, TRUE);
 		ft_putstr_fd("=\"", STDOUT_FILENO);
 		ft_putstr_fd(expand_value, STDOUT_FILENO);
 		ft_putchar_fd('"', STDOUT_FILENO);

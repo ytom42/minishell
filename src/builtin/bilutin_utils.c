@@ -6,34 +6,15 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:36:39 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/19 18:38:08 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/27 13:05:41 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-#include "executo.h"
+#include "execute.h"
 #include "libft.h"
 
 extern t_master g_master;
-
-char
-	*get_env_value(char *key)
-{
-	t_environ *env;
-
-	if (!key)
-		return (NULL);
-	if (*key == '?')
-		return (ft_itoa(g_master.exit_cd));
-	env = g_master.environs;
-	while (env)
-	{
-		if (!ft_strcmp(env->key, key))
-			return (ft_strdup(env->value));
-		env = env->next;
-	}
-	return (NULL);
-}
 
 bool
 	is_valid_identifier(char *arg)

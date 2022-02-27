@@ -34,5 +34,6 @@ bool is_directory(const char *path);
 */
 t_environ *dup_envs(t_environ *env);
 t_environ *dup_env(t_environ *env);
+char	*get_env_value(char *key);
 
 #endif

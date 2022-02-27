@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:49:58 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/02/27 15:23:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int
 	char	**args;
 
 	exit_cd = EXIT_SUCCESS;
-	// expansion
-		// cmd->argsを展開したものをargsに格納
+	require_expansion(cmd, &args);
 	if (*p_state == NO_PIPE && is_builtin(args))
 		exit_cd = exec_builtin_parent(cmd, args);
 	else
