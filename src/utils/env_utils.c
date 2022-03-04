@@ -6,13 +6,16 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 09:08:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 13:48:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 12:04:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
 #include "execute.h"
+#include "builtin.h"
+
+extern t_master	g_master;
 
 t_environ
 	*dup_env(t_environ *env)
@@ -37,11 +40,11 @@ t_environ
 	list = NULL;
 	while (env)
 	{
-		tmp = copy_env(env);
+		tmp = dup_env(env);
 		if (append_env(&(list), tmp))
 		{
-			set_free((void **)&tmp, NULL);
-			set_free((void **)&list, NULL);
+			free_set((void **)&tmp, NULL);
+			free_set((void **)&list, NULL);
 			return (NULL);
 		}
 		env = env->next;

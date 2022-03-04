@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expnad_str.c                                       :+:      :+:    :+:   */
+/*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 07:53:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 15:27:58 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 12:19:46 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansion.h"
-#include "libft.h"
+#include "execute.h"
 
 static size_t
 	expand_strlen(const char *str, const char *esc)
@@ -60,14 +60,14 @@ char
 	char	*res;
 
 	esc_chars = "\"\\$";
-	if (state == STATE_GENERAL)
+	if (status == STATE_GENERAL)
 		esc_chars = "\'\"\\$|;><";
 	if (is_env == TRUE)
 		esc_chars = "\"\\$`";
 	res = malloc(sizeof(char *)
 			* (expand_strlen(str, esc_chars) + 1));
 	if (!res)
-		exit_error(NULL);
+		error_exit(NULL);
 	create_expanded_str(res, str, esc_chars);
 	return (res);
 }

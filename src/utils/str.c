@@ -6,14 +6,22 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:00:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 18:10:02 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:56:00 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
 
-t_bool
+static int
+	ft_isspace(char c)
+{
+	if (ft_strchr(" \t\n\r\v\f", c))
+		return (1);
+	return (0);
+}
+
+bool
 	str_is_digit(char *str)
 {
 	size_t	i;

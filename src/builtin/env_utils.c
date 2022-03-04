@@ -6,13 +6,13 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:36:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/20 09:32:08 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:23:22 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "execute.h"
-#include "litft.h"
+#include "libft.h"
 
 t_environ
 	*new_env(char *key, char *value)
@@ -41,7 +41,7 @@ bool
 		*envs = new;
 		return (TRUE);
 	}
-	tmp = *env;
+	tmp = *envs;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;

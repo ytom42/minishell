@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 05:49:25 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/19 10:55:53 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:34:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include <string.h>
 #include "execute.h"
 #include "libft.h"
+
+void
+	error_exit(char *cmd)
+{
+	print_error_msg(strerror(errno), cmd);
+	exit(EXIT_FAILURE);
+}
 
 void	
 	print_identifier_error(char *cmd, char *arg)
@@ -38,13 +45,6 @@ void
 }
 
 void
-	error_exit(char *cmd)
-{
-	print_error_msg(strerror(errno), cmd);
-	exit(EXIT_FAILURE);
-}
-
-void
 	print_num_arg_error(char *arg)
 {
 	ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
@@ -55,7 +55,7 @@ void
 void
 	print_cwd_error(char *arg)
 {
-	ft_putstr_fd(caller, STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd("error retrieving current directory", STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);

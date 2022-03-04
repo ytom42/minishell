@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/20 09:46:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 14:55:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "expansion.h"
 #include "execute.h"
 
-extern t_master	master;
+extern t_master	g_master;
 
 void
-	**split_key_value(char *arg, char *sep, char *value, bool add_request)
+	split_key_value(char *arg, char **sep, char **value, bool *add_request)
 {
 	*sep = ft_strchr(arg, '=');
 	if (*sep)
@@ -55,28 +55,28 @@ void
 	}
 	else
 	{
-		if (!replace_dup_env(key, new_value))
-			if (!append_env(&master.environs,
-				new_env(ft_strdup(key), ft_strdup(new_value))))
+		if (!replace_dup_env(key, new_value, FALSE))
+			if (!append_env(&g_master.environs,
+					new_env(ft_strdup(key), ft_strdup(new_value))))
 				error_exit(NULL);
 	}
 }
 
 bool
-	replace_dup_env(char *key, char *value)
+	replace_dup_env(char *key, char *value, bool is_env)
 {
 	t_environ	*env;
 
-	env = master.environs;
+	env = g_master.environs;
 	while (env)
 	{
 		if (!ft_strcmp(env->key, key))
 		{
-			if (!is_declear)
+			if (!is_env)
 			{
 				free(env->value);
 				env->value = ft_strdup(value);
-				env->is_delear = is_declear;
+				env->is_env = is_env;
 			}
 			return (TRUE);
 		}

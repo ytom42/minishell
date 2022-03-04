@@ -6,17 +6,20 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:38:53 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/19 16:17:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 14:41:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "utils.h"
 #include "libft.h"
+#include "expansion.h"
+#include <string.h>
+#include <errno.h>
 
 extern t_master	g_master;
 
-char
+static char
 	*set_destination_path(char **args)
 {
 	t_environ	*home;
@@ -40,8 +43,8 @@ char
 	return (args[1]);
 }
 
-bool
-	requires_env_path(char **args, char *path)
+static bool
+	request_env_path(char **args, char *path)
 {
 	if (args[1] == NULL || args[1][0] == '/')
 		return (FALSE);
@@ -53,8 +56,8 @@ bool
 	return (TRUE);
 }
 
-char
-	*change_split_cdpath(char **split_cdpath, char *path)
+static char
+	*change_dir_split_cdpath(char **split_cdpath, char *path)
 {
 	size_t	i;
 	char	*join_path;
@@ -79,7 +82,7 @@ char
 	return (NULL);
 }
 
-bool
+static bool
 	change_dir_env_path(char *path)
 {
 	bool	res;
@@ -88,10 +91,10 @@ bool
 	char	*pwd;
 
 	res = TRUE;
-	split_cdpath = separate_elem_colon(get_env_value("CDPATH"), "");
+	split_cdpath = split_value(get_env_value("CDPATH"), ':');
 	if (!split_cdpath)
 		error_exit(NULL);
-	success_path = change_split_cdpath(split_cdpath, path);
+	success_path = change_dir_split_cdpath(split_cdpath, path);
 	if (!success_path)
 		res = FALSE;
 	pwd = get_env_value("PWD");
@@ -110,13 +113,13 @@ int
 	path = set_destination_path(args);
 	if (!path)
 		return (EXIT_FAILURE);
-	if (requires_env_path(args, path))
+	if (request_env_path(args, path))
 	{
 		if (change_dir_env_path(path))
 			return (EXIT_SUCCESS);
 	}
 	if (change_dir(path))
 		return (EXIT_SUCCESS);
-	print_error_filename(strerror(errno), "cd", path);
+	print_filename_error(strerror(errno), "cd", path);
 	return (EXIT_FAILURE);
 }

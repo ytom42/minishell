@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 10:50:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 17:05:03 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 12:20:34 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 extern t_master	g_master;
 
 void
-	del_env(t_environ **head, t_environ *target)
+	del_env(t_environ **head, char *target)
 {
 	t_environ	*tmp;
 	t_environ	*prev;
@@ -46,26 +46,6 @@ void
 	}
 }
 
-t_environ
-	*get_env(char *target)
-{
-	t_environ	*tmp;
-	t_environ	*res;
-
-	res = NULL;
-	tmp = g_master->environ;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->key, target))
-		{
-			res = tmp;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	return (res);
-}
-
 int
 	exec_unset(char **args)
 {
@@ -83,7 +63,7 @@ int
 		}
 		else
 		{
-			del_env(&g_master->envrion, get_env(args[i]));
+			del_env(&g_master.environs, args[i]);
 		}
 	}
 	return (res);

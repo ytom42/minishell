@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:35:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:44:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:47:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ extern t_master	g_master;
 static void
 	exec_pipeline(t_node *nodes)
 {
-	int				exit_cd;
 	int				pipe[2];
 	t_pipe_state	pipe_state;
 	t_command		*cmd;
@@ -56,7 +55,7 @@ static void
 void
 	exec_nodes(t_node *nodes)
 {
-	if (!nodes || g_exited == TRUE)
+	if (!nodes || g_master.exit_cd == TRUE)
 	{
 		return ;
 	}

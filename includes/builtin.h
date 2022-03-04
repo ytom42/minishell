@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 09:27:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:25:54 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 # include "libft.h"
 # include "utils.h"
 # include "execute.h"
+# include "test.h"
 
 /* 
 	builtin.c
  */
-int exec_builtin(char **args);
-int is_builtin(char **args);
+int exec_builtin_cmd(char **args);
+int is_builtin_cmd(char **args);
 
 /* 
 	builtin_utils.c
  */
-char *get_env_value(char *key);
 bool is_valid_identifier(char *arg);
 t_environ *get_env(char *target);
 char *get_cwd_path(char *arg);
@@ -71,9 +71,9 @@ void sort_envs(t_environ *env);
 /* 
 	export_utils.c
  */
-char **split_key_value(char *arg, char *sep, char *value, bool add_request);
-void update_env(char **args);
-bool replace_dup_env(char *key, char *value);
+void split_key_value(char *arg, char **sep, char **value, bool *add_request);
+void update_env(char *key, char *new_value, bool add_request);
+bool replace_dup_env(char *key, char *value, bool is_env);
 void restore_arg(char *sep, bool add_request);
 
 

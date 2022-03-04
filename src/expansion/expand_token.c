@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 12:57:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 12:40:43 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void
 	while (var[NOW])
 	{
 		expanded_str = expand_env_var(var[NOW]->str);
-		var[EXPAND] = tokenise(expanded_str, TRUE);
+		// var[EXPAND] = tokenise(expanded_str, TRUE);
 		free_set((void **)&expanded_str, NULL);
 		if (!var[RES])
-			var[RES] == var[EXPAND];
+			var[RES] = var[EXPAND];
 		join_token(var[LAST], var[EXPAND]);
 		var[LAST] = get_last_token(var[RES]);
 		var[NOW] = var[NOW]->next;

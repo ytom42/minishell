@@ -6,13 +6,13 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/19 17:55:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 15:12:57 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "utils.h"
-#include "libft.h"
+#include <errno.h>
 
 extern t_master	g_master;
 
@@ -28,17 +28,17 @@ static char
 		physical_path = ft_strdup(arg);
 	else
 		physical_path = join_path(tmp_pwd, arg);
-	set_free((void **)&tmp_pwd, NULL);
+	free_set((void **)&tmp_pwd, NULL);
 	if (!physical_path)
 		error_exit(NULL);
 	canonical_path = path_canonicalisation(physical_path);
 	if (canonical_path)
 	{
-		set_free((void **)&physical_path, NULL);
+		free_set((void **)&physical_path, NULL);
 		*is_canonical = TRUE;
 		return (canonical_path);
 	}
-	set_free((void **)&canonical_path, NULL);
+	free_set((void **)&canonical_path, NULL);
 	*is_canonical = FALSE;
 	return (physical_path);
 }
@@ -73,24 +73,24 @@ static char
 	return (new_pwd);
 }
 
-static void
-	update_pwd_oldpwd(char *new_pwd, bool is_pwd)
-{
-	char *pwd;
+// static void
+// 	update_pwd_oldpwd(char *new_pwd, bool is_pwd)
+// {
+// 	char *pwd;
 
-	if (is_pwd)
-	{
-		if (!replace_dup_env("PWD", new_pwd))
-			return ;
-	}
-	else
-	{
-		pwd = get_env_value("PWD");
-		if (!pwd || !replace_dup_env("OLDPWD", pwd))
-			return ;
-		set_free((void **)&pwd, NULL);
-	}
-}
+// 	if (is_pwd)
+// 	{
+// 		if (!replace_dup_env("PWD", new_pwd, FALSE))
+// 			return ;
+// 	}
+// 	else
+// 	{
+// 		pwd = get_env_value("PWD");
+// 		if (!pwd || !replace_dup_env("OLDPWD", pwd, FALSE))
+// 			return ;
+// 		free_set((void **)&pwd, NULL);
+// 	}
+// }
 
 static int
 	change_directory(char *cd_path, char *arg, bool is_canonical)
@@ -100,12 +100,12 @@ static int
 	char	*pwd;
 
 	pwd = NULL;
-	update_env(pwd, FALSE);
-	res = chdir(cp_path);
+	update_env("PWD", pwd, FALSE);
+	res = chdir(cd_path);
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, TRUE);
-		update_env(pwd, TRUE);
+		update_env("PWD", pwd, TRUE);
 		return (res);
 	}
 	err = errno;
@@ -113,7 +113,7 @@ static int
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, FALSE);
-		update_env(pwd, TRUE);
+		update_env("PWD", pwd, TRUE);
 		return (res);
 	}
 	errno = err;

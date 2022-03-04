@@ -6,12 +6,12 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 14:23:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 19:12:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 15:18:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "libft.h"
+#include "execute.h"
 
 static void
 	require_front_slash(char *path, char **res)
@@ -23,15 +23,15 @@ static void
 	if (!ft_strncmp(path, "//", 2) && path[2] != '/'
 		&& ft_strncmp(*res, "//", 2))
 	{
-		cmplete = ft_strjoin("/", *res);
+		complete = ft_strjoin("/", *res);
 		if (!complete)
 			error_exit(NULL);
-		set_free((void **)res, NULL);
+		free_set((void **)res, NULL);
 		*res = complete;
 	}
 }
 
-char
+static char
 	*copy_path_elem(char *path_pos, char *elem, char *start)
 {
 	if (!ft_strcmp(elem, ".."))
@@ -43,13 +43,13 @@ char
 	}
 	else if (ft_strcmp(elem, "."))
 	{
-		path_pos = ft_strcpy_forward(path_pos, '/');
+		path_pos = ft_strcpy_forward(path_pos, "/");
 		path_pos = ft_strcpy_forward(path_pos, elem);
 	}
 	return (path_pos);
 }
 
-bool
+static bool
 	edit_path(char **split, char **res)
 {
 	char	*start;
@@ -86,7 +86,8 @@ char
 	if (!split || !res)
 		error_exit(NULL);
 	if (!edit_path(split, &res))
-		set_free((void **)&res, NULL);
-	instant_free((split);
+		free_set((void **)&res, NULL);
+	instant_free((split));
 	require_front_slash(path, &res);
+	return (res);
 }

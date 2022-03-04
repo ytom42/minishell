@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:48:04 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:37:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int
 {
 	char	*filename;
 
-	filename = redir->filename->data;
+	filename = redir->filename->str;
 	if (redir->type == REDIR_INPUT)
 		return (open(filename, O_RDONLY));
 	if (redir->type == REDIR_OUTPUT)
@@ -43,7 +43,7 @@ static bool
 	redir->fd_file = open_file(redir);
 	if (redir->fd_file < 0)
 	{
-		print_error_msg(strerror(errno), redir->filename->data);
+		print_error_msg(strerror(errno), redir->filename->str);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -83,7 +83,7 @@ bool
 	redir = cmd->redirects;
 	while (redir)
 	{
-		org_filename = ft_strdup(redir->filename->data);
+		org_filename = ft_strdup(redir->filename->str);
 		if (!org_filename)
 			error_exit(NULL);
 		// expand_token(&redir->filename);
@@ -110,7 +110,7 @@ bool
 		if (is_parent)
 		{
 			redir->fd_backup = dup(redir->fd_io);
-			if (!redir->backup < 0)
+			if (redir->fd_backup < 0)
 			{
 				print_fd_error(redir->fd_io);
 				return (FALSE);

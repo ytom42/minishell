@@ -6,12 +6,13 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:17:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 17:10:00 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:25:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "libft.h"
+#include "execute.h"
 
 extern t_master	g_master;
 
