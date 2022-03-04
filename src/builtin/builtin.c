@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:00:17 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 11:25:35 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 15:34:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int
 {
 	if (!ft_strcmp(args[0], "echo"))
 		return (exec_echo(args));
-	// if (!ft_strcmp(args[0], "cd"))
-	// 	return (exec_cd(args));
+	if (!ft_strcmp(args[0], "cd"))
+		return (exec_cd(args));
 	if (!ft_strcmp(args[0], "pwd"))
 		return (exec_pwd());
 	if (!ft_strcmp(args[0], "export"))
