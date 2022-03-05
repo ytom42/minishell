@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:00:17 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/17 16:36:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 15:34:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 
 int
-	is_builtin(char **args)
+	is_builtin_cmd(char **args)
 {
 	const char	*builtins[] = {
 		"exit", "cd", "echo", "pwd", "env", "export", "unset", NULL
@@ -34,21 +34,21 @@ int
 }
 
 int
-	exec_builtin(char **arg)
+	exec_builtin_cmd(char **args)
 {
-	if (!strcmp(arg[0], "echo"))
+	if (!ft_strcmp(args[0], "echo"))
 		return (exec_echo(args));
-	if (!strcmp(arg[0], "cd"))
+	if (!ft_strcmp(args[0], "cd"))
 		return (exec_cd(args));
-	if (!strcmp(arg[0], "pwd"))
+	if (!ft_strcmp(args[0], "pwd"))
 		return (exec_pwd());
-	if (!strcmp(arg[0], "export"))
+	if (!ft_strcmp(args[0], "export"))
 		return (exec_export(args));
-	if (!strcmp(arg[0], "unset"))
+	if (!ft_strcmp(args[0], "unset"))
 		return (exec_unset(args));
-	if (!strcmp(arg[0], "env"))
+	if (!ft_strcmp(args[0], "env"))
 		return (exec_env());
-	if (!strcmp(arg[0], "exit"))
+	if (!ft_strcmp(args[0], "exit"))
 		return (exec_exit(args));
 	return (EXIT_FAILURE);
 }

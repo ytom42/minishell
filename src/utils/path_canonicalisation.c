@@ -6,32 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 14:23:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 19:12:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/05 17:56:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "libft.h"
+#include "execute.h"
 
-static void
-	require_front_slash(char *path, char **res)
-{
-	char	*complete;
-	
-	if (!path || !res || !*res)
-		return ;
-	if (!ft_strncmp(path, "//", 2) && path[2] != '/'
-		&& ft_strncmp(*res, "//", 2))
-	{
-		cmplete = ft_strjoin("/", *res);
-		if (!complete)
-			error_exit(NULL);
-		set_free((void **)res, NULL);
-		*res = complete;
-	}
-}
-
-char
+static char
 	*copy_path_elem(char *path_pos, char *elem, char *start)
 {
 	if (!ft_strcmp(elem, ".."))
@@ -43,13 +25,13 @@ char
 	}
 	else if (ft_strcmp(elem, "."))
 	{
-		path_pos = ft_strcpy_forward(path_pos, '/');
+		path_pos = ft_strcpy_forward(path_pos, "/");
 		path_pos = ft_strcpy_forward(path_pos, elem);
 	}
 	return (path_pos);
 }
 
-bool
+static bool
 	edit_path(char **split, char **res)
 {
 	char	*start;
@@ -63,13 +45,9 @@ bool
 	while (split[++i])
 	{
 		path_pos = copy_path_elem(path_pos, split[i], start);
-		if (path_pos == start)
-			path_pos = ft_strcpy_forward(path_pos, "/");
 		if (!is_directory(start))
 			return (FALSE);
 	}
-	if (path_pos == start)
-		path_pos = ft_strcpy_forward(path_pos, "/");
 	return (TRUE);
 }
 
@@ -82,11 +60,11 @@ char
 	if (!path)
 		return (NULL);
 	split = ft_split(path, '/');
-	res = malloc(sizeof(char *) * (ft_strlen(path) + 1));
+	res = (char *)malloc(sizeof(char) * (ft_strlen(path) + 1));
 	if (!split || !res)
 		error_exit(NULL);
 	if (!edit_path(split, &res))
-		set_free((void **)&res, NULL);
-	instant_free((split);
-	require_front_slash(path, &res);
+		free_set((void **)&res, NULL);
+	instant_free((split));
+	return (res);
 }

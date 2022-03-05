@@ -6,13 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 15:23:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:50:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 #include "builtin.h"
 #include "utils.h"
+#include "expansion.h"
 
 extern t_master	g_master;
 
@@ -32,7 +33,7 @@ void
 
 static void
 	exec_cmd_child(t_command *cmd, char **args,
-					t_pipe_state *p_state, int old_pipe[])
+					t_pipe_state p_state, int old_pipe[])
 {
 	pid_t	pid;
 	int		new_pipe[2];
@@ -46,9 +47,9 @@ static void
 		if (!args[0])
 			exit(EXIT_SUCCESS);
 		if (!set_redirects(cmd))
-			return (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		if (!dup_redirects(cmd, TRUE))
-			return (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		dup_pipe(p_state, old_pipe, new_pipe);
 		if (is_builtin_cmd(args))
 			exit(exec_builtin_cmd(args));
@@ -66,7 +67,7 @@ static int
 		return (EXIT_FAILURE);
 	if (!dup_redirects(cmd, TRUE))
 		return (EXIT_FAILURE);
-	return (exec_builtin(args));
+	return (exec_builtin_cmd(args));
 }
 
 static void
@@ -88,7 +89,7 @@ int
 
 	exit_cd = EXIT_SUCCESS;
 	require_expansion(cmd, &args);
-	if (*p_state == NO_PIPE && is_builtin(args))
+	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);
 	else
 		exec_cmd_child(cmd, args, *p_state, old_pipe);

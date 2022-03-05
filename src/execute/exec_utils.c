@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_child_utils.c                                 :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:47:44 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:45:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 12:35:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-#include "utils.h"
-#include "libft.h"
+#include "expansion.h"
 
 extern t_master	g_master;
 
-void
-	envs_listsize(t_environ *envs, size_t *size)
+static void
+	envs_lstsize(t_environ *envs, size_t *size)
 {
 	t_environ	*tmp;
 
@@ -30,8 +29,8 @@ void
 	}
 }
 
-void
-	creat_env_str(t_environ *environs, char *env_str)
+static void
+	create_env_str(t_environ *environs, char *env_str)
 {
 	char	*tmp;
 

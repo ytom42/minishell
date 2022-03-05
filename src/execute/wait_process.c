@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:16:57 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 11:48:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:49:37 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void
 	}
 	if (!has_child)
 		return ;
-	update_exit_cd(wstatus, receve_sigint);
+	update_exit_cd(wait_status, receve_sigint);
 }

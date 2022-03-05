@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:56:03 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/25 14:53:19 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:42:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string.h>
 #include "execute.h"
 #include "libft.h"
+#include "utils.h"
 
 void
 	print_filename_error(char *msg, char *cmd, char *file)

@@ -6,13 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:30:14 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:43:53 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 12:18:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 #include "utils.h"
-#include "libft.h"
+#include "expansion.h"
+#include "test.h"
 
 static t_cmd_type
 	get_cmd_type(char *cmd)
@@ -46,7 +47,7 @@ void
 			break ;
 		}
 	}
-	set_free((void **)&path, NULL);
+	free_set((void **)&path, NULL);
 }
 
 char
@@ -65,7 +66,7 @@ char
 			error_exit(NULL);
 		return (executable_path);
 	}
-	paths = split_value(value, ":");
+	paths = split_value(value, ':');
 	if (!paths)
 		error_exit(NULL);
 	create_cmd_path(paths, &executable_path, cmd);

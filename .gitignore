@@ -3,3 +3,7 @@ minishell
 *.o
 *.a
 *.log
+src/tmp/
+src/Makefile
+src/test.c
+includes/test.h

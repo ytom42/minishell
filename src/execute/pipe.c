@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 14:37:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 15:49:11 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/04 11:21:07 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool
 }
 
 void
-	create_pipe(t_pipe_state p_state, int new_pipe)
+	create_pipe(t_pipe_state p_state, int new_pipe[])
 {
 	if (can_write(p_state))
 	{
@@ -42,7 +42,7 @@ void
 }
 
 void
-	dup_pipe(t_pipe_state p_state, int old_pipe, int new_pipe)
+	dup_pipe(t_pipe_state p_state, int old_pipe[], int new_pipe[])
 {
 	if (can_read(p_state))
 	{

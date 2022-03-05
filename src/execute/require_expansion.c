@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   require_expansion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/27 10:12:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:36:19 by kfumiya          ###   ########.fr       */
+/*   Created: 2022/03/04 12:34:46 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/03/04 12:37:08 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expansion.h"
-#include "utils.h"
-#include "libft.h"
 #include "execute.h"
+#include "expansion.h"
 
 static size_t
 	token_lstsize(t_token *token)
@@ -31,7 +29,7 @@ static size_t
 	return (size);
 }
 
-char
+static char
 	**replace_args(t_command *cmd)
 {
 	char	**args;
@@ -57,7 +55,7 @@ char
 	return (args);
 }
 
-void
+bool
 	require_expansion(t_command *cmd, char ***args)
 {
 	expand_tokens(&cmd->args);

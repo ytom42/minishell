@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 14:11:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 14:45:41 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void
 	{
 		while (right)
 		{
-			if (strcmp(left->key, right->key) > 0)
+			if (ft_strcmp(left->key, right->key) > 0)
 			{
 				tmp = left;
 				left = right;
@@ -61,7 +61,7 @@ void
 }
 
 int
-	set_env(char **args)
+	set_envs(char **args)
 {
 	int		i;
 	int		res;
@@ -74,8 +74,8 @@ int
 	while (args[++i])
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
-		if (is_valid_idntifier(args[i]))
-			update_env(arg[i], value, add_request);
+		if (is_valid_identifier(args[i]))
+			update_env(args[i], value, add_request);
 		else
 		{
 			restore_arg(sep, add_request);
@@ -92,7 +92,7 @@ int
 	t_environ		*envs;
 	t_environ		*tmp;
 	
-	envs = dup_envs(g_master.environ);
+	envs = dup_envs(g_master.environs);
 	if (!envs)
 		error_exit(NULL);
 	sort_envs(envs);

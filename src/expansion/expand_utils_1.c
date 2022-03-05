@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:03:12 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/26 12:03:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/03 15:52:18 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static size_t
 	i = -1;
 	while (str[++i])
 	{
-		if (s[i] == delimiter)
+		if (str[i] == delimiter)
 			size++;
 	}
 	if (size)
