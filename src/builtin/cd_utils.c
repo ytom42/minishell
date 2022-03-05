@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 15:12:57 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/05 18:01:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static char
 {
 	char	*new_pwd;
 
-	new_pwd = NULL;
 	if (is_abs_path)
 	{
 		if (!is_canonical)
@@ -73,25 +72,6 @@ static char
 	return (new_pwd);
 }
 
-// static void
-// 	update_pwd_oldpwd(char *new_pwd, bool is_pwd)
-// {
-// 	char *pwd;
-
-// 	if (is_pwd)
-// 	{
-// 		if (!replace_dup_env("PWD", new_pwd, FALSE))
-// 			return ;
-// 	}
-// 	else
-// 	{
-// 		pwd = get_env_value("PWD");
-// 		if (!pwd || !replace_dup_env("OLDPWD", pwd, FALSE))
-// 			return ;
-// 		free_set((void **)&pwd, NULL);
-// 	}
-// }
-
 static int
 	change_directory(char *cd_path, char *arg, bool is_canonical)
 {
@@ -100,12 +80,11 @@ static int
 	char	*pwd;
 
 	pwd = NULL;
-	update_env("PWD", pwd, FALSE);
 	res = chdir(cd_path);
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, TRUE);
-		update_env("PWD", pwd, TRUE);
+		update_env("PWD", pwd, FALSE);
 		return (res);
 	}
 	err = errno;
@@ -113,7 +92,7 @@ static int
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, FALSE);
-		update_env("PWD", pwd, TRUE);
+		update_env("PWD", pwd, FALSE);
 		return (res);
 	}
 	errno = err;
@@ -127,9 +106,13 @@ bool
 	char	*path;
 	int		res;
 	bool	is_canonical;
+	char	*oldpwd;
 
+	oldpwd = get_cwd_path("cd");
 	path = set_cd_path(dir_path, &is_canonical);
 	res = change_directory(path, dir_path, is_canonical);
+	if (!res)
+		update_env("OLDPWD", oldpwd, FALSE);
 	free_set((void **)&path, NULL);
 	if (!res)
 		return (TRUE);
