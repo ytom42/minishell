@@ -5,8 +5,8 @@
 # include <sys/types.h>
 # include <stddef.h>
 # include <stdbool.h>
+# include "common.h"
 # include "libft.h"
-# include "test.h"
 
 /* 
 	free.c

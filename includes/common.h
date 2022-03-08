@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/20 16:01:09 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 20:26:48 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,33 @@
 # include <readline/history.h>
 # include "../libft/includes/libft.h"
 
-#define END             "\033[0m"
-#define BOLD            "\033[1m"
-#define BLACK           "\033[30m"
-#define RED             "\033[31m"
-#define GREEN           "\033[32m"
-#define YELLOW          "\033[33m"
-#define BLUE            "\033[34m"
-#define MAGENTA         "\033[35m"
-#define CYAN            "\033[36m"
-#define WHITE           "\033[37m"
-#define UNDERLINE       "\033[4m"
-#define BOLD_UNDERLINE  "\033[1;4m"
+# define END             "\033[0m"
+# define BOLD            "\033[1m"
+# define BLACK           "\033[30m"
+# define RED             "\033[31m"
+# define GREEN           "\033[32m"
+# define YELLOW          "\033[33m"
+# define BLUE            "\033[34m"
+# define MAGENTA         "\033[35m"
+# define CYAN            "\033[36m"
+# define WHITE           "\033[37m"
+# define UNDERLINE       "\033[4m"
+# define BOLD_UNDERLINE  "\033[1;4m"
 
-# define MS_SUCCUSE		0
-# define MS_FALSE		1
+# define TRUE			1
+# define FALSE			0
 # define MS_PROMPT		"\033[1m\033[32mminishell$ \033[0m"
 # define DELIMITERS		"|<> \t"
 
 enum e_token_type
 {
-	TYPE_R_RDRCT,
-	TYPE_RR_RDRCT,
-	TYPE_L_RDRCT,
-	TYPE_LL_RDRCT,
-	TYPE_PIPE,
-	TYPE_STR,
-	TYPE_EXPDBL,
-	INV,
-};
+	WORD,
+	PIPE,
+	LESSER,
+	D_LESSER,
+	GREATER,
+	D_GREATER,
+}
 
 enum e_meta_char
 {
@@ -78,17 +76,17 @@ typedef struct	s_token
 	struct s_token	*next;
 }				t_token;
 
-typedef struct s_environ
+typedef struct	s_environ
 {
 	char				*key;
 	char				*value;
 	int					is_env;
 	struct s_environ	*next;
-} t_environ;
+}				t_environ;
 
 typedef struct s_master
 {
-	t_environ			*environ;
+	t_environ			*environs;
 	char				*pwd;
 	char				*old_pwd;
 	t_token				*tokens;
