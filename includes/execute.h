@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:38:08 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/06 16:24:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_redirect_type
 {
 	REDIR_INPUT,
 	REDIR_OUTPUT,
-	REDIR_APPEND_OUTPUT
+	REDIR_APPEND_OUTPUT,
+	REDIR_HEREDOC
 } t_redirect_type;
 
 typedef enum e_cmd_type
@@ -41,8 +42,8 @@ typedef enum e_cmd_type
 typedef enum e_node_type
 {
 	NODE_COMMAND,
-	NODE_PIPE,
-	NODE_SEMICOLON,
+	NODE_PIPE
+	// NODE_SEMICOLON,
 } t_node_type;
 
 typedef struct			s_redirect
@@ -52,7 +53,8 @@ typedef struct			s_redirect
 	int					fd_backup;
 	t_redirect_type		type;
 	t_token				*filename;
-	struct s_redirect	*next;
+	char				**heredoc;
+	struct s_redirect 	*next;
 	struct s_redirect	*prev;
 }						t_redirect;
 typedef struct s_command
