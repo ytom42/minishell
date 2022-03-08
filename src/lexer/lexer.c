@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/02/20 15:49:43 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 14:06:44 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ int get_token_size(char *line, int *i)
 	dq = 0;
 	sq = 0;
 	if (line[*i] == '>' || line[*i] == '<')
+	{
+		size += 1;
+		if (line[*i] == '>' && line[*i + 1] == '>')
+			size += 1;
+		else if (line[*i] == '<' && line[*i + 1] == '<')
+			size += 1;
+		return (size);
+	}
+	else if (line[*i] == '|')
 	{
 		size += 1;
 		return (size);

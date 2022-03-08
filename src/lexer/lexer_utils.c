@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:38:36 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/02/20 15:39:03 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 14:07:09 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		is_delimiter(char c)
 	else if (c == '>')
 		return (1);
 	else if (c == '<')
+		return (1);
+	else if (c == '|')
 		return (1);
 	return (0);
 }

@@ -6,11 +6,27 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:35:53 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/02/20 15:36:21 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/06 16:12:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+
+char get_token_type(char *str)
+{
+	if (ft_strcmp(str, "|") == 0)
+		return (PIPE);
+	else if (ft_strcmp(str, ">") == 0)
+		return (GREATER);
+	else if (ft_strcmp(str, "<") == 0)
+		return (LESSER);
+	else if (ft_strcmp(str, ">>") == 0)
+		return (D_GREATER);
+	else if (ft_strcmp(str, "<<") == 0)
+		return (D_LESSER);
+	else
+		return (WORD);
+}
 
 t_token	*token_lstnew(char *str)
 {
@@ -19,8 +35,8 @@ t_token	*token_lstnew(char *str)
 	new = (t_token*)malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	// new->prev = NULL;
 	new->str = str;
+	new->type = get_token_type(str);
 	new->next = NULL;
 	return (new);
 }
