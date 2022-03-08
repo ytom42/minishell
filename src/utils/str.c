@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:00:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 11:56:00 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:11:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool
 	str_is_digit(char *str)
 {
 	size_t	i;
-	t_bool	is_digit;
+	bool	is_digit;
 
 	i = 0;
 	is_digit = FALSE;

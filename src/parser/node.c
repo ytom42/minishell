@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 18:15:23 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:11:12 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ t_redirect	*redirect_new(t_token **token)
 	redirect->prev = NULL;
 	redirect->next = NULL;
 	if ((*token)->type == LESSER)
-		redirect->type = INPUT;
+		redirect->type = REDIR_INPUT;
 	else if ((*token)->type == D_LESSER)
-		redirect->type = HERE_DOC;
+		redirect->type = REDIR_HEREDOC;
 	else if ((*token)->type == GREATER)
-		redirect->type = OUTPUT;
+		redirect->type = REDIR_OUTPUT;
 	else if ((*token)->type == D_GREATER)
-		redirect->type = APPEND_OUTPUT;
+		redirect->type = REDIR_APPEND_OUTPUT;
 	return (redirect);
 }

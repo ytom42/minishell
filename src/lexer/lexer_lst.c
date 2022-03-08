@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:35:53 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/06 16:12:53 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:15:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-char get_token_type(char *str)
+static char get_token_type(char *str)
 {
 	if (ft_strcmp(str, "|") == 0)
 		return (PIPE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:27:53 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/06 15:54:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/08 20:57:39 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # include "lexer.h"
-# include "perser.h"
+# include "parser.h"
 # include "builtin.h"
 # include "execute.h"
 # include "expansion.h"

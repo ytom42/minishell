@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:56:32 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 19:05:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:02:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,47 @@
 
 #include "common.h"
 
-typedef enum			e_redirect_type
-{
-	INPUT,
-	OUTPUT,
-	APPEND_OUTPUT,
-	HERE_DOC,
-}						t_redirect_type;
+// typedef enum			e_redirect_type
+// {
+// 	INPUT,
+// 	OUTPUT,
+// 	APPEND_OUTPUT,
+// 	HERE_DOC,
+// }						t_redirect_type;
 
-typedef struct			s_redirect
-{
-	int					fd_io;
-	int					fd_file;
-	int					fd_backup;
-	t_redirect_type		type;
-	t_token				*filename;
-	char				**heredoc;
-	struct s_redirect	*next;
-	struct s_redirect	*prev;
-}						t_redirect;
+// typedef struct			s_redirect
+// {
+// 	int					fd_io;
+// 	int					fd_file;
+// 	int					fd_backup;
+// 	t_redirect_type		type;
+// 	t_token				*filename;
+// 	char				**heredoc;
+// 	struct s_redirect	*next;
+// 	struct s_redirect	*prev;
+// }						t_redirect;
 
-typedef struct			s_command
-{
-	t_token				*args;
-	t_redirect			*redirects;
-	pid_t				pid;
-	struct s_command	*next;
-}						t_command;
+// typedef struct			s_command
+// {
+// 	t_token				*args;
+// 	t_redirect			*redirects;
+// 	pid_t				pid;
+// 	struct s_command	*next;
+// }						t_command;
 
-typedef enum	e_node_type
-{
-	NODE_COMMAND,
-	NODE_PIPE,
-}				t_node_type;
+// typedef enum	e_node_type
+// {
+// 	NODE_COMMAND,
+// 	NODE_PIPE,
+// }				t_node_type;
 
-typedef struct	s_node
-{
-	t_node_type		type;
-	t_command		*command;
-	struct s_node	*left;
-	struct s_node	*right;
-}				t_node;
+// typedef struct	s_node
+// {
+// 	t_node_type		type;
+// 	t_command		*command;
+// 	struct s_node	*left;
+// 	struct s_node	*right;
+// }				t_node;
 
 /*
 **	parser

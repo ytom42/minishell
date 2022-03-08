@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:16:57 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 11:49:37 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/08 20:46:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 extern t_master	g_master;
 
 static void
-	update_exit_cd(int wstatus, t_bool receve_sigint)
+	update_exit_cd(int wstatus, bool receve_sigint)
 {
 	int	signal;
 

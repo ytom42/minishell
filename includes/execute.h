@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 20:17:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:09:55 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ typedef enum e_pipe_state
 	PIPE_READ_WRITE
 } t_pipe_state;
 
-typedef enum e_redirect_type
-{
-	REDIR_INPUT,
-	REDIR_OUTPUT,
-	REDIR_APPEND_OUTPUT,
-	REDIR_HEREDOC
-} t_redirect_type;
-
 typedef enum e_cmd_type
 {
 	ABSOLUTE,
@@ -39,39 +31,7 @@ typedef enum e_cmd_type
 	COMMAND
 } t_cmd_type;
 
-typedef enum e_node_type
-{
-	NODE_COMMAND,
-	NODE_PIPE
-	// NODE_SEMICOLON,
-} t_node_type;
-
-typedef struct			s_redirect
-{
-	int					fd_io;
-	int					fd_file;
-	int					fd_backup;
-	t_redirect_type		type;
-	t_token				*filename;
-	char				**heredoc;
-	struct s_redirect 	*next;
-	struct s_redirect	*prev;
-}						t_redirect;
-typedef struct s_command
-{
-	t_token				*args;
-	t_redirect			*redirects;
-	pid_t				pid;
-	struct s_command	*next;
-} t_command;
-
-typedef struct	s_node
-{
-	t_node_type		type;
-	t_command		*command;
-	struct s_node	*left;
-	struct s_node	*right;
-}				t_node;
+void	exec_nodes(t_node *nodes);
 
 /*
 	exec_cmd.c

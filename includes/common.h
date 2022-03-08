@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 20:26:48 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:04:25 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,69 @@ enum e_token_type
 	D_LESSER,
 	GREATER,
 	D_GREATER,
-}
+};
+
+typedef struct	s_token
+{
+	char				*str;
+	enum e_token_type	type;
+	struct s_token		*prev;
+	struct s_token		*next;
+}				t_token;
+
+typedef enum	e_redirect_type
+{
+	REDIR_INPUT,
+	REDIR_OUTPUT,
+	REDIR_APPEND_OUTPUT,
+	REDIR_HEREDOC
+}				t_redirect_type;
+
+typedef struct			s_redirect
+{
+	int					fd_io;
+	int					fd_file;
+	int					fd_backup;
+	t_redirect_type		type;
+	t_token				*filename;
+	char				**heredoc;
+	struct s_redirect	*next;
+	struct s_redirect	*prev;
+}						t_redirect;
+
+typedef struct			s_command
+{
+	t_token				*args;
+	t_redirect			*redirects;
+	pid_t				pid;
+	struct s_command	*next;
+}						t_command;
+
+typedef enum	e_node_type
+{
+	NODE_COMMAND,
+	NODE_PIPE,
+}				t_node_type;
+
+typedef struct	s_node
+{
+	t_node_type		type;
+	t_command		*command;
+	struct s_node	*left;
+	struct s_node	*right;
+}				t_node;
+
+typedef enum e_exit_cd
+{
+	SCCSS = 0,
+	GNRL_ERR = 1,
+	DENIED = 13,
+	CMD_NOT_EXEC = 126,
+	CMD_NOT_FND = 127,
+	INVLD_EXT_ARG = 128,
+	OUT_OF_EXT_STS = 255,
+	INVLD_SYNTX = 258,
+} t_exit_cd;
 
 enum e_meta_char
 {
@@ -68,14 +130,6 @@ enum e_meta_char
 	// QSTN = '?',
 };
 
-typedef struct	s_token
-{
-	char	*str;
-	// enum e_token_type	type;
-	// struct s_tokens	*prev;
-	struct s_token	*next;
-}				t_token;
-
 typedef struct	s_environ
 {
 	char				*key;
@@ -87,8 +141,7 @@ typedef struct	s_environ
 typedef struct s_master
 {
 	t_environ			*environs;
-	char				*pwd;
-	char				*old_pwd;
+	t_exit_cd			exit_cd;
 	t_token				*tokens;
 } t_master;
 

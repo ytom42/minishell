@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:12:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:36:19 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:14:29 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,4 @@ char
 	}
 	args[i] = NULL;
 	return (args);
-}
-
-void
-	require_expansion(t_command *cmd, char ***args)
-{
-	expand_tokens(&cmd->args);
-	*args = replace_args(cmd);
-	if (!*args[0])
-		return (FALSE);
-	return (TRUE);
 }
