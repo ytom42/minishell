@@ -3,18 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 20:23:38 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 20:33:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANSION_H
 # define EXPANSION_H
 
-// # include "execute.h"
 # include "utils.h"
+
+typedef enum e_exit_cd
+{
+	SCCSS = 0,
+	GNRL_ERR = 1,
+	DENIED = 13,
+	CMD_NOT_EXEC = 126,
+	CMD_NOT_FND = 127,
+	INVLD_EXT_ARG = 128,
+	OUT_OF_EXT_STS = 255,
+	INVLD_SYNTX = 258,
+} t_exit_cd;
+
+typedef enum	e_tokentype{
+	CHAR_GENERAL = -1,
+	CHAR_PIPE = '|',
+	CHAR_QOUTE = '\'',
+	CHAR_DQUOTE = '\"',
+	CHAR_SEMICOLON = ';',
+	CHAR_WHITESPACE = ' ',
+	CHAR_ESCAPE = '\\',
+	CHAR_GREATER = '>',
+	CHAR_LESSER = '<',
+	CHAR_TAB = '\t',
+	CHAR_NULL = 0,
+	D_SEMICOLON = -4,
+	D_GREATER = -3,
+	IO_NUMBER = -2,
+	TOKEN = -1,
+}				t_token_type;
 
 typedef enum	e_token_state
 {
