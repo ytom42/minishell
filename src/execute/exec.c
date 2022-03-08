@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:35:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 11:47:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/08 19:23:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,5 @@ void
 	{
 		return ;
 	}
-	if (nodes->type == NODE_SEMICOLON)
-	{
-		exec_nodes(nodes->left);
-		exec_nodes(nodes->right);
-	}
-	else
-		exec_node(nodes);
+	exec_node(nodes);
 }
