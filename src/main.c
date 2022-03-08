@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 21:07:51 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:24:22 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ void
 	{
 		line = readline(MS_PROMPT);
 		add_history(line);
-		// lexser
 		tokens = lexer(line);
-		// perser
+		// print_token(tokens);  //debug
 		nodes = parser(tokens);
-		// expansion, execute
-		exec_nodes(nodes);
-		free_set((void **)&line, NULL);
+		// print_nodes(nodes);   //debug
+		// exec_nodes(nodes);
+		// free_set((void **)&line, NULL);
 		// del_tokens_list(tokens);
 		// del_nodes_list(nodes);
 	}
