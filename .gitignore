@@ -2,6 +2,7 @@ minishell
 *.json
 *.o
 *.a
+*.d
 *.log
 src/tmp/
 src/Makefile
