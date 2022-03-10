@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:17:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 11:25:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/10 21:43:47 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,53 @@ int
 		env = env->next;
 	}
 	return (EXIT_SUCCESS);
+}
+
+static t_environ *new()
+{
+	t_environ *env;
+
+	env = (t_environ *)malloc(sizeof(t_environ));
+	if (!env)
+		return (NULL); //error
+	env->key = NULL;
+	env->value = NULL;
+	env->next = NULL;
+	return (env);
+}
+
+static void add(t_environ **list, t_environ *new)
+{
+	t_environ	*tmp;
+	if (*list)
+	{
+		tmp = *list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	else
+		*list = new;
+}
+
+t_environ	*environ_init()
+{
+	extern char		**environ;
+	t_environ		*list;
+	t_environ		*env;
+	int				i;
+	char			*sep;
+
+	list = NULL;
+	i = 0;
+	while (environ[i])
+	{
+		env = new();
+		sep = ft_strchr(environ[i], '=');
+		env->key = ft_substr(environ[i], 0, (sep - environ[i]));
+		env->value = ft_strdup(sep + 1);
+		add(&list, env);
+		i++;
+	}
+	return (list);
 }
