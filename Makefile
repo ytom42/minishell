@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/02/17 19:13:29 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/12 15:38:44 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES	:= -I./includes -I./libft/includes
 RM			:= rm -rf
 
 CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP
+CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g
 
 all:		$(NAME)
 

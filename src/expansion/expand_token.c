@@ -6,13 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:40:43 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/12 15:36:50 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansion.h"
 #include "execute.h"
 #include "utils.h"
+#include "lexer.h"
 
 #define NOW 0
 #define LAST 1
@@ -73,7 +74,7 @@ void
 	while (var[NOW])
 	{
 		expanded_str = expand_env_var(var[NOW]->str);
-		// var[EXPAND] = tokenise(expanded_str, TRUE);
+		var[EXPAND] = lexer(expanded_str);
 		free_set((void **)&expanded_str, NULL);
 		if (!var[RES])
 			var[RES] = var[EXPAND];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/10 22:00:05 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/12 15:42:36 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void
 	t_node *nodes;
 	char *line;
 
+	g_master.environs = environ_init();
 	line = NULL;
 	while (42)
 	{
@@ -56,7 +57,7 @@ void
 		nodes = parser(tokens);
 		// print_nodes(nodes);   //debug
 		// exec_nodes(nodes);
-		// free_set((void **)&line, NULL);
+		free_set((void **)&line, NULL);
 		// del_tokens_list(tokens);
 		// del_nodes_list(nodes);
 	}
@@ -68,7 +69,6 @@ int
 	(void)av;
 	g_master.exit_cd = EXIT_SUCCESS;
 	// signal
-	g_master.environs = environ_init();
 	if (ac == 1)
 	{
 		loop_shell();
