@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 09:08:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 12:04:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/13 19:52:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@
 #include "builtin.h"
 
 extern t_master	g_master;
+
+static void
+	free_envs(t_environ *list)
+{
+	t_environ	*tmp;
+	t_environ	*next;
+
+	tmp = list;
+	while (tmp)
+	{
+		next = tmp->next;
+		free_set((void **)&tmp->key, NULL);
+		free_set((void **)&tmp->value, NULL);
+		free(tmp);
+		tmp = next;
+	}
+	tmp = NULL;
+}
 
 t_environ
 	*dup_env(t_environ *env)
@@ -41,10 +59,10 @@ t_environ
 	while (env)
 	{
 		tmp = dup_env(env);
-		if (append_env(&(list), tmp))
+		if (!append_env(&list, tmp))
 		{
 			free_set((void **)&tmp, NULL);
-			free_set((void **)&list, NULL);
+			free_envs(list);
 			return (NULL);
 		}
 		env = env->next;

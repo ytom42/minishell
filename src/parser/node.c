@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 21:11:12 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:34:24 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_node	*node_new(t_node_type type)
 	node->right = NULL;
 	node->command->args = NULL;
 	node->command->redirects = NULL;
+	node->command->pid = -1;
 	node->command->next = NULL;
 	return (node);
 }

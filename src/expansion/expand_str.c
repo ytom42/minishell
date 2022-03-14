@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 07:53:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:19:46 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/14 11:19:18 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void
 
 	res_i = 0;
 	i = 0;
-	while (!src[i])
+	while (src[i])
 	{
 		if (ft_strchr(esc_chars, src[i]))
 		{

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 14:55:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/14 11:53:45 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void
 	t_environ	*env;
 
 	env = get_env(key);
-	old_value = env->value;
+	if (env)	
+		old_value = env->value;
 	if (add_request)
 	{
 		if (old_value || new_value)
@@ -94,4 +95,18 @@ void
 		if (add_request)
 			*(sep - 1) = '+';
 	}
+}
+
+int
+	envs_size(t_environ *env)
+{
+	int	size;
+
+	size = 0;
+	while (env)
+	{
+		size++;
+		env = env->next;
+	}
+	return (size);
 }

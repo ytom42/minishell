@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 14:45:41 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/13 19:59:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,29 @@ void
 void
 	sort_envs(t_environ *env)
 {
+	int			size;
+	t_environ	*now;
 	t_environ	*tmp;
-	t_environ	*left;
-	t_environ	*right;
+	t_environ	*prev;
 
-	left = env;
-	right = env->next;
-	while (left)
+	size = envs_size(env);
+	while (!size--)
 	{
-		while (right)
+		now = env;
+		prev = NULL;
+		while (now->next)
 		{
-			if (ft_strcmp(left->key, right->key) > 0)
+			if (ft_strcmp(now->key, now->next->key) > 0)
 			{
-				tmp = left;
-				left = right;
-				left = tmp;
+				tmp = now;
+				now = now->next;
+				now->next = tmp;
+				if (prev)
+					prev->next = now->next;
 			}
-			right++;
+			prev = now;
+			now = now->next;
 		}
-		left++;
 	}
 }
 

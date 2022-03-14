@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/10 21:49:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/13 19:27:04 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void split_key_value(char *arg, char **sep, char **value, bool *add_request);
 void update_env(char *key, char *new_value, bool add_request);
 bool replace_dup_env(char *key, char *value, bool is_env);
 void restore_arg(char *sep, bool add_request);
-
+int envs_size(t_environ *env);
 
 /* 
 	pwd.c

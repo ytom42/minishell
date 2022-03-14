@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/12 15:42:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/13 17:54:23 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void
 		// print_token(tokens);  //debug
 		nodes = parser(tokens);
 		// print_nodes(nodes);   //debug
-		// exec_nodes(nodes);
+		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
 		// del_tokens_list(tokens);
 		// del_nodes_list(nodes);
