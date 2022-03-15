@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/13 17:54:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/15 17:26:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ int
 }
 
 void
+	handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		write(2, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}
+
+void
+	signal_set()
+{
+	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void
 	loop_shell()
 {
 	t_token *tokens;
@@ -51,7 +70,15 @@ void
 	while (42)
 	{
 		line = readline(MS_PROMPT);
-		add_history(line);
+		if (line == NULL)
+		{
+			printf("\n");
+			exit(1);
+		}
+		else if (ft_strlen(line) > 0)
+		{
+			add_history(line);
+		}
 		tokens = lexer(line);
 		// print_token(tokens);  //debug
 		nodes = parser(tokens);
@@ -67,8 +94,9 @@ int
 	main(int ac, char **av)
 {
 	(void)av;
+	signal_set();
 	g_master.exit_cd = EXIT_SUCCESS;
-	// signal
+	g_master.environs = environ_init();
 	if (ac == 1)
 	{
 		loop_shell();
