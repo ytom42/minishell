@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/02/17 19:13:29 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/15 17:28:05 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ SRCS		:= $(shell find $(SRCDIR) -name "*.c")
 OBJS		:= $(SRCS:.c=.o)
 DEPS		:= $(OBJS:.o=.d)
 LIBFT		:= ./libft/libft.a
-INCLUDES	:= -I./includes -I./libft/includes
+INCLUDES	:= -I./includes -I./libft/includes -I/usr/local/opt/readline/include
 
 RM			:= rm -rf
 
 CC			:= gcc
+READLINE	:= -L/usr/local/opt/readline/lib -lreadline
 CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP
 
 all:		$(NAME)
@@ -32,7 +33,8 @@ all:		$(NAME)
 -include $(DEPS)
 
 $(NAME):	$(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) -lreadline $^ -o $@
+	$(CC) $(CFLAGS) $(READLINE) $^ -o $@
+	echo "set echo-control-characters off" > ~/.inputrc
 
 $(LIBFT):
 	make -C $(LIBFTDIR)
