@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
 /*   Updated: 2022/03/15 17:26:42 by ytomiyos         ###   ########.fr       */
@@ -65,6 +65,7 @@ void
 	t_node *nodes;
 	char *line;
 
+	g_master.environs = environ_init();
 	line = NULL;
 	while (42)
 	{
@@ -82,8 +83,8 @@ void
 		// print_token(tokens);  //debug
 		nodes = parser(tokens);
 		// print_nodes(nodes);   //debug
-		// exec_nodes(nodes);
-		// free_set((void **)&line, NULL);
+		exec_nodes(nodes);
+		free_set((void **)&line, NULL);
 		// del_tokens_list(tokens);
 		// del_nodes_list(nodes);
 	}

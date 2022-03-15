@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
 #    Updated: 2022/03/15 17:28:05 by ytomiyos         ###   ########.fr        #
@@ -25,8 +25,9 @@ INCLUDES	:= -I./includes -I./libft/includes -I/usr/local/opt/readline/include
 RM			:= rm -rf
 
 CC			:= gcc
+
 READLINE	:= -L/usr/local/opt/readline/lib -lreadline
-CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP
+CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g
 
 all:		$(NAME)
 

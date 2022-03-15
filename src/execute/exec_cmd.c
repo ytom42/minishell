@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 18:19:39 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/12 17:39:36 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int
 	char	**args;
 
 	exit_cd = EXIT_SUCCESS;
-	if (!cmd->redirects->is_heredoc)
-		set_heredoc(cmd);
+	// if (!cmd->redirects->is_heredoc)
+	// 	set_heredoc(cmd);
 	require_expansion(cmd, &args);
 	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);
