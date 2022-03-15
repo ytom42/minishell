@@ -6,7 +6,7 @@
 #    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/15 17:28:05 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/15 18:35:24 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFTDIR)
+	$(RM) ~/.inputrc
 
 re: fclean all
 
