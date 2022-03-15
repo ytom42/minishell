@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/15 17:26:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:11:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int
 	(void)av;
 	signal_set();
 	g_master.exit_cd = EXIT_SUCCESS;
-	g_master.environs = environ_init();
 	if (ac == 1)
 	{
 		loop_shell();
