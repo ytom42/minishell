@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:30:14 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 20:43:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:36:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void
 		if (check_executable_cmd(path))
 		{
 			*executable_path = ft_strdup(path);
-			if (*executable_path)
+			if (!(*executable_path))
 				error_exit(NULL);
 			break ;
 		}
