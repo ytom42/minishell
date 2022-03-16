@@ -6,7 +6,7 @@
 #    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/15 17:28:05 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/15 21:36:02 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ $(LIBFT):
 	make -C $(LIBFTDIR)
 
 clean:
-	$(RM) $(OBJS) $(DEPS)
+	$(RM) $(OBJS) $(DEPS) *.o *.d
 	make clean -C $(LIBFTDIR)
 
 fclean: clean
