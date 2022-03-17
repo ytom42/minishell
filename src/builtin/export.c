@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/13 19:59:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 19:00:07 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,49 @@ void
 	ft_putchar_fd('\n', STDOUT_FILENO);	
 }
 
-void
-	sort_envs(t_environ *env)
+t_environ
+	*add_env(t_environ *list, t_environ *new)
 {
-	int			size;
-	t_environ	*now;
-	t_environ	*tmp;
-	t_environ	*prev;
+	t_environ *ret_list;
+	t_environ *prev;
 
-	size = envs_size(env);
-	while (!size--)
+	if (list == NULL)
+		return (new);
+	ret_list = list;
+	prev = NULL;
+	while (list)
 	{
-		now = env;
-		prev = NULL;
-		while (now->next)
+		if (ft_strcmp(list->key, new->key) >= 0)
 		{
-			if (ft_strcmp(now->key, now->next->key) > 0)
-			{
-				tmp = now;
-				now = now->next;
-				now->next = tmp;
-				if (prev)
-					prev->next = now->next;
-			}
-			prev = now;
-			now = now->next;
+			new->next = list;
+			if (prev)
+				prev->next = new;
+			else
+				return (new);
+			return (ret_list);
 		}
+		prev = list;
+		list = list->next;
 	}
+	prev->next = new;
+	return (ret_list);
+}
+
+void
+	sort_envs(t_environ **env)
+{
+	t_environ *new;
+	t_environ *list;
+
+	list = NULL;
+	while (*env)
+	{
+		new = *env;
+		*env = (*env)->next;
+		new->next = NULL;
+		list = add_env(list, new);
+	}
+	*env = list;
 }
 
 int
@@ -99,12 +115,12 @@ int
 	envs = dup_envs(g_master.environs);
 	if (!envs)
 		error_exit(NULL);
-	sort_envs(envs);
+	sort_envs(&envs);
 	while (envs)
 	{
 		print_env(envs);
 		tmp = envs->next;
-		free_set((void **)&envs, NULL);
+		free(envs);
 		envs = tmp;
 	}
 	return (EXIT_SUCCESS);

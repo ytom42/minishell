@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/13 19:27:04 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 18:50:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int exec_exit(char **args);
 	export.c
  */
 int exec_export(char **args);
-void sort_envs(t_environ *env);
+void sort_envs(t_environ **env);
 
 /* 
 	export_utils.c
