@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< Updated upstream
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
 /*   Updated: 2022/03/17 15:46:05 by ytomiyos         ###   ########.fr       */
+=======
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/03/17 15:28:21 by kfumiya          ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +92,11 @@ void
 		// print_nodes(nodes);   //debug
 		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
+<<<<<<< Updated upstream
 		del_nodes_list(nodes);
+=======
+		// del_nodes_list(nodes);
+>>>>>>> Stashed changes
 	}
 }
 
