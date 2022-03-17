@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 18:11:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 20:48:00 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ bool
 		if (is_parent)
 		{
 			redir->fd_backup = dup(redir->fd_io);
+			dup2(redir->fd_file, redir->fd_io);
 			if (redir->fd_backup < 0)
 			{
 				print_fd_error(redir->fd_io);
@@ -123,8 +124,8 @@ bool
 				print_fd_error(redir->fd_io);
 				return (FALSE);
 			}
-			redir = redir->next;
 		}
+		redir = redir->next;
 	}
 	return (TRUE);
 }
