@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 18:15:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:33:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	add_command(t_node *node, t_token **token)
 	new->next = NULL;
 }
 
-t_node	*get_command_node(t_token **token)
+t_node	*get_command_node(t_token **token, t_parse_info *info)
 {
 	t_node	*node;
 
@@ -65,5 +65,8 @@ t_node	*get_command_node(t_token **token)
 		else
 			add_redirect(node, token);
 	}
+	if (info->prev_command)
+		info->prev_command->next = node->command;
+	info->prev_command = node->command;
 	return (node);
 }

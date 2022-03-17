@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:56:32 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 21:02:34 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/17 19:59:36 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_node	*parser(t_token *token_list);
 /*
 **	parser_command
 */
-t_node	*get_command_node(t_token **token);
+t_node	*get_command_node(t_token **token, t_parse_info *info);
 
 /*
 **	parser_pipe
