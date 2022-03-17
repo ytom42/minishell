@@ -13,13 +13,13 @@
 */
 void free_set(void **dst, void *src);
 void instant_free(char **str);
+void	del_nodes_list(t_node *nodes);
 
 /* 
 	str.c
 */
 bool str_is_digit(char *str);
 char *ft_strcpy_forward(char *dest, char *src);
-
 
 /* 
 	path.c
