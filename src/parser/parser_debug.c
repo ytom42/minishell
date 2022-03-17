@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_debug.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:30:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 19:11:07 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:15:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,39 @@
 
 void	print_command(t_node *node)
 {
-		t_token		*token;
+	t_token		*token;
 
-		token = node->command->args;
-		printf("command   : %s%s", CYAN, BOLD);
-		while (token)
-		{
-			printf("%s", token->str);
-			token = token->next;
-			if (token) printf(", ");
-		}
-		printf("\n%s", END);
+	token = node->command->args;
+	printf("command   : %s%s", CYAN, BOLD);
+	while (token)
+	{
+		printf("%s", token->str);
+		token = token->next;
+		if (token) printf(", ");
+	}
+	printf("\n%s", END);
+}
+
+void	print_next_command(t_node *node)
+{
+	t_token *token;
+
+	if (node->command->next == NULL)
+	{
+		printf("next_command: NULL\n");
+		return ;
+	}
+	token = node->command->next->args;
+	printf("next_command: ");
+	printf("%s%s", CYAN, BOLD);
+	while (token)
+	{
+		printf("%s", token->str);
+		token = token->next;
+		if (token) printf(", ");
+	}
+	printf("%s", END);
+	printf("\n");
 }
 
 void	print_redirect(t_node *node)
@@ -52,6 +74,7 @@ void	print_node(t_node *node)
 	{
 		print_command(node);
 		print_redirect(node);
+		print_next_command(node);
 	}
 	else
 	{

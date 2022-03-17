@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/10 15:23:39 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 19:46:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ typedef struct	s_node
 	struct s_node	*left;
 	struct s_node	*right;
 }				t_node;
+
+typedef struct	s_parse_info
+{
+	t_command	*prev_command;
+}				t_parse_info;
 
 typedef enum e_exit_cd
 {
