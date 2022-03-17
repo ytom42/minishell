@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/10 15:23:39 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 21:09:46 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct			s_redirect
 	int					fd_backup;
 	t_redirect_type		type;
 	t_token				*filename;
-	bool				is_heredoc;
 	t_heredoc			*heredoc;
 	struct s_redirect	*next;
 	struct s_redirect	*prev;
@@ -94,6 +93,7 @@ typedef struct			s_command
 {
 	t_token				*args;
 	t_redirect			*redirects;
+	bool				is_heredoc;
 	pid_t				pid;
 	struct s_command	*next;
 }						t_command;

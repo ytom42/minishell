@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 17:57:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 21:28:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void create_cmd_path(char **split_paths, char **executable_path, char *cmd);
 */
 char **convert_envs(t_environ *environs);
 bool require_expansion(t_command *cmd, char ***args);
+bool is_heredoc(t_redirect *redirects);
+
 
 /*
 	wait_process.c

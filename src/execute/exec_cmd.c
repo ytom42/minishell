@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/12 17:39:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 21:28:11 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int
 	char	**args;
 
 	exit_cd = EXIT_SUCCESS;
-	// if (!cmd->redirects->is_heredoc)
-	// 	set_heredoc(cmd);
+	if (is_heredoc(cmd->redirects))
+		set_heredoc(cmd);
 	require_expansion(cmd, &args);
 	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);
