@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 21:09:46 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/18 13:18:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct	s_heredoc
 {
 	t_token	*contents;
 	bool	is_expand;
-	int		d_lesser;
-	t_token *eof_list;
+	// int		d_lesser;
+	char	*eof;
 }			t_heredoc;
 
 typedef struct			s_redirect

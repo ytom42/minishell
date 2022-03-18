@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 21:28:06 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/18 13:25:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,23 +101,23 @@ void wait_process(t_command *cmd);
 */
 bool require_expansion(t_command *cmd, char ***args);
 
-/*
-	del_heredoc.c
-*/
-void del_heredoc(t_heredoc *hdoc);
+// /*
+// 	del_heredoc.c
+// */
+// void del_heredoc(t_heredoc *hdoc);
 
 /*
 	heredoc.c
 */
 void set_heredoc(t_command *cmd);
 
-/*
-	heredoc_utils.c
-*/
-bool check_syntax_heredoc(t_token **args);
-void storeed_line(char *str, t_heredoc *hdoc);
-void storeed_line(char *str, t_heredoc *hdoc);
-t_token *cut_heredoc_elem(t_token *args);
-t_token *insert_heredoc(t_token *args, t_token *hdoc);
+// /*
+// 	heredoc_utils.c
+// */
+// bool check_syntax_heredoc(t_token **args);
+// void storeed_line(char *str, t_heredoc *hdoc);
+// void storeed_line(char *str, t_heredoc *hdoc);
+// t_token *cut_heredoc_elem(t_token *args);
+// t_token *insert_heredoc(t_token *args, t_token *hdoc);
 
 #endif
