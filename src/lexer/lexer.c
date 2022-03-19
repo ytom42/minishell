@@ -6,18 +6,33 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 18:15:16 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:59:11 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-typedef struct	s_token_checker
+static void free_token(t_token *token)
 {
-	int		len;
-	bool	dq;
-	bool	sq;
-}				t_token_checker;
+	if (!token)
+		return ;
+	if (token->str)
+		free(token->str);
+	free(token);
+}
+
+static void	*free_list(t_token *list)
+{
+	t_token	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free_token(tmp);
+	}
+	return (NULL);
+}
 
 static int		gl_size(char *line, int *i)
 {
@@ -34,42 +49,18 @@ static int		gl_size(char *line, int *i)
 static int		quote_size(char *line, int *i)
 {
 	int	size;
-	// int dq;
-	// int sq;
 
 	size = 0;
-	// if (line[*i] == '"')
-	// {
-	// 	dq = 1;
-	// 	size += 1;
-	// }
-	// else if (line[*i] == '\'')
-	// {
-	// 	sq = 1;
-	// 	size += 1;
-	// }
 	while (line[*i + size])
 	{
 		if (is_delimiter(line[*i + size]))
 			break ;
-		// if (dq && line[*i + size] == '"')
-		// {
-		// 	size++;
-		// 	dq = 0;
-		// 	// break ;
-		// }
-		// if (sq && line[*i + size] == '\'')
-		// {
-		// 	size++;
-		// 	sq = 0;
-		// 	// break ;
-		// }
 		size += 1;
 	}
 	return (size);
 }
 
-int get_token_size(char *line, int *i)
+static int get_token_size(char *line, int *i)
 {
 	if (line[*i] == '>' || line[*i] == '<')
 		return (gl_size(line, i));
@@ -79,7 +70,7 @@ int get_token_size(char *line, int *i)
 		return (quote_size(line, i));
 }
 
-t_token	*get_token(char *line, int *i)
+static t_token	*get_token(char *line, int *i)
 {
 	int		size;
 	char	*str;
@@ -96,6 +87,27 @@ t_token	*get_token(char *line, int *i)
 	return (new_token);
 }
 
+static int	check_invalid_token(t_token *token)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (token == NULL)
+		return (FALSE);
+	str = token->str;
+	while (str[i])
+	{
+		if (str[i] == ';' || str[i] == '\\')
+		{
+			free_token(token);
+			return (FALSE);
+		}
+		i++;
+	}
+	return (TRUE);
+}
+
 t_token *lexer(char *line)
 {
 	int		i;
@@ -109,8 +121,8 @@ t_token *lexer(char *line)
 	while (line[i])
 	{
 		new_token = get_token(line, &i);
-		if (new_token == NULL)
-			break ;
+		if (!check_invalid_token(new_token))
+			return (free_list(token_list));
 		token_list = token_lstaddback(token_list, new_token);
 	}
 	return (token_list);

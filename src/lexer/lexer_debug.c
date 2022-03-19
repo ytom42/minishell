@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:43:40 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 17:27:00 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:58:11 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ char *get_type_str(char c)
 
 void	print_token(t_token *lst)
 {
+	if (lst == NULL)
+	{
+		printf("token_list is NULL\n");
+		return ;
+	}
 	printf("%s%s========= print_token  =========\n%s", YELLOW, BOLD, END);
 	int	i;
 

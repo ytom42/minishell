@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:30:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/17 20:15:59 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:58:35 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,13 @@ void	print_node(t_node *node)
 
 void	print_nodes(t_node *node)
 {
+	if (node == NULL)
+	{
+		printf("node is NULL\n");
+		return ;
+	}
 	printf("%s%s========== print_node ==========\n%s", YELLOW, BOLD, END);
 	print_node(node);
 	printf("%s%s================================\n%s", YELLOW, BOLD, END);
+	fflush(stdout);
 }
