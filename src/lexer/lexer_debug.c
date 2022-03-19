@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:43:40 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 19:11:28 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:27:00 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	print_token(t_token *lst)
 		i++;
 	}
 	printf("%s%s================================\n%s", YELLOW, BOLD, END);
+	fflush(stdout);
 }
