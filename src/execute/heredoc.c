@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/18 13:33:08 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:54:34 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static bool
 		if (!(token_lstaddback((*hdoc)->contents,
 				token_lstnew(ft_strdup(input_str)))))
 			error_exit(NULL);
+		free(input_str);
 		input_str = NULL;
 	}
 	return (TRUE);

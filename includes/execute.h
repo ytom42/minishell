@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/18 13:25:38 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:20:40 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,10 @@ bool require_expansion(t_command *cmd, char ***args);
 */
 void set_heredoc(t_command *cmd);
 
-// /*
-// 	heredoc_utils.c
-// */
-// bool check_syntax_heredoc(t_token **args);
-// void storeed_line(char *str, t_heredoc *hdoc);
-// void storeed_line(char *str, t_heredoc *hdoc);
-// t_token *cut_heredoc_elem(t_token *args);
-// t_token *insert_heredoc(t_token *args, t_token *hdoc);
+/*
+	heredoc_utils.c
+*/
+void create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[]);
+void write_heredoc(t_heredoc *hdoc, int hdoc_pipe[]);
 
 #endif

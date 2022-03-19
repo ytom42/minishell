@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 20:48:00 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:45:03 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ void
 		redir = redir->next;
 	while (redir)
 	{
+		if (redir->type == D_LESSER)
+		{
+			redir = redir->next;
+			continue ;
+		}
 		if (redir->fd_file >= 0)
 		{
 			if (close(redir->fd_file) < 0)

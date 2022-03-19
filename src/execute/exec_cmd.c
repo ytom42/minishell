@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 21:28:11 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:32:53 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ static void
 {
 	pid_t	pid;
 	int		new_pipe[2];
+	int		hdoc_pipe[2];
 
 	create_pipe(p_state, new_pipe);
+	if (is_heredoc(cmd->redirects))
+		create_heredoc_pipe(cmd->redirects, hdoc_pipe);
 	pid = fork();
 	if (pid == -1)
 		error_exit(NULL);
@@ -55,6 +58,8 @@ static void
 			exit(exec_builtin_cmd(args));
 		else
 			exec_binary_cmd(args);
+		if (is_heredoc(cmd->redirects))
+			write_heredoc(cmd->redirects->heredoc, hdoc_pipe);
 	}
 	update_pipe(p_state, old_pipe, new_pipe);
 	cmd->pid = pid;

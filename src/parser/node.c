@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/18 20:50:44 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:37:49 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_redirect	*redirect_new(t_token **token)
 	else if ((*token)->type == D_LESSER)
 	{
 		redirect->type = REDIR_HEREDOC;
-		redirect->fd_io = STDIN_FILENO;
+		// redirect->fd_io = STDIN_FILENO;
 	}
 	else if ((*token)->type == GREATER)
 	{
