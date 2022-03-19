@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/18 13:28:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/18 20:50:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_redirect	*redirect_new(t_token **token)
 	redirect->fd_io = -1;
 	redirect->fd_file = -1;
 	redirect->fd_backup = -1;
+	redirect->filename = NULL;
 	redirect->prev = NULL;
 	redirect->next = NULL;
 	if ((*token)->type == LESSER)
