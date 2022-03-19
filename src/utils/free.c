@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 14:48:44 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 15:06:02 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void
 {
 	if (redirect == NULL)
 		return ;
-	// if (redirect->filename)
-	// 	del_token_list(redirect->filename);
+	if (redirect->filename)
+		del_token_list(redirect->filename);
 	if (redirect->heredoc)
 		del_token_list(redirect->heredoc->contents);
 	free(redirect);
