@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:46:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:22:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ char
 			call_value(&exp);
 		exp.index++;
 	}
+	if (exp.state != STATE_GENERAL)
+		printf("クォート閉じてないエラー\n");
 	return (exp.str);
 }

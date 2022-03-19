@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:34:46 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:07:38 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 20:54:15 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,6 @@ static size_t
 	return (size);
 }
 
-// static void
-// 	del_quote(char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (str == NULL)
-// 		return ;
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '\"' || str[i] == '\'')
-// 		{
-// 			ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-// 			continue ;
-// 		}
-// 		i++;
-// 	}
-// }
-
 static char
 	**replace_args(t_command *cmd)
 {
@@ -64,7 +45,6 @@ static char
 	now = cmd->args;
 	while (now)
 	{
-		// del_quote(now->str);
 		args[i] = ft_strdup(now->str);
 		if (!args[i])
 			error_exit(NULL);

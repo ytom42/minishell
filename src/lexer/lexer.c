@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 19:59:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 21:22:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int	check_invalid_token(t_token *token)
 	{
 		if (str[i] == ';' || str[i] == '\\')
 		{
+			printf("禁止文字が入ってる\n");
 			free_token(token);
 			return (FALSE);
 		}
