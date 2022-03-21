@@ -5,88 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 12:57:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 17:53:25 by kfumiya          ###   ########.fr       */
+/*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
+/*   Updated: 2022/03/21 19:19:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-#include "common.h"
-#include "lexer.h"
 
-static void
-	free_token(t_token *token)
+#define READ	0
+#define WRITE	1
+
+void
+	create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[])
 {
-	free(token->str);
-	free(token);
-}
-
-bool
-	check_syntax_heredoc(t_token **args)
-{
-	t_token	*now;
-	t_token	*p_2next;
-
-	now = *args;
-	while (now->next)
+	while (redir)
 	{
-		if (now->next->next)
-			p_2next = now->next->next;
-		if (now->type == D_LESSER && p_2next->type == WORD)
-			return (FALSE);
-		now = now->next;
+		if (redir->type == D_LESSER)
+		{
+			if (pipe(hdoc_pipe) < 0)
+				error_exit(NULL);
+			break ;
+		}
+		redir = redir->next;
 	}
-	return (TRUE);
 }
 
 void
-	storeed_line(char *str, t_heredoc *hdoc)
+	write_heredoc(t_heredoc *hdoc, int hdoc_pipe[])
 {
-	str = ft_strjoin(str, "\n");
-	if (!str)
-		error_exit(NULL);
-	if (!(token_lstaddback(hdoc->contents,
-				token_lstnew(ft_strdup(str)))))
-		error_exit(NULL);
-}
-
-t_token
-	*cut_heredoc_elem(t_token *args)
-{
-	t_token	*now;
-	t_token	*p_2next;
-
-	now = args;
-	if (now->next)
-		p_2next = now->next->next;
-	else
-		p_2next = NULL;
-	if (p_2next && p_2next->type == WORD)
+	if (hdoc)
 	{
-		now->prev->next = p_2next;
-		p_2next->prev = now->prev;
-		free_token(now->next);
-		free_token(now);
+		close(hdoc_pipe[0]);
+		while (hdoc->contents)
+		{
+			write(hdoc_pipe[1], hdoc->contents->str,
+					ft_strlen(hdoc->contents->str));
+			hdoc->contents = hdoc->contents->next;
+		}
+		close(hdoc_pipe[1]);
 	}
-	return (p_2next);
 }
 
-t_token
-	*insert_heredoc(t_token *args, t_token *hdoc)
+void
+	set_hdoc_pipe(int hdoc_pipe[])
 {
-	t_token	*now;
-	t_token	*p_2next;
-	t_token	*hdoc_last;
-
-	now = args;
-	if (now->next)
-		p_2next = now->next->next;
-	else
-		p_2next = NULL;
-	now->prev->next = hdoc;
-	hdoc_last = token_lstlast(hdoc);
-	hdoc_last->next = p_2next;
-	if (p_2next)
-		p_2next->prev = hdoc_last;
-	return (p_2next);
+	if (close(hdoc_pipe[WRITE]) < 0
+			|| dup2(hdoc_pipe[READ], STDIN_FILENO) < 0
+			|| close(hdoc_pipe[READ]) < 0)
+		error_exit(NULL);
 }

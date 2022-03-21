@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 20:19:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:36:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 extern t_master	g_master;
 
 void
-	exec_binary_cmd(char **args)
+	exec_binary_cmd(char **args, int hdoc_pipe[], bool is_hdoc)
 {
 	char		**envs;
 	char		*path;
 
+	if (is_hdoc)
+		set_hdoc_pipe(hdoc_pipe);
 	envs = convert_envs(g_master.environs);
 	path = create_executable_path(args[0]);
 	if (execve(path, args, envs) < 0)
 		exit_execve_error(path);
 	instant_free(envs);
-	free_set((void **)&path, NULL);
+	free(path);
 }
 
 static void
@@ -37,8 +39,13 @@ static void
 {
 	pid_t	pid;
 	int		new_pipe[2];
+	int		hdoc_pipe[2];
+	bool	is_hdoc;
 
 	create_pipe(p_state, new_pipe);
+	is_hdoc = is_heredoc(cmd->redirects);
+	if (is_hdoc)
+		create_heredoc_pipe(cmd->redirects, hdoc_pipe);
 	pid = fork();
 	if (pid == -1)
 		error_exit(NULL);
@@ -54,13 +61,15 @@ static void
 		if (is_builtin_cmd(args))
 			exit(exec_builtin_cmd(args));
 		else
-			exec_binary_cmd(args);
+			exec_binary_cmd(args, hdoc_pipe, is_hdoc);
 	}
 	else
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_DFL);
 	}
+	if (is_hdoc)
+		write_heredoc(cmd->redirects->heredoc, hdoc_pipe);
 	update_pipe(p_state, old_pipe, new_pipe);
 	cmd->pid = pid;
 }
@@ -93,8 +102,8 @@ int
 	char	**args;
 
 	exit_cd = EXIT_SUCCESS;
-	// if (!cmd->redirects->is_heredoc)
-	// 	set_heredoc(cmd);
+	if (is_heredoc(cmd->redirects))
+		set_heredoc(cmd);
 	require_expansion(cmd, &args);
 	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);

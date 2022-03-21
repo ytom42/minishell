@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 17:57:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 18:36:19 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exec_nodes(t_node *nodes);
 	exec_cmd.c
 */
 int exec_command(t_command *cmd, t_pipe_state *p_state, int old_pipe[]);
-void exec_binary_cmd(char **args);
+void exec_binary_cmd(char **args, int hdoc_pipe[], bool is_hdoc);
 
 /*
 	error_1.c
@@ -88,6 +88,8 @@ void create_cmd_path(char **split_paths, char **executable_path, char *cmd);
 */
 char **convert_envs(t_environ *environs);
 bool require_expansion(t_command *cmd, char ***args);
+bool is_heredoc(t_redirect *redirects);
+
 
 /*
 	wait_process.c
@@ -99,10 +101,10 @@ void wait_process(t_command *cmd);
 */
 bool require_expansion(t_command *cmd, char ***args);
 
-/*
-	del_heredoc.c
-*/
-void del_heredoc(t_heredoc *hdoc);
+// /*
+// 	del_heredoc.c
+// */
+// void del_heredoc(t_heredoc *hdoc);
 
 /*
 	heredoc.c
@@ -112,10 +114,8 @@ void set_heredoc(t_command *cmd);
 /*
 	heredoc_utils.c
 */
-bool check_syntax_heredoc(t_token **args);
-void storeed_line(char *str, t_heredoc *hdoc);
-void storeed_line(char *str, t_heredoc *hdoc);
-t_token *cut_heredoc_elem(t_token *args);
-t_token *insert_heredoc(t_token *args, t_token *hdoc);
+void create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[]);
+void write_heredoc(t_heredoc *hdoc, int hdoc_pipe[]);
+void set_hdoc_pipe(int hdoc_pipe[]);
 
 #endif

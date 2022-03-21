@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 19:46:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:51:56 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ typedef struct	s_heredoc
 {
 	t_token	*contents;
 	bool	is_expand;
-	int		d_lesser;
-	t_token *eof_list;
+	char	*eof;
 }			t_heredoc;
 
 typedef struct			s_redirect
@@ -84,7 +83,6 @@ typedef struct			s_redirect
 	int					fd_backup;
 	t_redirect_type		type;
 	t_token				*filename;
-	bool				is_heredoc;
 	t_heredoc			*heredoc;
 	struct s_redirect	*next;
 	struct s_redirect	*prev;

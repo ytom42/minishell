@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 09:08:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/13 19:52:52 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 16:13:28 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_environ
 	tmp = (t_environ *)malloc(sizeof(t_environ));
 	if (!tmp)
 		return (NULL);
-	tmp->key = env->key;
-	tmp->value = env->value;
+	tmp->key = ft_strdup(env->key);
+	tmp->value = ft_strdup(env->value);
 	tmp->next = NULL;
 	return (tmp);
 }

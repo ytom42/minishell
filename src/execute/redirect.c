@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 20:48:00 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 12:45:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static bool
 		print_error_msg("ambiguous redirect", org_filename);
 		return (FALSE);
 	}
+	if (redir->type == D_LESSER)
+		return (TRUE);
 	redir->fd_file = open_file(redir);
 	if (redir->fd_file < 0)
 	{
@@ -59,6 +61,11 @@ void
 		redir = redir->next;
 	while (redir)
 	{
+		if (redir->type == D_LESSER)
+		{
+			redir = redir->next;
+			continue ;
+		}
 		if (redir->fd_file >= 0)
 		{
 			if (close(redir->fd_file) < 0)
@@ -107,7 +114,7 @@ bool
 	redir = cmd->redirects;
 	while (redir)
 	{
-		if (is_parent)
+		if (is_parent && redir->type != D_LESSER)
 		{
 			redir->fd_backup = dup(redir->fd_io);
 			dup2(redir->fd_file, redir->fd_io);
@@ -117,7 +124,7 @@ bool
 				return (FALSE);
 			}
 		}
-		else
+		else if (!is_parent && redir->type != D_LESSER)
 		{
 			if (dup2(redir->fd_file, redir->fd_io) < 0)
 			{
