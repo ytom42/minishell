@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 20:07:36 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:33:55 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
-			exit(1);
+			exit(0);
 		}
 		else if (ft_strlen(line) > 0)
 		{
