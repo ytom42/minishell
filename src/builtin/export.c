@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 19:13:34 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/19 16:21:23 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,11 @@ int
 	while (envs)
 	{
 		print_env(envs);
-		tmp = envs->next;
-		free(envs);
-		envs = tmp;
+		tmp = envs;
+		envs = envs->next;
+		free(tmp->key);
+		free(tmp->value);
+		free(tmp);
 	}
 	return (EXIT_SUCCESS);
 }

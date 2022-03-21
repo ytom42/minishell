@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/11 18:14:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:17:30 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,110 +14,80 @@
 #include "lexer.h"
 #include "expansion.h"
 
+static void
+	del_heredoc(t_heredoc **hdoc)
+{
+	token_lstclear((*hdoc)->contents);
+	free(*hdoc);
+}
+
 static bool
 	need_hdoc_expansion(char *str)
 {
-	if (ft_strchr(str, '\'') || ft_strchr(str, '\"'))
-		return (FALSE);
-	return (TRUE);
+	if (ft_strchr(str, '\"'))
+		return (TRUE);
+	return (FALSE);
 }
 
 static void
-	init_heredoc(t_heredoc *hdoc, t_command *cmd)
+	init_heredoc(t_heredoc **hdoc, t_redirect *redir)
 {
-	t_token		*tmp;
-
-	hdoc = (t_heredoc *)malloc(sizeof(t_heredoc));
-	if (!hdoc)
+	*hdoc = (t_heredoc *)malloc(sizeof(t_heredoc));
+	if (!*hdoc)
 		error_exit(NULL);
-	hdoc->contents = NULL;
-	hdoc->is_expand = FALSE;
-	hdoc->d_lesser = 0;
-	hdoc->eof_list = NULL;
-	tmp = cmd->args;
-	while (tmp->next)
-	{
-		if (tmp->type == D_LESSER && tmp->next == WORD)
-		{
-			hdoc->d_lesser++;
-			if (!token_lstaddback(hdoc->eof_list, tmp->next))
-				error_exit(NULL);
-			if (need_hdoc_expansion(tmp->str))
-				hdoc->is_expand = TRUE;
-		}
-		tmp = tmp->next;
-	}
+	(*hdoc)->contents = NULL;
+	(*hdoc)->is_expand = FALSE;
+	(*hdoc)->eof = redir->filename->str;
+	if (need_hdoc_expansion((*hdoc)->eof))
+		(*hdoc)->is_expand = TRUE;
 }
 
-static void
-	save_heredoc(t_heredoc *hdoc, int d_lesser, bool is_valid_hdoc)
+static bool
+	save_heredoc(t_heredoc **hdoc)
 {
 	char	*input_str;
-	t_token	*eof_list;
+	char	*eof;
 
-	eof_list = hdoc->eof_list;
 	input_str = NULL;
+	eof = (*hdoc)->eof;
 	while (42)
 	{
 		input_str = readline("> ");
-		if (d_lesser > 2 && !ft_strcmp(input_str, eof_list->str)
-			&& d_lesser--)
-			eof_list = eof_list->next;
-		else if (d_lesser == 1)
-		{
-			if (!ft_strcmp(input_str, eof_list->str))
-				break ;
-			if (is_valid_hdoc)
-				storeed_line(input_str, hdoc);
-		}
+		if (!ft_strcmp(input_str, eof))
+			break ;
+		input_str = ft_strjoin(input_str, "\n");
+		if (!input_str)
+			error_exit(NULL);
+		(*hdoc)->contents = (token_lstaddback((*hdoc)->contents,
+								token_lstnew(ft_strdup(input_str))));
+		free(input_str);
 		input_str = NULL;
 	}
-}
-
-static void
-	convert_heredoc_cmd_arg(t_token **args, t_token *heredoc,
-				 bool is_valid_hdoc, int d_lesser)
-{
-	t_token		*now;
-
-	now = *args;
-	while (now)
-	{
-		if (now->type == D_LESSER)
-		{
-			if (d_lesser != 1 || !is_valid_hdoc)
-			{
-				d_lesser--;
-				now = cut_heredoc_elem(now);
-				continue ;
-			}
-			else if (d_lesser == 1 && is_valid_hdoc)
-			{
-				now = insert_heredoc(now, heredoc);
-				break ;
-			}
-		}
-		now = now->next;
-	}
+	return (TRUE);
 }
 
 void
 	set_heredoc(t_command *cmd)
 {
 	t_redirect	*redir;
-	bool		is_valid_hdoc;
-	int			d_lesser;
 	t_heredoc	*heredoc;
+	bool		is_valid_hdoc;
 
 	redir = cmd->redirects;
-	heredoc = redir->heredoc;
-	is_valid_hdoc = check_syntax_heredoc(&cmd->args);
-	init_heredoc(heredoc, cmd);
-	d_lesser = heredoc->d_lesser;
-	save_heredoc(heredoc, d_lesser, is_valid_hdoc);
-	if (is_valid_hdoc && heredoc->is_expand)
-		expand_tokens(&heredoc->contents);
-	convert_heredoc_cmd_arg(&cmd->args, heredoc->contents,
-		is_valid_hdoc, d_lesser);
-	del_heredoc(heredoc);
+	heredoc = NULL;
+	is_valid_hdoc = FALSE;
+	while (redir)
+	{
+		if (redir->type == D_LESSER)
+		{
+			if (is_valid_hdoc)
+				del_heredoc(&heredoc);
+			init_heredoc(&heredoc, redir);
+			is_valid_hdoc = save_heredoc(&heredoc);
+			if (is_valid_hdoc && heredoc->is_expand)
+				expand_tokens(&heredoc->contents);
+		}
+		redir = redir->next;
+	}
+	cmd->redirects->heredoc = heredoc;
 }

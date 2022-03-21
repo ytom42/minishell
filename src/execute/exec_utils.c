@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:47:44 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/04 12:35:12 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/17 21:27:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,18 @@ char
 	}
 	envs[i] = NULL;
 	return (envs);
+}
+
+bool
+	is_heredoc(t_redirect *redirects)
+{
+	if (redirects == NULL)
+		return (FALSE);
+	while (redirects)
+	{
+		if (redirects->type == D_LESSER)
+			return (TRUE);
+		redirects = redirects->next;
+	}
+	return (FALSE);
 }
