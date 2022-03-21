@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:35:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:19:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+#define READ	0
+#define WRITE	1
 
 void
 	create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[])
@@ -21,6 +24,7 @@ void
 		{
 			if (pipe(hdoc_pipe) < 0)
 				error_exit(NULL);
+			break ;
 		}
 		redir = redir->next;
 	}
@@ -36,8 +40,17 @@ void
 		{
 			write(hdoc_pipe[1], hdoc->contents->str,
 					ft_strlen(hdoc->contents->str));
-			write(hdoc_pipe[1], "\n", 1);
 			hdoc->contents = hdoc->contents->next;
 		}
+		close(hdoc_pipe[1]);
 	}
+}
+
+void
+	set_hdoc_pipe(int hdoc_pipe[])
+{
+	if (close(hdoc_pipe[WRITE]) < 0
+			|| dup2(hdoc_pipe[READ], STDIN_FILENO) < 0
+			|| close(hdoc_pipe[READ]) < 0)
+		error_exit(NULL);
 }

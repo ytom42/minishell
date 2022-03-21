@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:20:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 18:36:19 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exec_nodes(t_node *nodes);
 	exec_cmd.c
 */
 int exec_command(t_command *cmd, t_pipe_state *p_state, int old_pipe[]);
-void exec_binary_cmd(char **args);
+void exec_binary_cmd(char **args, int hdoc_pipe[], bool is_hdoc);
 
 /*
 	error_1.c
@@ -116,5 +116,6 @@ void set_heredoc(t_command *cmd);
 */
 void create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[]);
 void write_heredoc(t_heredoc *hdoc, int hdoc_pipe[]);
+void set_hdoc_pipe(int hdoc_pipe[]);
 
 #endif

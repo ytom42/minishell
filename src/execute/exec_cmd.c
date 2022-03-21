@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:32:53 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 18:36:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 extern t_master	g_master;
 
 void
-	exec_binary_cmd(char **args)
+	exec_binary_cmd(char **args, int hdoc_pipe[], bool is_hdoc)
 {
 	char		**envs;
 	char		*path;
 
+	if (is_hdoc)
+		set_hdoc_pipe(hdoc_pipe);
 	envs = convert_envs(g_master.environs);
 	path = create_executable_path(args[0]);
 	if (execve(path, args, envs) < 0)
 		exit_execve_error(path);
 	instant_free(envs);
-	free_set((void **)&path, NULL);
+	free(path);
 }
 
 static void
@@ -38,9 +40,11 @@ static void
 	pid_t	pid;
 	int		new_pipe[2];
 	int		hdoc_pipe[2];
+	bool	is_hdoc;
 
 	create_pipe(p_state, new_pipe);
-	if (is_heredoc(cmd->redirects))
+	is_hdoc = is_heredoc(cmd->redirects);
+	if (is_hdoc)
 		create_heredoc_pipe(cmd->redirects, hdoc_pipe);
 	pid = fork();
 	if (pid == -1)
@@ -57,10 +61,10 @@ static void
 		if (is_builtin_cmd(args))
 			exit(exec_builtin_cmd(args));
 		else
-			exec_binary_cmd(args);
-		if (is_heredoc(cmd->redirects))
-			write_heredoc(cmd->redirects->heredoc, hdoc_pipe);
+			exec_binary_cmd(args, hdoc_pipe, is_hdoc);
 	}
+	if (is_hdoc)
+		write_heredoc(cmd->redirects->heredoc, hdoc_pipe);
 	update_pipe(p_state, old_pipe, new_pipe);
 	cmd->pid = pid;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 15:06:02 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 15:44:37 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void
 	}
 }
 
-static void
-	del_redirects(t_redirect *redirect)
-{
-	if (redirect == NULL)
-		return ;
-	if (redirect->filename)
-		del_token_list(redirect->filename);
-	if (redirect->heredoc)
-		del_token_list(redirect->heredoc->contents);
-	free(redirect);
-}
+// static void
+// 	del_redirects(t_redirect *redirect)
+// {
+// 	if (redirect == NULL)
+// 		return ;
+// 	if (redirect->filename)
+// 		del_token_list(redirect->filename);
+// 	if (redirect->heredoc)
+// 		del_token_list(redirect->heredoc->contents);
+// 	free(redirect);
+// }
 
 static void
 	del_commands(t_command *command)
@@ -68,7 +68,7 @@ static void
 	del_nodes(t_node *node)
 {
 	del_commands(node->command);
-	del_redirects(node->command->redirects);
+	// del_redirects(node->command->redirects);
 	free(node);
 }
 

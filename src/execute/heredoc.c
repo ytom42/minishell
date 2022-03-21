@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:54:34 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:17:30 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ static bool
 		input_str = ft_strjoin(input_str, "\n");
 		if (!input_str)
 			error_exit(NULL);
-		if (!(token_lstaddback((*hdoc)->contents,
-				token_lstnew(ft_strdup(input_str)))))
-			error_exit(NULL);
+		(*hdoc)->contents = (token_lstaddback((*hdoc)->contents,
+								token_lstnew(ft_strdup(input_str))));
 		free(input_str);
 		input_str = NULL;
 	}
@@ -75,7 +74,7 @@ void
 	bool		is_valid_hdoc;
 
 	redir = cmd->redirects;
-	heredoc = redir->heredoc;
+	heredoc = NULL;
 	is_valid_hdoc = FALSE;
 	while (redir)
 	{
@@ -90,4 +89,5 @@ void
 		}
 		redir = redir->next;
 	}
+	cmd->redirects->heredoc = heredoc;
 }
