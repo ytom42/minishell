@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/12 17:39:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 20:19:56 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void
 	pid = fork();
 	if (pid == -1)
 		error_exit(NULL);
-	if (pid == 0)
+	else if (pid == 0)
 	{
 		if (!args[0])
 			exit(EXIT_SUCCESS);
@@ -55,6 +55,11 @@ static void
 			exit(exec_builtin_cmd(args));
 		else
 			exec_binary_cmd(args);
+	}
+	else
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_DFL);
 	}
 	update_pipe(p_state, old_pipe, new_pipe);
 	cmd->pid = pid;

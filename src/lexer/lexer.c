@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 21:22:53 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:15:17 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ t_token *lexer(char *line)
 		if (!check_invalid_token(new_token))
 			return (free_list(token_list));
 		token_list = token_lstaddback(token_list, new_token);
+		skip_space(line, &i);
 	}
 	return (token_list);
 }

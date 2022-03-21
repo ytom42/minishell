@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 19:24:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/21 20:07:36 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void
 {
 	if (sig == SIGINT)
 	{
-		write(2, "\n", 1);
-		rl_replace_line("", 0);
+		write(1, "\n", 1);
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -69,10 +69,11 @@ void
 	line = NULL;
 	while (42)
 	{
+		signal_set();
 		line = readline(MS_PROMPT);
 		if (line == NULL)
 		{
-			printf("\n");
+			write(1, "exit\n", 5);
 			exit(1);
 		}
 		else if (ft_strlen(line) > 0)
