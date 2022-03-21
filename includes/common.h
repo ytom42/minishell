@@ -110,6 +110,11 @@ typedef struct	s_node
 	struct s_node	*right;
 }				t_node;
 
+typedef struct	s_parse_info
+{
+	t_command	*prev_command;
+}				t_parse_info;
+
 typedef enum e_exit_cd
 {
 	SCCSS = 0,
