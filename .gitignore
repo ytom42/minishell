@@ -4,7 +4,4 @@ minishell
 *.a
 *.d
 *.log
-src/tmp/
-src/Makefile
-src/test.c
-includes/test.h
+tes.txt

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:47:44 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 21:27:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 21:10:07 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,29 @@ static void
 	}
 }
 
-static void
-	create_env_str(t_environ *environs, char *env_str)
+static char
+	*create_env_str(t_environ *environs)
 {
-	char	*tmp;
+	char	*res;
 
-	if (environs->value && environs->is_env)
+	res = NULL;
+	if (environs->key && environs->value)
 	{
-		env_str = ft_strjoin(environs->key, "=");
-		if (!env_str)
+		res = ft_strjoin(environs->key, "=");
+		if (!res)
 			error_exit(NULL);
-		tmp = env_str;
-		env_str = ft_strjoin(env_str, environs->value);
-		if (!env_str)
+		res = ft_strjoin(res, environs->value);
+		if (!res)
 			error_exit(NULL);
-		free_set((void **)&tmp, NULL);
 	}
+	else if (!environs->value)
+	{
+		res = ft_strjoin(environs->key, "=");
+		if (!res)
+			error_exit(NULL);
+		res = ft_strjoin(res, "");
+	}
+	return (res);
 }
 
 char
@@ -61,7 +68,7 @@ char
 	i = -1;
 	while (++i < size)
 	{
-		create_env_str(environs, envs[i]);
+		envs[i] = create_env_str(environs);
 		environs = environs->next;
 	}
 	envs[i] = NULL;

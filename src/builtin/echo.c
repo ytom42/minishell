@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:17:57 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 13:31:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:25 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int
 	else
 		is_opt = FALSE;
 	if (is_opt)
+		i++;
+	while (!ft_strcmp(args[i], "-n"))
 		i++;
 	while (args[i])
 	{
