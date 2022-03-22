@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 16:21:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 22:59:57 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int
 	while (args[++i])
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
+		if (!sep)
+			return (res);
 		if (is_valid_identifier(args[i]))
 			update_env(args[i], value, add_request);
 		else
