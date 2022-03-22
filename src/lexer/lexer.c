@@ -6,11 +6,12 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/21 20:15:17 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:04:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "expansion.h"
 
 static void free_token(t_token *token)
 {
@@ -34,40 +35,67 @@ static void	*free_list(t_token *list)
 	return (NULL);
 }
 
-static int		gl_size(char *line, int *i)
+static int		gl_size(char *line, int i)
 {
 	int		size;
 
 	size = 1;
-	if (line[*i] == '>' && line[*i + 1] == '>')
+	if (line[i] == '>' && line[i + 1] == '>')
 		size += 1;
-	else if (line[*i] == '<' && line[*i + 1] == '<')
+	else if (line[i] == '<' && line[i + 1] == '<')
 		size += 1;
 	return (size);
 }
 
-static int		quote_size(char *line, int *i)
+static int		quote_size(char *line, int i)
 {
 	int	size;
+	int	sq;
+	int dq;
 
 	size = 0;
-	while (line[*i + size])
+	if (line[i + size] == '\"')
+		dq = 1;
+	else if (line[i + size] == '\'')
+		sq = 1;
+	while (line[i + size])
 	{
-		if (is_delimiter(line[*i + size]))
+		if ((dq && line[i + size] == '\"') && (sq && line[i + size] == '\''))
+		{
+			size += 1;
+			break ;
+		}
+		size += 1;
+	}
+	return (size);
+}
+
+static int		general_size(char *line, int i)
+{
+	int		size;
+	char	c;
+
+	size = 0;
+	while (line[i + size])
+	{
+		c = line[i + size];
+		if (c == '\"' || c == '\"')
+			size += quote_size(line, i + size);
+		else if (is_delimiter(c))
 			break ;
 		size += 1;
 	}
 	return (size);
 }
 
-static int get_token_size(char *line, int *i)
+static int get_token_size(char *line, int i)
 {
-	if (line[*i] == '>' || line[*i] == '<')
+	if (line[i] == '>' || line[i] == '<')
 		return (gl_size(line, i));
-	else if (line[*i] == '|')
+	else if (line[i] == '|')
 		return (1);
 	else
-		return (quote_size(line, i));
+		return (general_size(line, i));
 }
 
 static t_token	*get_token(char *line, int *i)
@@ -78,7 +106,7 @@ static t_token	*get_token(char *line, int *i)
 
 	size = 0;
 	skip_space(line, i);
-	size = get_token_size(line, i);
+	size = get_token_size(line, *i);
 	if (size == 0)
 		return (NULL);
 	str = ft_substr(&line[*i], 0, size);
