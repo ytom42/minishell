@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 15:24:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 22:20:53 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void loop_shell()
 	line = NULL;
 	while (42)
 	{
+		g_master.exit_cd = EXIT_SUCCESS;
 		signal_set();
 		line = readline(MS_PROMPT);
 		if (line == NULL)
