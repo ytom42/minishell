@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 18:36:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 15:36:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void
 		set_hdoc_pipe(hdoc_pipe);
 	envs = convert_envs(g_master.environs);
 	path = create_executable_path(args[0]);
+	// for (int i = 0; args[i]; i++)
+	// {
+	// 	printf("=== args[%d] ====\n", i);
+	// 	for (int j = 0; args[i][j]; j++)
+	// 		printf("args[%d][%d]:%c\n", i, j, args[i][j]);
+	// }
 	if (execve(path, args, envs) < 0)
 		exit_execve_error(path);
 	instant_free(envs);
