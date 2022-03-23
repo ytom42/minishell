@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 21:14:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 17:41:05 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void
 		error_exit(NULL);
 	else if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (!args[0])
 			exit(EXIT_SUCCESS);
 		if (!set_redirects(cmd))
@@ -62,10 +64,7 @@ static void
 			exec_binary_cmd(args, hdoc_pipe, is_hdoc);
 	}
 	else
-	{
 		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_DFL);
-	}
 	if (is_hdoc)
 		write_heredoc(cmd->redirects->heredoc, hdoc_pipe);
 	update_pipe(p_state, old_pipe, new_pipe);
