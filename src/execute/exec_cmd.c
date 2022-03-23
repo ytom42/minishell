@@ -29,8 +29,6 @@ void
 	path = create_executable_path(args[0]);
 	if (execve(path, args, envs) < 0)
 		exit_execve_error(path);
-	instant_free(envs);
-	free(path);
 }
 
 static void
