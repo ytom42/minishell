@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 15:24:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 11:52:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void loop_shell()
 		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
 		del_nodes_list(nodes);
-		// printf("%d\n", g_master.exit_cd);
 	}
 }
 
