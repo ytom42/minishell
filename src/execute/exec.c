@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:35:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 22:21:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 11:43:35 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void
 void
 	exec_nodes(t_node *nodes)
 {
-	if (!nodes || g_master.exit_cd == TRUE)
+	if (!nodes)
 	{
 		return ;
 	}
