@@ -3,37 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/23 10:42:59 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:21:26 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "expansion.h"
-
-static void free_token(t_token *token)
-{
-	if (!token)
-		return ;
-	if (token->str)
-		free(token->str);
-	free(token);
-}
-
-static void	*free_list(t_token *list)
-{
-	t_token	*tmp;
-
-	while (list)
-	{
-		tmp = list;
-		list = list->next;
-		free_token(tmp);
-	}
-	return (NULL);
-}
 
 static int		gl_size(char *line, int i)
 {
@@ -132,8 +110,8 @@ static int	check_invalid_token(t_token *token)
 	{
 		if (str[i] == ';' || str[i] == '\\')
 		{
-			printf("禁止文字が入ってる\n");
-			free_token(token);
+			write(2, "Contains forbidden characters\n", 30);
+			del_token_list(token);
 			return (FALSE);
 		}
 		i++;
@@ -155,7 +133,7 @@ t_token *lexer(char *line)
 	{
 		new_token = get_token(line, &i);
 		if (!check_invalid_token(new_token))
-			return (free_list(token_list));
+			return (del_token_list(token_list));
 		token_list = token_lstaddback(token_list, new_token);
 		skip_space(line, &i);
 	}
