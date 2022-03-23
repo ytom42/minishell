@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:35:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 11:43:35 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 11:47:15 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void
 	exec_nodes(t_node *nodes)
 {
 	if (!nodes)
-	{
 		return ;
-	}
 	exec_node(nodes);
 }
