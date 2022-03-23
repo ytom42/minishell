@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 21:23:18 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:53:44 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,42 +61,48 @@ void
 }
 
 void
-	remove_quote(char *str)
+	remove_quote(t_token *token)
 {
 	int		i;
 	int		state_dq;
 	int		state_sq;
+	char	*str;
 
-	i = 0;
-	state_dq = 0;
-	state_sq = 0;
-	while (str[i])
+	while (token)
 	{
-		if (state_sq && str[i] == '\'')
+		i = 0;
+		state_dq = 0;
+		state_sq = 0;
+		str = token->str;
+		while (str[i])
 		{
-			ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-			state_sq = 0;
-			continue ;
+			if (state_sq && str[i] == '\'')
+			{
+				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
+				state_sq = 0;
+				continue ;
+			}
+			else if (state_dq && str[i] == '\"')
+			{
+				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
+				state_dq = 0;
+				continue ;
+			}
+			else if (!state_sq && str[i] == '\"')
+			{
+				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
+				state_dq = 1;
+				continue ;
+			}
+			else if (!state_dq && str[i] == '\'')
+			{
+				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
+				state_sq = 1;
+				continue ;
+			}
+			i++;
 		}
-		else if (state_dq && str[i] == '\"')
-		{
-			ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-			state_dq = 0;
-			continue ;
-		}
-		else if (!state_sq && str[i] == '\"')
-		{
-			ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-			state_dq = 1;
-			continue ;
-		}
-		else if (!state_dq && str[i] == '\'')
-		{
-			ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-			state_sq = 1;
-			continue ;
-		}
-		i++;
+		token = token->next;
 	}
 }
 
@@ -114,8 +120,8 @@ void
 	while (var[NOW])
 	{
 		expanded_str = expand_env_var(var[NOW]->str);
-		remove_quote(expanded_str);
 		var[EXPAND] = lexer(expanded_str);
+		remove_quote(var[EXPAND]);
 		free_set((void **)&expanded_str, NULL);
 		if (!var[RES])
 			var[RES] = var[EXPAND];

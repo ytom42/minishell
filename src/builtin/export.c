@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 22:55:43 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 11:59:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
 		if (!sep)
-			return (res);
+			continue;
 		if (is_valid_identifier(args[i]))
 			update_env(args[i], value, add_request);
 		else
