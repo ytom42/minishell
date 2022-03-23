@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 07:53:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/14 11:19:18 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 20:59:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static size_t
 	size_t	i;
 
 	res = 0;
+	if (!str)
+		return (res);
 	i = 0;
 	while (!str[i])
 	{
@@ -32,25 +34,28 @@ static size_t
 }
 
 static void
-	create_expanded_str(char *dest, char *src, char *esc_chars)
+	create_expanded_str(char **dest, char *src, char *esc_chars)
 {
 	size_t	res_i;
 	size_t	i;
 
 	res_i = 0;
 	i = 0;
-	while (src[i])
+	if (src)
 	{
-		if (ft_strchr(esc_chars, src[i]))
+		while (src[i])
 		{
-			dest[res_i] = '\\';
+			if (ft_strchr(esc_chars, src[i]))
+			{
+				*dest[res_i] = '\\';
+				res_i++;
+			}
+			*dest[res_i] = src[i];
 			res_i++;
+			i++;
 		}
-		dest[res_i] = src[i];
-		res_i++;
-		i++;
+		*dest[res_i] = '\0';
 	}
-	dest[res_i] = '\0';
 }
 
 char
@@ -68,6 +73,6 @@ char
 			* (expand_strlen(str, esc_chars) + 1));
 	if (!res)
 		error_exit(NULL);
-	create_expanded_str(res, str, esc_chars);
+	create_expanded_str(&res, str, esc_chars);
 	return (res);
 }
