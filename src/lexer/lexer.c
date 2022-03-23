@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/22 18:04:10 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/23 10:42:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ static int		quote_size(char *line, int i)
 	int dq;
 
 	size = 0;
+	sq = 0;
+	dq = 0;
 	if (line[i + size] == '\"')
 		dq = 1;
 	else if (line[i + size] == '\'')
 		sq = 1;
+	size = 1;
 	while (line[i + size])
 	{
-		if ((dq && line[i + size] == '\"') && (sq && line[i + size] == '\''))
+		if ((dq && line[i + size] == '\"') || (sq && line[i + size] == '\''))
 		{
 			size += 1;
 			break ;
@@ -79,11 +82,12 @@ static int		general_size(char *line, int i)
 	while (line[i + size])
 	{
 		c = line[i + size];
-		if (c == '\"' || c == '\"')
+		if (c == '\"' || c == '\'')
 			size += quote_size(line, i + size);
 		else if (is_delimiter(c))
 			break ;
-		size += 1;
+		else
+			size += 1;
 	}
 	return (size);
 }
