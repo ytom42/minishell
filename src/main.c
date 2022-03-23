@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 20:33:55 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:24:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_master	g_master;
+t_master g_master;
 
-void
-	free_envs(void)
+void free_envs(void)
 {
-	t_environ	*env;
-	t_environ	*next;
+	t_environ *env;
+	t_environ *next;
 
 	env = g_master.environs;
 	while (env)
@@ -32,15 +31,13 @@ void
 	env = NULL;
 }
 
-int
-	all_free()
+int all_free()
 {
 	free_envs();
 	return (g_master.exit_cd);
 }
 
-void
-	handler(int sig)
+void handler(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -51,15 +48,13 @@ void
 	}
 }
 
-void
-	signal_set()
+void signal_set()
 {
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void
-	loop_shell()
+void loop_shell()
 {
 	t_token *tokens;
 	t_node *nodes;
@@ -87,11 +82,11 @@ void
 		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
 		del_nodes_list(nodes);
+		// printf("%d\n", g_master.exit_cd);
 	}
 }
 
-int	
-	main(int ac, char **av)
+int main(int ac, char **av)
 {
 	(void)av;
 	signal_set();

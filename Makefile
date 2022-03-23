@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/21 17:20:02 by kfumiya          ###   ########.fr        #
+#    Updated: 2022/03/22 18:31:52 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ CC			:= gcc
 # READLINE	:= -L$(HOME)/.brew/opt/readline/lib -lreadline
 READLINE	:= -L/usr/local/opt/readline/lib -lreadline
 CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g
+# CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g -fsanitize=address
 
 all:		$(NAME)
 

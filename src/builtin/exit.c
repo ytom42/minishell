@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:25:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/18 13:31:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:28:48 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,13 @@ int
 	if (args[i] && !ft_strcmp(args[i], "--"))
 		i++;
 	if (!args[i])
+	{
+		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		exit(g_master.exit_cd);
+	}
 	errno = 0;
 	status = ft_atoi(args[i]);
+	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	if (!found_error(args, i))
 		exit(status);
 	return (EXIT_FAILURE);
