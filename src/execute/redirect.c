@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 12:45:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 16:30:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int
 static bool
 	check_redirect(t_redirect *redir, char *org_filename)
 {
-	if (redir->filename == NULL || redir->filename->next)
+	if (redir->filename == NULL)
 	{
 		print_error_msg("ambiguous redirect", org_filename);
 		return (FALSE);
