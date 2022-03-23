@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:36:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 11:23:22 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:49:46 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ t_environ
 	new = malloc(sizeof(t_environ));
 	if (!new)
 		return (NULL);
-	new->key = key;
-	new->value = value;
-	// new->prev = NULL;
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
 	new->next = NULL;
 	return (new);
 }

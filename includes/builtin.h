@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/17 18:50:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 14:45:24 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int is_builtin_cmd(char **args);
  */
 bool is_valid_identifier(char *arg);
 t_environ *get_env(char *target);
-char *get_cwd_path(char *arg);
+char *get_cwd_path(char *arg, bool flag);
 
 /*
 	cd.c
