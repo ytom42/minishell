@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:36:39 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 10:50:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 14:44:43 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ t_environ
 }
 
 char
-	*get_cwd_path(char *arg)
+	*get_cwd_path(char *arg, bool flag)
 {
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
-	if (!cwd)
+	if (!cwd && flag)
 		print_cwd_error(arg);
 	return (cwd);
 }

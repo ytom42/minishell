@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:16:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2020/11/16 14:14:09 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:53:32 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *dst)
 	char	*str;
 	size_t	i;
 
+	if (!dst)
+		return (NULL);
 	str = (char *)malloc(sizeof(*dst) * (ft_strlen(dst) + 1));
 	if (!str)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/14 11:53:45 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:58:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void
 			*(*sep - 1) = '\0';
 			*add_request = TRUE;
 		}
-		*value = *sep + 1;
+		if (*sep)
+			*value = *sep + 1;
 	}
 	else
 		*value = NULL;
@@ -58,7 +59,7 @@ void
 	{
 		if (!replace_dup_env(key, new_value, FALSE))
 			if (!append_env(&g_master.environs,
-					new_env(ft_strdup(key), ft_strdup(new_value))))
+					new_env(key, new_value)))
 				error_exit(NULL);
 	}
 }

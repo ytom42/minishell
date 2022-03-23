@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/05 18:01:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:36:21 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char
 	if (is_abs_path)
 	{
 		if (!is_canonical)
-			new_pwd = get_cwd_path("cd");
+			new_pwd = get_cwd_path("cd", FALSE);
 		if (is_canonical || !new_pwd)
 		{
 			new_pwd = ft_strdup(cd_path);
@@ -61,7 +61,7 @@ static char
 	}
 	else
 	{
-		new_pwd = get_cwd_path("cd");
+		new_pwd = get_cwd_path("cd", TRUE);
 		if (!new_pwd)
 		{
 			new_pwd = ft_strdup(cd_path);
@@ -108,12 +108,15 @@ bool
 	bool	is_canonical;
 	char	*oldpwd;
 
-	oldpwd = get_cwd_path("cd");
+	oldpwd = get_cwd_path("cd", FALSE);
 	path = set_cd_path(dir_path, &is_canonical);
 	res = change_directory(path, dir_path, is_canonical);
 	if (!res)
+	{
 		update_env("OLDPWD", oldpwd, FALSE);
-	free_set((void **)&path, NULL);
+		printf("test\n");
+	}
+	free(path);
 	if (!res)
 		return (TRUE);
 	return (FALSE);
