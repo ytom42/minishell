@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:17:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/10 21:43:47 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:44:38 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ t_environ	*environ_init()
 		env = new();
 		sep = ft_strchr(environ[i], '=');
 		env->key = ft_substr(environ[i], 0, (sep - environ[i]));
-		env->value = ft_strdup(sep + 1);
+		if (ft_strcmp(env->key, "PWD") == 0)
+			env->value = getcwd(NULL, 0);
+		else
+			env->value = ft_strdup(sep + 1);
 		add(&list, env);
 		i++;
 	}
