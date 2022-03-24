@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 20:37:49 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:13:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,29 @@ t_node	*node_new(t_node_type type)
 	return (node);
 }
 
-t_redirect	*redirect_new(t_token **token)
+static void	redirect_init(t_redirect *redirect)
 {
-	t_redirect	*redirect;
-
-	redirect = (t_redirect *)malloc(sizeof(t_redirect));
 	redirect->fd_io = -1;
 	redirect->fd_file = -1;
 	redirect->fd_backup = -1;
 	redirect->filename = NULL;
 	redirect->prev = NULL;
 	redirect->next = NULL;
+}
+
+t_redirect	*redirect_new(t_token **token)
+{
+	t_redirect	*redirect;
+
+	redirect = (t_redirect *)malloc(sizeof(t_redirect));
+	redirect_init(redirect);
 	if ((*token)->type == LESSER)
 	{
 		redirect->type = REDIR_INPUT;
 		redirect->fd_io = STDIN_FILENO;
 	}
 	else if ((*token)->type == D_LESSER)
-	{
 		redirect->type = REDIR_HEREDOC;
-		// redirect->fd_io = STDIN_FILENO;
-	}
 	else if ((*token)->type == GREATER)
 	{
 		redirect->type = REDIR_OUTPUT;

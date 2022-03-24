@@ -14,6 +14,8 @@
 #include "execute.h"
 #include "utils.h"
 
+extern t_master	g_master;
+
 #define KEY 0
 #define VALUE 1
 #define TMP 2
@@ -138,6 +140,7 @@ char
 		exp.index++;
 	}
 	if (exp.state != STATE_GENERAL)
-		printf("クォート閉じてないエラー\n");
+		g_master.error_flag = TRUE;
+	free(str);
 	return (exp.str);
 }

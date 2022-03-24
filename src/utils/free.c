@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 16:07:50 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:21:14 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void
 	free(str);
 }
 
-void del_token(t_token *token)
+void
+	del_token(t_token *token)
 {
 	if (!token)
 		return ;
@@ -104,7 +105,7 @@ void
 void
 	del_tmp_env(t_environ **envs)
 {
-	t_environ *tmp;
+	t_environ	*tmp;
 
 	while (*envs)
 	{

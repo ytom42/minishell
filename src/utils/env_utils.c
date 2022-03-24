@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 09:08:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 16:13:28 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:20:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void
 t_environ
 	*dup_env(t_environ *env)
 {
-	t_environ *tmp;
+	t_environ	*tmp;
 
 	tmp = (t_environ *)malloc(sizeof(t_environ));
 	if (!tmp)
@@ -52,8 +52,8 @@ t_environ
 t_environ
 	*dup_envs(t_environ *env)
 {
-	t_environ *list;
-	t_environ *tmp;
+	t_environ	*list;
+	t_environ	*tmp;
 
 	list = NULL;
 	while (env)
@@ -73,7 +73,7 @@ t_environ
 char
 	*get_env_value(char *key)
 {
-	t_environ *env;
+	t_environ	*env;
 
 	if (!key)
 		return (NULL);
