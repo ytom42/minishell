@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 16:30:20 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 21:14:27 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void
 				|| close(redir->fd_backup) < 0)
 				error_exit(NULL);
 		}
-		redir = redir->next;
+		redir = redir->prev;
 	}
 }
 
