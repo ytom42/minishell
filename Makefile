@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+         #
+#    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/22 18:31:52 by kfumiya          ###   ########.fr        #
+#    Updated: 2022/03/24 13:54:45 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,15 @@ SRCS		:= $(shell find $(SRCDIR) -name "*.c")
 OBJS		:= $(SRCS:.c=.o)
 DEPS		:= $(OBJS:.o=.d)
 LIBFT		:= ./libft/libft.a
-# INCLUDES	:= -I./includes -I./libft/includes -I$(HOME)/.brew/opt/readline/include
-INCLUDES	:= -I./includes -I./libft/includes -I/usr/local/opt/readline/include
+INCLUDES	:= -I./includes -I./libft/includes -I$(HOME)/.brew/opt/readline/include
+# INCLUDES	:= -I./includes -I./libft/includes -I/usr/local/opt/readline/include
 
 RM			:= rm -rf
 
 CC			:= gcc
 
-# READLINE	:= -L$(HOME)/.brew/opt/readline/lib -lreadline
-READLINE	:= -L/usr/local/opt/readline/lib -lreadline
+READLINE	:= -L$(HOME)/.brew/opt/readline/lib -lreadline
+# READLINE	:= -L/usr/local/opt/readline/lib -lreadline
 CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g
 # CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g -fsanitize=address
 
