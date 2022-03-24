@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 17:41:05 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:33:56 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int
 	if (is_heredoc(cmd->redirects))
 		set_heredoc(cmd);
 	require_expansion(cmd, &args);
+	if (g_master.error_flag)
+		return (0);
 	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);
 	else

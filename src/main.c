@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 16:01:45 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 17:59:55 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ void loop_shell()
 	line = NULL;
 	while (42)
 	{
+		g_master.error_flag = FALSE;
 		signal_set();
 		line = readline(MS_PROMPT);
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
+			// system("leaks minishell"); //test
 			exit(0);
 		}
 		else if (ft_strlen(line) > 0)
