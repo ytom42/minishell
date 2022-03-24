@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 18:31:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 22:05:33 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static char
 	char *tmp;
 	char *res;
 
-	// value_str = create_value_str(value, exp->state, FALSE);
 	value_str = create_value_str(value);
 	if (!value_str)
 		return (NULL);
@@ -94,6 +93,7 @@ static void
 	char	*value;
 	char	*res;
 	size_t	index_after_var;
+	char	*tmp;
 
 	var_name = str_search_key(&exp->str[exp->index + 1]);
 	if (!var_name)
@@ -108,9 +108,16 @@ static void
 	value = get_env_value(var_name);
 	if (!value)
 		value = strdup("");
+	else
+	{
+		tmp = value;
+		value = ft_strjoin("\"", value);
+		free(tmp);
+		tmp = value;
+		value = ft_strjoin(value, "\"");
+		free(tmp);
+	}
 	res = swap_name_value(exp, value, index_after_var);
-	// if (!res)
-	// 	error_exit(NULL);
 	free_set((void **)&var_name, NULL);
 	free_set((void **)&value, NULL);
 	free_set((void **)&(exp->str), NULL);
