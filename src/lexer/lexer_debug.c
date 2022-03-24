@@ -6,13 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:43:40 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 19:58:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:07:23 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-char *get_type_str(char c)
+char	*get_type_str(char c)
 {
 	if (c == WORD)
 		return ("WORD");
@@ -32,14 +32,14 @@ char *get_type_str(char c)
 
 void	print_token(t_token *lst)
 {
+	int	i;
+
 	if (lst == NULL)
 	{
 		printf("token_list is NULL\n");
 		return ;
 	}
 	printf("%s%s========= print_token  =========\n%s", YELLOW, BOLD, END);
-	int	i;
-
 	i = 1;
 	while (lst)
 	{

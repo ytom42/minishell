@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:38:36 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/08 14:07:09 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:08:36 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int		is_delimiter(char c)
+int	is_delimiter(char c)
 {
 	int		i;
 
@@ -34,7 +34,7 @@ int		is_delimiter(char c)
 	return (0);
 }
 
-int		is_space(char c)
+int	is_space(char c)
 {
 	if (c == ' ' || c == '\t')
 		return (1);
