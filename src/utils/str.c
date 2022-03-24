@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:00:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 21:11:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:22:29 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ bool
 		if (ft_isdigit(str[i]))
 			is_digit = TRUE;
 		else
-			break;
+			break ;
 		i++;
 	}
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (str[i] == '\0' && is_digit == TRUE)
 		return (TRUE);
-	return (FALSE);	
+	return (FALSE);
 }
 
 char
 	*ft_strcpy_forward(char *dest, char *src)
 {
-	size_t index;
+	size_t	index;
 
 	index = 0;
 	while (src[index])
