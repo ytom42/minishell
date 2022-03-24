@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:53:50 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 11:01:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 14:31:43 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int
 {
 	char *pwd;
 
-	pwd = get_env_value("PWD");
+	pwd = getcwd(NULL, 0);
 	ft_putendl_fd(pwd, STDOUT_FILENO);
 	free_set((void **)&pwd, NULL);
 	return (EXIT_SUCCESS);
