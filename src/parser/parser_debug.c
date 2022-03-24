@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:30:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:16:44 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:01:57 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	print_redirect(t_node *node)
 	{
 		printf("%s[%s%s%s]", type[redirect->type], \
 				CYAN, redirect->filename->str, END);
+		if (redirect->prev)
+			printf("[%s]", redirect->prev->filename->str);
 		redirect = redirect->next;
 		if (redirect)
 			printf(", ");
