@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:31:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 19:27:01 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int
 	t_environ		*envs;
 	t_environ		*tmp;
 	
+	if (!g_master.environs)
+		return (EXIT_SUCCESS);
 	g_master.tmp_env = dup_envs(g_master.environs);
 	envs = g_master.tmp_env;
 	if (!envs)
@@ -125,12 +127,6 @@ int
 		print_env(envs);
 		tmp = envs;
 		envs = envs->next;
-		// if (tmp->key)
-		// 	free(tmp->key);
-		// if (tmp->value)
-		// 	free(tmp->value);
-		// if (tmp)
-		// 	free(tmp);
 	}
 	return (EXIT_SUCCESS);
 }
