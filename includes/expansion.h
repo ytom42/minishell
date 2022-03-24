@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/08 20:41:52 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:28:35 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_expander
 	char *str;
 } t_expander;
 
-char *create_value_str(char *str, t_token_state status, bool is_env);
+char *create_value_str(char *str);
 char **split_value(char *value, char delimiter);
 void expand_tokens(t_token **tokens);
 t_token_type get_token_type(char c);
