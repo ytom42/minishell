@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 15:58:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 19:02:07 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@ void
 	t_environ	*env;
 
 	env = get_env(key);
+	old_value = NULL;
 	if (env)	
 		old_value = env->value;
 	if (add_request)
 	{
-		if (old_value || new_value)
+		if (!old_value)
+		{
+			if (!append_env(&g_master.environs, new_env(key, new_value)))
+				error_exit(NULL);
+		}
+		else if (old_value || new_value)
 		{
 			env->value = ft_strjoin(old_value, new_value);
 			if (!env->value)

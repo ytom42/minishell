@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 15:58:37 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 17:31:56 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void
 	ft_putstr_fd(env->key, STDOUT_FILENO);
 	if (env->value)
 	{
-		expand_value = create_value_str(env->value, STATE_IN_DQUOTE, TRUE);
+		// expand_value = create_value_str(env->value, STATE_IN_DQUOTE, TRUE);
+		expand_value = create_value_str(env->value);
 		ft_putstr_fd("=\"", STDOUT_FILENO);
 		ft_putstr_fd(expand_value, STDOUT_FILENO);
 		ft_putchar_fd('"', STDOUT_FILENO);
