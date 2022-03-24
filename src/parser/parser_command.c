@@ -6,19 +6,23 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/17 20:33:27 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:24:39 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "utils.h"
 
 void	add_redirect(t_node *node, t_token **token)
 {
 	t_redirect	*new;
 	t_redirect	*tmp;
+	t_token		*free_tmp;
 
 	new = redirect_new(token);
+	free_tmp = *token;
 	*token = (*token)->next;
+	del_token(free_tmp);
 	if (!(*token) || (*token)->type != WORD)
 		return ; //error
 	new->filename = *token;
