@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 19:24:40 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:07:50 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,19 @@ void
 	del_nodes(node);
 	del_nodes_list(left_node);
 	del_nodes_list(right_node);
+}
+
+void
+	del_tmp_env(t_environ **envs)
+{
+	t_environ *tmp;
+
+	while (*envs)
+	{
+		free((*envs)->key);
+		free((*envs)->value);
+		tmp = (*envs)->next;
+		free(*envs);
+		*envs = tmp;
+	}
 }

@@ -16,6 +16,7 @@ void	instant_free(char **str);
 void	del_token(t_token *token);
 void	*del_token_list(t_token *token);
 void	del_nodes_list(t_node *nodes);
+void	del_tmp_env(t_environ **envs);
 
 /* 
 	str.c

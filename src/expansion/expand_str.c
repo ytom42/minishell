@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 07:53:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 20:59:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 15:26:24 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static size_t
 }
 
 static void
-	create_expanded_str(char **dest, char *src, char *esc_chars)
+	create_expanded_str(char *dest, char *src, char *esc_chars)
 {
 	size_t	res_i;
 	size_t	i;
@@ -47,14 +47,14 @@ static void
 		{
 			if (ft_strchr(esc_chars, src[i]))
 			{
-				*dest[res_i] = '\\';
+				dest[res_i] = '\\';
 				res_i++;
 			}
-			*dest[res_i] = src[i];
+			dest[res_i] = src[i];
 			res_i++;
 			i++;
 		}
-		*dest[res_i] = '\0';
+		dest[res_i] = '\0';
 	}
 }
 
@@ -73,6 +73,6 @@ char
 			* (expand_strlen(str, esc_chars) + 1));
 	if (!res)
 		error_exit(NULL);
-	create_expanded_str(&res, str, esc_chars);
+	create_expanded_str(res, str, esc_chars);
 	return (res);
 }

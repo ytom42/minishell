@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/23 19:21:26 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:08:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,28 +97,6 @@ static t_token	*get_token(char *line, int *i)
 	return (new_token);
 }
 
-static int	check_invalid_token(t_token *token)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (token == NULL)
-		return (FALSE);
-	str = token->str;
-	while (str[i])
-	{
-		if (str[i] == ';' || str[i] == '\\')
-		{
-			write(2, "Contains forbidden characters\n", 30);
-			del_token_list(token);
-			return (FALSE);
-		}
-		i++;
-	}
-	return (TRUE);
-}
-
 t_token *lexer(char *line)
 {
 	int		i;
@@ -132,8 +110,6 @@ t_token *lexer(char *line)
 	while (line[i])
 	{
 		new_token = get_token(line, &i);
-		if (!check_invalid_token(new_token))
-			return (del_token_list(token_list));
 		token_list = token_lstaddback(token_list, new_token);
 		skip_space(line, &i);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 11:59:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 15:58:37 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int
 	t_environ		*envs;
 	t_environ		*tmp;
 	
-	envs = dup_envs(g_master.environs);
+	g_master.tmp_env = dup_envs(g_master.environs);
+	envs = g_master.tmp_env;
 	if (!envs)
 		error_exit(NULL);
 	sort_envs(&envs);
@@ -123,9 +124,12 @@ int
 		print_env(envs);
 		tmp = envs;
 		envs = envs->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
+		// if (tmp->key)
+		// 	free(tmp->key);
+		// if (tmp->value)
+		// 	free(tmp->value);
+		// if (tmp)
+		// 	free(tmp);
 	}
 	return (EXIT_SUCCESS);
 }

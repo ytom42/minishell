@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 19:51:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/24 15:57:48 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_master
 	t_environ			*environs;
 	t_exit_cd			exit_cd;
 	t_token				*tokens;
+	t_environ			*tmp_env;
 } t_master;
 
 #endif
