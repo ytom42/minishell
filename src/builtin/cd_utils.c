@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 15:36:21 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 19:16:23 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ bool
 	path = set_cd_path(dir_path, &is_canonical);
 	res = change_directory(path, dir_path, is_canonical);
 	if (!res)
-	{
 		update_env("OLDPWD", oldpwd, FALSE);
-		printf("test\n");
-	}
 	free(path);
 	if (!res)
 		return (TRUE);

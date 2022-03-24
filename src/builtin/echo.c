@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:17:57 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 18:09:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/23 23:03:18 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,35 @@ static bool
 	return (TRUE);
 }
 
+static size_t
+	skip_opt(char **args)
+{
+	size_t	i;
+
+	i = 1;
+	while (42)
+	{
+		if (args[i] && args[i][0] == '-' && args[i][1])
+		{
+			if (!is_valid_opt(args[i]))
+				break ;
+		}
+		else
+			break ;
+		i++;
+	}
+	return (i);
+}
+
 int
 	exec_echo(char **args)
 {
 	size_t	i;
-	bool is_opt;
+	bool	is_opt;
 
-	i = 1;
-	if (args[i] && args[i][0] == '-')
-		is_opt = is_valid_opt(args[i]);
-	else
-		is_opt = FALSE;
-	if (is_opt)
-		i++;
-	while (!ft_strcmp(args[i], "-n"))
-		i++;
+	i = skip_opt(args);
+	if (i > 1)
+		is_opt = TRUE;
 	while (args[i])
 	{
 		ft_putstr_fd(args[i++], STDOUT_FILENO);
