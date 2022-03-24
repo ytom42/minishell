@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:30:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/19 19:58:35 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:16:44 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ void	print_command(t_node *node)
 	{
 		printf("%s", token->str);
 		token = token->next;
-		if (token) printf(", ");
+		if (token)
+			printf(", ");
 	}
 	printf("\n%s", END);
 }
 
 void	print_next_command(t_node *node)
 {
-	t_token *token;
+	t_token	*token;
 
 	if (node->command->next == NULL)
 	{
@@ -43,7 +44,8 @@ void	print_next_command(t_node *node)
 	{
 		printf("%s", token->str);
 		token = token->next;
-		if (token) printf(", ");
+		if (token)
+			printf(", ");
 	}
 	printf("%s", END);
 	printf("\n");
@@ -51,24 +53,28 @@ void	print_next_command(t_node *node)
 
 void	print_redirect(t_node *node)
 {
-	t_redirect *redirect;
+	t_redirect	*redirect;
+	char **type = (char *[]){"<", ">", ">>", "<<"};
+
 	redirect = node->command->redirects;
 	printf("redirect  : ");
-	char **type = (char *[]){"<", ">", ">>", "<<"};
 	if (!redirect)
 		printf("%sNULL%s", CYAN, END);
 	while (redirect)
 	{
-		printf("%s[%s%s%s]", type[redirect->type], CYAN, redirect->filename->str, END);
+		printf("%s[%s%s%s]", type[redirect->type], \
+				CYAN, redirect->filename->str, END);
 		redirect = redirect->next;
-		if (redirect) printf(", ");
+		if (redirect)
+			printf(", ");
 	}
 	printf("\n");
 }
 
 void	print_node(t_node *node)
 {
-	printf("%s== %s ==\n%s", MAGENTA, node->type == NODE_COMMAND ? "COMMAND" : "PIPE", END);
+	printf("%s== %s ==\n%s", MAGENTA, \
+		node->type == NODE_COMMAND ? "COMMAND" : "PIPE", END);
 	printf("node_ptr  :%s%p%s\n", RED, node, END);
 	if (node->type == NODE_COMMAND)
 	{

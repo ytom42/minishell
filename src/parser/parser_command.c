@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 18:24:39 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:14:32 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_redirect(t_node *node, t_token **token)
 	*token = (*token)->next;
 	del_token(free_tmp);
 	if (!(*token) || (*token)->type != WORD)
-		return ; //error
+		return ;
 	new->filename = *token;
 	if (node->command->redirects)
 	{
