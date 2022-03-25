@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:33:43 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:09:28 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:12:15 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,5 @@ void		token_lstclear(t_token *lst);
 int			is_delimiter(char c);
 int			is_space(char c);
 void		skip_space(char *line, int *i);
-
-/*
-**	debug
-*/
-void		print_token(t_token *lst);
 
 #endif

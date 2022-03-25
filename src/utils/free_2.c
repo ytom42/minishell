@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:01:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:03:35 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 21:42:26 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 static void
 	del_redirects(t_redirect *redirect)
 {
+	t_redirect	*tmp;
+
 	if (redirect == NULL)
 		return ;
-	if (redirect->filename)
-		del_token_list(redirect->filename);
-	if (redirect->heredoc)
-		del_token_list(redirect->heredoc->contents);
-	free_set((void **)&redirect, NULL);
+	while (redirect)
+	{
+		tmp = redirect;
+		redirect = redirect->next;
+		if (tmp->filename)
+			del_token_list(tmp->filename);
+		if (tmp->heredoc)
+			del_token_list(tmp->heredoc->contents);
+		free_set((void **)&tmp, NULL);
+	}
 }
 
 static void
