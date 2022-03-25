@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/25 17:13:39 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:35:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	redirect_init(t_redirect *redirect)
 	redirect->filename = NULL;
 	redirect->prev = NULL;
 	redirect->next = NULL;
+	redirect->heredoc = NULL;
 }
 
 t_redirect	*redirect_new(t_token **token)

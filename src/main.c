@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:59:55 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:37:57 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void loop_shell()
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
-			// system("leaks minishell"); //test
+			system("leaks minishell"); //test
 			exit(0);
 		}
 		else if (ft_strlen(line) > 0)
