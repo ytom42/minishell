@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 21:30:27 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 23:10:50 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			expand_tokens(t_token **tokens);
 t_token_type	get_token_type(char c);
 t_token_state	get_token_state(t_token_state state, t_token_type type);
 char			*expand_env_var(char *str, int index);
+void			remove_quote(t_token *token);
 char			*close_dqoute_value(char *str);
 void			expander_init(t_expander *exper, char *str, int index);
 

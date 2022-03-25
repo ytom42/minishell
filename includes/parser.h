@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:32:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:32:12 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:12:22 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,5 @@ t_node		*loop_pipe(t_token **token);
 */
 t_node		*node_new(t_node_type type);
 t_redirect	*redirect_new(t_token **token);
-
-/*
-**	debug
-*/
-void		print_nodes(t_node *node_top);
 
 #endif

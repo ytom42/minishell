@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 15:06:02 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 22:16:58 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,52 +58,6 @@ void
 		now = tmp;
 	}
 	*tokens = NULL;
-}
-
-void
-	remove_quote(t_token *token)
-{
-	int		i;
-	int		state_dq;
-	int		state_sq;
-	char	*str;
-
-	while (token)
-	{
-		i = 0;
-		state_dq = 0;
-		state_sq = 0;
-		str = token->str;
-		while (str[i])
-		{
-			if (state_sq && str[i] == '\'')
-			{
-				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-				state_sq = 0;
-				continue ;
-			}
-			else if (state_dq && str[i] == '\"')
-			{
-				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-				state_dq = 0;
-				continue ;
-			}
-			else if (!state_sq && str[i] == '\"')
-			{
-				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-				state_dq = 1;
-				continue ;
-			}
-			else if (!state_dq && str[i] == '\'')
-			{
-				ft_strlcpy(&str[i], &str[i + 1], ft_strlen(&str[i]));
-				state_sq = 1;
-				continue ;
-			}
-			i++;
-		}
-		token = token->next;
-	}
 }
 
 void
