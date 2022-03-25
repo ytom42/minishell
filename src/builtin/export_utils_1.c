@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_utils.c                                     :+:      :+:    :+:   */
+/*   export_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 19:02:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 17:29:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void
 
 	env = get_env(key);
 	old_value = NULL;
-	if (env)	
+	if (env)
 		old_value = env->value;
 	if (add_request)
 	{
@@ -64,8 +64,7 @@ void
 	else
 	{
 		if (!replace_dup_env(key, new_value, FALSE))
-			if (!append_env(&g_master.environs,
-					new_env(key, new_value)))
+			if (!append_env(&g_master.environs, new_env(key, new_value)))
 				error_exit(NULL);
 	}
 }
@@ -102,18 +101,4 @@ void
 		if (add_request)
 			*(sep - 1) = '+';
 	}
-}
-
-int
-	envs_size(t_environ *env)
-{
-	int	size;
-
-	size = 0;
-	while (env)
-	{
-		size++;
-		env = env->next;
-	}
-	return (size);
 }

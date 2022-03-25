@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 19:27:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:53:53 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,59 +26,13 @@ void
 	ft_putstr_fd(env->key, STDOUT_FILENO);
 	if (env->value)
 	{
-		// expand_value = create_value_str(env->value, STATE_IN_DQUOTE, TRUE);
 		expand_value = create_value_str(env->value);
 		ft_putstr_fd("=\"", STDOUT_FILENO);
 		ft_putstr_fd(expand_value, STDOUT_FILENO);
 		ft_putchar_fd('"', STDOUT_FILENO);
 		free(expand_value);
 	}
-	ft_putchar_fd('\n', STDOUT_FILENO);	
-}
-
-t_environ
-	*add_env(t_environ *list, t_environ *new)
-{
-	t_environ *ret_list;
-	t_environ *prev;
-
-	if (list == NULL)
-		return (new);
-	ret_list = list;
-	prev = NULL;
-	while (list)
-	{
-		if (ft_strcmp(list->key, new->key) >= 0)
-		{
-			new->next = list;
-			if (prev)
-				prev->next = new;
-			else
-				return (new);
-			return (ret_list);
-		}
-		prev = list;
-		list = list->next;
-	}
-	prev->next = new;
-	return (ret_list);
-}
-
-void
-	sort_envs(t_environ **env)
-{
-	t_environ *new;
-	t_environ *list;
-
-	list = NULL;
-	while (*env)
-	{
-		new = *env;
-		*env = (*env)->next;
-		new->next = NULL;
-		list = add_env(list, new);
-	}
-	*env = list;
+	ft_putchar_fd('\n', STDOUT_FILENO);
 }
 
 int
@@ -96,7 +50,7 @@ int
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
 		if (!sep)
-			continue;
+			continue ;
 		if (is_valid_identifier(args[i]))
 			update_env(args[i], value, add_request);
 		else
@@ -114,7 +68,7 @@ int
 {
 	t_environ		*envs;
 	t_environ		*tmp;
-	
+
 	if (!g_master.environs)
 		return (EXIT_SUCCESS);
 	g_master.tmp_env = dup_envs(g_master.environs);

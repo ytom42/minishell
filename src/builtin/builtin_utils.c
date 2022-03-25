@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:36:39 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 14:44:43 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:40:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "execute.h"
 #include "libft.h"
 
-extern t_master g_master;
+extern t_master	g_master;
 
 bool
 	is_valid_identifier(char *arg)
