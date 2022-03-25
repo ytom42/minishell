@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 20:21:14 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:32:39 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void
 	return (NULL);
 }
 
-// static void
-// 	del_redirects(t_redirect *redirect)
-// {
-// 	if (redirect == NULL)
-// 		return ;
-// 	if (redirect->filename)
-// 		del_token_list(redirect->filename);
-// 	if (redirect->heredoc)
-// 		del_token_list(redirect->heredoc->contents);
-// 	free(redirect);
-// }
+static void
+	del_redirects(t_redirect *redirect)
+{
+	if (redirect == NULL)
+		return ;
+	if (redirect->filename)
+		del_token_list(redirect->filename);
+	if (redirect->heredoc)
+		del_token_list(redirect->heredoc->contents);
+	free(redirect);
+}
 
 static void
 	del_commands(t_command *command)
@@ -79,7 +79,7 @@ static void
 	del_nodes(t_node *node)
 {
 	del_commands(node->command);
-	// del_redirects(node->command->redirects);
+	del_redirects(node->command->redirects);
 	free(node);
 }
 

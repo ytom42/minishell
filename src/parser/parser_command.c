@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/25 17:31:19 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:37:43 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void	add_redirect(t_node *node, t_token **token, t_redirect **prev)
 	free_tmp = *token;
 	*token = (*token)->next;
 	del_token(free_tmp);
-	if (!(*token))
+	if (!(*token) && g_master.error_flag == FALSE)
+	{
 		print_syntax_error("newline");
-	else if ((*token)->type != WORD)
+		g_master.error_flag = TRUE;
+	}
+	else if ((*token)->type != WORD && g_master.error_flag == FALSE)
 	{
 		print_syntax_error((*token)->str);
 		g_master.error_flag = TRUE;
@@ -77,7 +80,7 @@ t_node	*get_command_node(t_token **token, t_parse_info *info)
 	if (node == NULL)
 		return (NULL);
 	prev = NULL;
-	while ((*token) && (*token)->type != PIPE)
+	while ((*token) && (*token)->type != PIPE && g_master.error_flag == FALSE)
 	{
 		if ((*token)->type == WORD)
 			add_command(node, token);
