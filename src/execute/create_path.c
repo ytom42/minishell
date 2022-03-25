@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:30:14 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/15 21:36:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:09:40 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 #include "utils.h"
 #include "expansion.h"
+#include "builtin.h"
 
 static t_cmd_type
 	get_cmd_type(char *cmd)
@@ -58,8 +59,9 @@ char
 
 	executable_path = NULL;
 	value = get_env_value("PATH");
-	if (!ft_strcmp(value, ""))
+	if (!value || !ft_strcmp(value, ""))
 	{
+		if (!is_builtin_cmd(&cmd))
 		executable_path = ft_strdup(cmd);
 		if (!executable_path)
 			error_exit(NULL);
