@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:26:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 20:41:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef enum e_tokentype{
 	CHAR_TAB = '\t',
 	CHAR_NULL = 0,
 	D_SEMICOLON = -4,
-	D_GREATER = -3,
 	IO_NUMBER = -2,
 	TOKEN = -1,
 }	t_token_type;
