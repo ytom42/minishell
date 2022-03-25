@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 15:07:10 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:26:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "utils.h"
 
-typedef enum	e_tokentype{
+typedef enum e_tokentype{
 	CHAR_GENERAL = -1,
 	CHAR_PIPE = '|',
 	CHAR_QOUTE = '\'',
@@ -28,26 +28,26 @@ typedef enum	e_tokentype{
 	CHAR_TAB = '\t',
 	CHAR_NULL = 0,
 	D_SEMICOLON = -4,
-	// D_GREATER = -3,
+	D_GREATER = -3,
 	IO_NUMBER = -2,
 	TOKEN = -1,
-}				t_token_type;
+}	t_token_type;
 
-typedef enum	e_token_state
+typedef enum e_token_state
 {
 	STATE_IN_DQUOTE,
 	STATE_IN_QUOTE,
 	STATE_GENERAL,
-}				t_token_state;
+}	t_token_state;
 
-typedef struct	s_expander
+typedef struct s_expander
 {
 	size_t			index;
 	t_token_state	state;
 	t_token_type	type;
 	int				arg_index;
 	char			*str;
-}				t_expander;
+}	t_expander;
 
 char			*create_value_str(char *str);
 char			**split_value(char *value, char delimiter);
