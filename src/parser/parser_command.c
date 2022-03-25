@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/25 18:28:08 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 19:55:18 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	add_redirect(t_node *node, t_token **token, t_redirect **prev)
 	*prev = new;
 	if (*token)
 		*token = (*token)->next;
-	new->filename->next = NULL;
+	if (new->filename)
+		new->filename->next = NULL;
 }
 
 void	add_command(t_node *node, t_token **token)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:56:03 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 19:53:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 20:52:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,12 @@ void
 	ft_putstr_fd(token, STDERR_FILENO);
 	ft_putendl_fd("\'", STDERR_FILENO);
 	g_master.exit_cd = 258;
+}
+
+void
+	print_enclosed_error(void)
+{
+	ft_putendl_fd("minishell: syntax error: not enclosed in quotes", \
+				STDERR_FILENO);
+	g_master.exit_cd = 1;
 }
