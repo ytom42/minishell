@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 18:36:19 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:36:37 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void print_cwd_error(char *arg);
 void print_filename_error(char *msg, char *cmd, char *file);
 void print_fd_error(int fd);
 void exit_execve_error(char *path);
+void	print_syntax_error(char *token);
 
 /*
 	redirect.c

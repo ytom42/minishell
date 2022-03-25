@@ -6,12 +6,15 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:56:49 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:31:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "utils.h"
+#include "execute.h"
+
+extern t_master	g_master;
 
 void	add_redirect(t_node *node, t_token **token, t_redirect **prev)
 {
@@ -23,8 +26,13 @@ void	add_redirect(t_node *node, t_token **token, t_redirect **prev)
 	free_tmp = *token;
 	*token = (*token)->next;
 	del_token(free_tmp);
-	if (!(*token) || (*token)->type != WORD)
-		return ;
+	if (!(*token))
+		print_syntax_error("newline");
+	else if ((*token)->type != WORD)
+	{
+		print_syntax_error((*token)->str);
+		g_master.error_flag = TRUE;
+	}
 	new->filename = *token;
 	if (node->command->redirects)
 	{
@@ -37,7 +45,8 @@ void	add_redirect(t_node *node, t_token **token, t_redirect **prev)
 		node->command->redirects = new;
 	new->prev = *prev;
 	*prev = new;
-	*token = (*token)->next;
+	if (*token)
+		*token = (*token)->next;
 }
 
 void	add_command(t_node *node, t_token **token)
@@ -65,6 +74,8 @@ t_node	*get_command_node(t_token **token, t_parse_info *info)
 	t_redirect	*prev;
 
 	node = node_new(NODE_COMMAND);
+	if (node == NULL)
+		return (NULL);
 	prev = NULL;
 	while ((*token) && (*token)->type != PIPE)
 	{
