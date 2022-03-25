@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 21:14:27 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 11:31:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ bool
 		if (!check_redirect(redir, org_filename))
 		{
 			free_set((void **)&org_filename, NULL);
-			update_redirects(cmd);
+			// update_redirects(cmd);
 			return (FALSE);
 		}
 		free_set((void **)&org_filename, NULL);
