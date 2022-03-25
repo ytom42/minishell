@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 19:19:52 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 19:57:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void
 		close(hdoc_pipe[0]);
 		while (hdoc->contents)
 		{
-			write(hdoc_pipe[1], hdoc->contents->str,
+			write(hdoc_pipe[1], hdoc->contents->str, \
 					ft_strlen(hdoc->contents->str));
 			hdoc->contents = hdoc->contents->next;
 		}
@@ -50,7 +50,7 @@ void
 	set_hdoc_pipe(int hdoc_pipe[])
 {
 	if (close(hdoc_pipe[WRITE]) < 0
-			|| dup2(hdoc_pipe[READ], STDIN_FILENO) < 0
-			|| close(hdoc_pipe[READ]) < 0)
+		|| dup2(hdoc_pipe[READ], STDIN_FILENO) < 0
+		|| close(hdoc_pipe[READ]) < 0)
 		error_exit(NULL);
 }

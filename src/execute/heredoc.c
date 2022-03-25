@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/21 19:17:30 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 19:56:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static bool
 		input_str = ft_strjoin(input_str, "\n");
 		if (!input_str)
 			error_exit(NULL);
-		(*hdoc)->contents = (token_lstaddback((*hdoc)->contents,
+		(*hdoc)->contents = (token_lstaddback((*hdoc)->contents, \
 								token_lstnew(ft_strdup(input_str))));
 		free(input_str);
 		input_str = NULL;
