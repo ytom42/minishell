@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:56:03 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 11:42:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:41:07 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "execute.h"
 #include "libft.h"
 #include "utils.h"
+
+extern t_master	g_master;
 
 void
 	print_filename_error(char *msg, char *cmd, char *file)
@@ -68,4 +70,13 @@ void
 		errno = EACCES;
 	print_error_msg(strerror(errno), path);
 	exit(exit_cd);
+}
+
+void
+	print_syntax_error(char *token)
+{
+	ft_putstr_fd("minishell: syntax error near unexpected token `", STDERR_FILENO);
+	ft_putstr_fd(token, STDERR_FILENO);
+	ft_putendl_fd("\'", STDERR_FILENO);
+	g_master.exit_cd = 258;
 }
