@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:28:35 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 15:07:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ typedef enum	e_token_state
 	STATE_GENERAL,
 }				t_token_state;
 
-typedef struct s_expander
+typedef struct	s_expander
 {
-	size_t	index;
-	t_token_state state;
-	t_token_type type;
-	char *str;
-} t_expander;
+	size_t			index;
+	t_token_state	state;
+	t_token_type	type;
+	int				arg_index;
+	char			*str;
+}				t_expander;
 
-char *create_value_str(char *str);
-char **split_value(char *value, char delimiter);
-void expand_tokens(t_token **tokens);
-t_token_type get_token_type(char c);
-t_token_state get_token_state(t_token_state state, t_token_type type);
-char *expand_env_var(char *str);
-
+char			*create_value_str(char *str);
+char			**split_value(char *value, char delimiter);
+void			expand_tokens(t_token **tokens);
+t_token_type	get_token_type(char c);
+t_token_state	get_token_state(t_token_state state, t_token_type type);
+char			*expand_env_var(char *str, int index);
 
 #endif
