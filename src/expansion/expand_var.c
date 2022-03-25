@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:00:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:14:35 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,12 @@ extern t_master	g_master;
 #define TMP 2
 #define RES 3
 
-void
-	expander_init(t_expander *exper, char *str, int index)
+static void
+	instant_free_call(char **var_name, char **value, char **str)
 {
-	if (!str)
-		exper->str = NULL;
-	else
-	{
-		exper->str = ft_strdup(str);
-		if (exper->str == NULL)
-			error_exit(NULL);
-	}
-	exper->index = 0;
-	exper->arg_index = index;
-	exper->state = STATE_GENERAL;
+	free_set((void **)var_name, NULL);
+	free_set((void **)value, NULL);
+	free_set((void **)str, NULL);
 }
 
 static char
@@ -94,7 +86,6 @@ static void
 	char	*value;
 	char	*res;
 	size_t	index_after_var;
-	char	*tmp;
 
 	var_name = str_search_key(&exp->str[exp->index + 1]);
 	if (!var_name)
@@ -110,18 +101,9 @@ static void
 	if (!value)
 		value = strdup("");
 	else if (exp->arg_index > 0)
-	{
-		tmp = value;
-		value = ft_strjoin("\"", value);
-		free(tmp);
-		tmp = value;
-		value = ft_strjoin(value, "\"");
-		free(tmp);
-	}
+		value = close_dqoute_value(value);
 	res = swap_name_value(exp, value, index_after_var);
-	free_set((void **)&var_name, NULL);
-	free_set((void **)&value, NULL);
-	free_set((void **)&(exp->str), NULL);
+	instant_free_call(&var_name, &value, &(exp->str));
 	exp->str = res;
 }
 

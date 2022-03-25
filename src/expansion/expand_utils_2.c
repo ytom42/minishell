@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:33:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/02/27 11:28:50 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 21:34:36 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansion.h"
-#include "libft.h"
+#include "execute.h"
 
 t_token_type
 	get_token_type(char c)
@@ -44,4 +44,34 @@ t_token_state
 	else if (state == STATE_IN_DQUOTE && type != CHAR_DQUOTE)
 		return (STATE_IN_DQUOTE);
 	return (STATE_GENERAL);
+}
+
+char
+	*close_dqoute_value(char *str)
+{
+	char	*res;
+	char	*tmp;
+
+	res = ft_strjoin("\"", str);
+	free(str);
+	tmp = res;
+	res = ft_strjoin(res, "\"");
+	free(tmp);
+	return (res);
+}
+
+void
+	expander_init(t_expander *exper, char *str, int index)
+{
+	if (!str)
+		exper->str = NULL;
+	else
+	{
+		exper->str = ft_strdup(str);
+		if (exper->str == NULL)
+			error_exit(NULL);
+	}
+	exper->index = 0;
+	exper->arg_index = index;
+	exper->state = STATE_GENERAL;
 }
