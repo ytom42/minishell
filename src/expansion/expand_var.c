@@ -7,7 +7,11 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2022/03/25 17:18:23 by kfumiya          ###   ########.fr       */
+=======
+/*   Updated: 2022/03/25 15:06:55 by ytomiyos         ###   ########.fr       */
+>>>>>>> master
 =======
 /*   Updated: 2022/03/25 15:06:55 by ytomiyos         ###   ########.fr       */
 >>>>>>> master

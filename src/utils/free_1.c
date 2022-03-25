@@ -7,7 +7,11 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
 <<<<<<< HEAD:src/utils/free_1.c
+<<<<<<< HEAD:src/utils/free_1.c
 /*   Updated: 2022/03/25 17:22:52 by kfumiya          ###   ########.fr       */
+=======
+/*   Updated: 2022/03/25 18:14:40 by kfumiya          ###   ########.fr       */
+>>>>>>> master:src/utils/free.c
 =======
 /*   Updated: 2022/03/25 18:14:40 by kfumiya          ###   ########.fr       */
 >>>>>>> master:src/utils/free.c
@@ -59,7 +63,10 @@ void
 }
 
 <<<<<<< HEAD:src/utils/free_1.c
+<<<<<<< HEAD:src/utils/free_1.c
 =======
+=======
+>>>>>>> master:src/utils/free.c
 static void
 	del_redirects(t_redirect *redirect)
 {
