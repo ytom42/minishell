@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 21:53:44 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:06:02 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,17 @@ void
 {
 	char	*expanded_str;
 	t_token	*var[4];
+	int		index;
 
 	if (!tokens || !*tokens)
 		return ;
 	var[RES] = NULL;
 	var[LAST] = NULL;
 	var[NOW] = *tokens;
+	index = 0;
 	while (var[NOW])
 	{
-		expanded_str = expand_env_var(var[NOW]->str);
+		expanded_str = expand_env_var(var[NOW]->str, index);
 		var[EXPAND] = lexer(expanded_str);
 		remove_quote(var[EXPAND]);
 		free_set((void **)&expanded_str, NULL);
@@ -128,6 +130,7 @@ void
 		join_token(var[LAST], var[EXPAND]);
 		var[LAST] = get_last_token(var[RES]);
 		var[NOW] = var[NOW]->next;
+		index += 1;
 	}
 	del_tokens(tokens);
 	*tokens = var[RES];

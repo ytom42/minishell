@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 22:05:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:06:55 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ extern t_master	g_master;
 #define RES 3
 
 void
-	expander_init(t_expander *exper, char *str)
+	expander_init(t_expander *exper, char *str, int index)
 {
 	if (!str)
 		exper->str = NULL;
@@ -33,6 +33,7 @@ void
 			error_exit(NULL);
 	}
 	exper->index = 0;
+	exper->arg_index = index;
 	exper->state = STATE_GENERAL;
 }
 
@@ -108,7 +109,7 @@ static void
 	value = get_env_value(var_name);
 	if (!value)
 		value = strdup("");
-	else
+	else if (exp->arg_index > 0)
 	{
 		tmp = value;
 		value = ft_strjoin("\"", value);
@@ -125,13 +126,13 @@ static void
 }
 
 char
-	*expand_env_var(char *str)
+	*expand_env_var(char *str, int index)
 {
 	t_expander	exp;
 
 	if (!str)
 		return (NULL);
-	expander_init(&exp, str);
+	expander_init(&exp, str, index);
 	if (!exp.str)
 		return (NULL);
 	while (exp.str[exp.index])
