@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:05:09 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:12:01 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,20 @@ void
 	old_value = NULL;
 	if (env)
 		old_value = env->value;
-	if (add_request)
+	if (add_request && old_value)
 	{
-		if (!old_value)
-		{
-			if (!append_env(&g_master.environs, new_env(key, new_value)))
-				error_exit(NULL);
-		}
-		else if (old_value || new_value)
+		if (old_value || new_value)
 		{
 			env->value = ft_strjoin(old_value, new_value);
+			free_set((void **)&old_value, NULL);
 			if (!env->value)
 				error_exit(NULL);
 		}
-		else
-			env->value = NULL;
 	}
 	else
 	{
 		if (!replace_dup_env(key, new_value, FALSE))
-			if (!append_env(&g_master.environs,
-					new_env(key, new_value)))
+			if (!append_env(&g_master.environs, new_env(key, new_value)))
 				error_exit(NULL);
 	}
 }

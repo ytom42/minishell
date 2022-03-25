@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:49:37 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:12:57 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ static void
 		signal(SIGQUIT, SIG_DFL);
 		if (!args[0])
 			exit(EXIT_SUCCESS);
-		if (!set_redirects(cmd))
-			exit(EXIT_FAILURE);
-		if (!dup_redirects(cmd, TRUE))
+		if (!set_redirects(cmd) || !dup_redirects(cmd, TRUE))
 			exit(EXIT_FAILURE);
 		dup_pipe(p_state, old_pipe, new_pipe);
 		if (is_builtin_cmd(args))
