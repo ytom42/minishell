@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:17:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 14:44:38 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 19:46:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void
 int
 	exec_env(void)
 {
-	t_environ *env;
+	t_environ	*env;
 
 	env = g_master.environs;
 	while (env)
@@ -40,22 +40,25 @@ int
 	return (EXIT_SUCCESS);
 }
 
-static t_environ *new()
+static t_environ
+	*new(void)
 {
-	t_environ *env;
+	t_environ	*env;
 
 	env = (t_environ *)malloc(sizeof(t_environ));
 	if (!env)
-		return (NULL); //error
+		return (NULL);
 	env->key = NULL;
 	env->value = NULL;
 	env->next = NULL;
 	return (env);
 }
 
-static void add(t_environ **list, t_environ *new)
+static void
+	add(t_environ **list, t_environ *new)
 {
 	t_environ	*tmp;
+
 	if (*list)
 	{
 		tmp = *list;
@@ -67,7 +70,8 @@ static void add(t_environ **list, t_environ *new)
 		*list = new;
 }
 
-t_environ	*environ_init()
+t_environ
+	*environ_init(void)
 {
 	extern char		**environ;
 	t_environ		*list;
