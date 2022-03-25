@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:30:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 21:01:57 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:16:41 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ void	print_redirect(t_node *node)
 		printf("%sNULL%s", CYAN, END);
 	while (redirect)
 	{
-		printf("%s[%s%s%s]", type[redirect->type], \
-				CYAN, redirect->filename->str, END);
-		if (redirect->prev)
+		if (redirect)
+		{
+			printf("%s", type[redirect->type]);
+			if (redirect->filename)
+				printf("[%s%s%s]", CYAN, redirect->filename->str, END);
+			else
+				printf("[%sNULL%s]", CYAN, END);
+		}
+		if (redirect->prev && redirect->filename)
 			printf("[%s]", redirect->prev->filename->str);
 		redirect = redirect->next;
 		if (redirect)
@@ -99,7 +105,7 @@ void	print_nodes(t_node *node)
 {
 	if (node == NULL)
 	{
-		printf("node is NULL\n");
+		printf("debugger: node is NULL\n");
 		return ;
 	}
 	printf("%s%s========== print_node ==========\n%s", YELLOW, BOLD, END);

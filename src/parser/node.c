@@ -6,18 +6,23 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:39:15 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:13:34 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:13:39 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "utils.h"
 
 t_node	*node_new(t_node_type type)
 {
 	t_node	*node;
 
 	node = (t_node *)malloc(sizeof(t_node));
+	if (node == NULL)
+		return (NULL);
 	node->command = (t_command *)malloc(sizeof(t_command));
+	if (node->command == NULL)
+		return (del_nodes_list(node), NULL);
 	node->type = type;
 	node->left = NULL;
 	node->right = NULL;
@@ -43,6 +48,8 @@ t_redirect	*redirect_new(t_token **token)
 	t_redirect	*redirect;
 
 	redirect = (t_redirect *)malloc(sizeof(t_redirect));
+	if (redirect == NULL)
+		return (NULL);
 	redirect_init(redirect);
 	if ((*token)->type == LESSER)
 	{
