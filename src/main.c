@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 18:37:57 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:38:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void loop_shell()
 		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
 		del_nodes_list(nodes);
-		del_tmp_env(&g_master.tmp_env);
+		del_tmp_env(g_master.tmp_env);
 	}
 }
 
