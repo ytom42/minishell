@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:25:46 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:20:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define WHITE           "\033[37m"
 # define UNDERLINE       "\033[4m"
 # define BOLD_UNDERLINE  "\033[1;4m"
-
 # define TRUE			1
 # define FALSE			0
 # define MS_PROMPT		"\033[1m\033[32mminishell$ \033[0m"
@@ -53,30 +52,30 @@ enum e_token_type
 	D_GREATER,
 };
 
-typedef struct	s_token
+typedef struct s_token
 {
 	char				*str;
 	enum e_token_type	type;
 	struct s_token		*prev;
 	struct s_token		*next;
-}				t_token;
+}	t_token;
 
-typedef enum	e_redirect_type
+typedef enum e_redirect_type
 {
 	REDIR_INPUT,
 	REDIR_OUTPUT,
 	REDIR_APPEND_OUTPUT,
 	REDIR_HEREDOC
-}				t_redirect_type;
+}	t_redirect_type;
 
-typedef struct	s_heredoc
+typedef struct s_heredoc
 {
 	t_token	*contents;
 	bool	is_expand;
 	char	*eof;
-}			t_heredoc;
+}	t_heredoc;
 
-typedef struct			s_redirect
+typedef struct s_redirect
 {
 	int					fd_io;
 	int					fd_file;
@@ -86,34 +85,34 @@ typedef struct			s_redirect
 	t_heredoc			*heredoc;
 	struct s_redirect	*next;
 	struct s_redirect	*prev;
-}						t_redirect;
+}	t_redirect;
 
-typedef struct			s_command
+typedef struct s_command
 {
 	t_token				*args;
 	t_redirect			*redirects;
 	pid_t				pid;
 	struct s_command	*next;
-}						t_command;
+}	t_command;
 
-typedef enum	e_node_type
+typedef enum e_node_type
 {
 	NODE_COMMAND,
 	NODE_PIPE,
-}				t_node_type;
+}	t_node_type;
 
-typedef struct	s_node
+typedef struct s_node
 {
 	t_node_type		type;
 	t_command		*command;
 	struct s_node	*left;
 	struct s_node	*right;
-}				t_node;
+}	t_node;
 
-typedef struct	s_parse_info
+typedef struct s_parse_info
 {
 	t_command	*prev_command;
-}				t_parse_info;
+}	t_parse_info;
 
 typedef enum e_exit_cd
 {
@@ -125,30 +124,15 @@ typedef enum e_exit_cd
 	INVLD_EXT_ARG = 128,
 	OUT_OF_EXT_STS = 255,
 	INVLD_SYNTX = 258,
-} t_exit_cd;
+}	t_exit_cd;
 
-enum e_meta_char
-{
-	SGL_QT = '\'',
-	DBL_QT = '\"',
-	R_RDRCT = '>',
-	L_RDRCT = '<',
-	// SLSH = '/',
-	// B_SLSH = '\\',
-	// PERIOD = '.',
-	// HYPHEN = '-',
-	// DLL = '$',
-	// SPC = ' ',
-	// QSTN = '?',
-};
-
-typedef struct	s_environ
+typedef struct s_environ
 {
 	char				*key;
 	char				*value;
 	int					is_env;
 	struct s_environ	*next;
-}				t_environ;
+}	t_environ;
 
 typedef struct s_master
 {
@@ -157,6 +141,6 @@ typedef struct s_master
 	t_token				*tokens;
 	t_environ			*tmp_env;
 	int					error_flag;
-} t_master;
+}	t_master;
 
 #endif
