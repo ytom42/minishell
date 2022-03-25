@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 20:21:14 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:22:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,54 +52,6 @@ void
 		del_token(tmp);
 	}
 	return (NULL);
-}
-
-// static void
-// 	del_redirects(t_redirect *redirect)
-// {
-// 	if (redirect == NULL)
-// 		return ;
-// 	if (redirect->filename)
-// 		del_token_list(redirect->filename);
-// 	if (redirect->heredoc)
-// 		del_token_list(redirect->heredoc->contents);
-// 	free(redirect);
-// }
-
-static void
-	del_commands(t_command *command)
-{
-	if (command == NULL)
-		return ;
-	del_token_list(command->args);
-	free(command);
-}
-
-static void
-	del_nodes(t_node *node)
-{
-	del_commands(node->command);
-	// del_redirects(node->command->redirects);
-	free(node);
-}
-
-void
-	del_nodes_list(t_node	*node)
-{
-	t_node	*left_node;
-	t_node	*right_node;
-
-	left_node = NULL;
-	right_node = NULL;
-	if (node == NULL)
-		return ;
-	if (node->left)
-		left_node = node->left;
-	if (node->right)
-		right_node = node->right;
-	del_nodes(node);
-	del_nodes_list(left_node);
-	del_nodes_list(right_node);
 }
 
 void

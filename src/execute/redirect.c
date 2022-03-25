@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 11:31:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 17:09:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,9 @@ bool
 		org_filename = ft_strdup(redir->filename->str);
 		if (!org_filename)
 			error_exit(NULL);
-		// expand_token(&redir->filename);
 		if (!check_redirect(redir, org_filename))
 		{
 			free_set((void **)&org_filename, NULL);
-			// update_redirects(cmd);
 			return (FALSE);
 		}
 		free_set((void **)&org_filename, NULL);
@@ -119,19 +117,11 @@ bool
 			redir->fd_backup = dup(redir->fd_io);
 			dup2(redir->fd_file, redir->fd_io);
 			if (redir->fd_backup < 0)
-			{
-				print_fd_error(redir->fd_io);
-				return (FALSE);
-			}
+				return (print_fd_error(redir->fd_io), FALSE);
 		}
 		else if (!is_parent && redir->type != D_LESSER)
-		{
 			if (dup2(redir->fd_file, redir->fd_io) < 0)
-			{
-				print_fd_error(redir->fd_io);
-				return (FALSE);
-			}
-		}
+				return (print_fd_error(redir->fd_io), FALSE);
 		redir = redir->next;
 	}
 	return (TRUE);

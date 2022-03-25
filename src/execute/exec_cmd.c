@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:33:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:13:41 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
+		// if (!args[0] || !set_redirects(cmd) || !dup_redirects(cmd, TRUE))
 		if (!args[0])
 			exit(EXIT_SUCCESS);
 		if (!set_redirects(cmd))

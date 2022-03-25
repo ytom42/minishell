@@ -6,32 +6,12 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 07:53:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 17:45:37 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 17:16:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansion.h"
 #include "execute.h"
-
-// static size_t
-// 	expand_strlen(const char *str, const char *esc)
-// {
-// 	size_t	res;
-// 	size_t	i;
-
-// 	res = 0;
-// 	if (!str)
-// 		return (res);
-// 	i = 0;
-// 	while (!str[i])
-// 	{
-// 		if (ft_strchr(esc, str[i]))
-// 			res++;
-// 		res++;
-// 		i++;
-// 	}
-// 	return (res);
-// }
 
 static void
 	create_expanded_str(char *dest, char *src)
@@ -45,11 +25,6 @@ static void
 	{
 		while (src[i])
 		{
-			// if (ft_strchr(esc_chars, src[i]))
-			// {
-			// 	dest[res_i] = '\\';
-			// 	res_i++;
-			// }
 			dest[res_i] = src[i];
 			res_i++;
 			i++;
@@ -61,14 +36,8 @@ static void
 char
 	*create_value_str(char *str)
 {
-	// char	*esc_chars;
 	char	*res;
 
-	// esc_chars = "\"\\$";
-	// if (status == STATE_GENERAL)
-	// 	esc_chars = "\'\"\\$|;><";
-	// if (is_env == TRUE)
-	// 	esc_chars = "\"\\$`";
 	res = NULL;
 	if (!str)
 		return (res);

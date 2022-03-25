@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:30:14 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 16:09:40 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:57:18 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char
 	if (!value || !ft_strcmp(value, ""))
 	{
 		if (!is_builtin_cmd(&cmd))
-		executable_path = ft_strdup(cmd);
+			executable_path = ft_strdup(cmd);
 		if (!executable_path)
 			error_exit(NULL);
 		return (executable_path);

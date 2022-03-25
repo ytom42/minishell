@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 14:45:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 16:55:35 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,18 @@ int exec_export(char **args);
 void sort_envs(t_environ **env);
 
 /* 
-	export_utils.c
+	export_utils_1.c
  */
 void split_key_value(char *arg, char **sep, char **value, bool *add_request);
 void update_env(char *key, char *new_value, bool add_request);
 bool replace_dup_env(char *key, char *value, bool is_env);
 void restore_arg(char *sep, bool add_request);
+
+/* 
+	export_utils_2.c
+ */
 int envs_size(t_environ *env);
+void sort_envs(t_environ **env);
 
 /* 
 	pwd.c

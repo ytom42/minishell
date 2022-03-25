@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 22:05:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:18:23 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static char
 static char
 	*swap_name_value(t_expander *exp, char *value, size_t after_var)
 {
-	char *value_str;
-	char *tmp;
-	char *res;
+	char	*value_str;
+	char	*tmp;
+	char	*res;
 
 	value_str = create_value_str(value);
 	if (!value_str)
