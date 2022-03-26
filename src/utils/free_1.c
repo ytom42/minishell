@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:02:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:36:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ void
 }
 
 void
-	del_tmp_env(t_environ **envs)
+	del_tmp_env(t_environ *envs)
 {
 	t_environ	*tmp;
 
-	while (*envs)
+	while (envs)
 	{
-		free((*envs)->key);
-		free((*envs)->value);
-		tmp = (*envs)->next;
-		free(*envs);
-		*envs = tmp;
+		free(envs->key);
+		free(envs->value);
+		tmp = envs->next;
+		free(envs);
+		envs = tmp;
 	}
 }

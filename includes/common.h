@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:20:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 12:03:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_heredoc
 	t_token	*contents;
 	bool	is_expand;
 	char	*eof;
+	int		hdoc_pipe[2];
 }	t_heredoc;
 
 typedef struct s_redirect
@@ -92,6 +93,7 @@ typedef struct s_command
 	t_token				*args;
 	t_redirect			*redirects;
 	pid_t				pid;
+	bool				is_hdoc;
 	struct s_command	*next;
 }	t_command;
 

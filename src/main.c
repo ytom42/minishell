@@ -79,7 +79,7 @@ void
 		exec_nodes(nodes);
 		free_set((void **)&line, NULL);
 		del_nodes_list(nodes);
-		del_tmp_env(&g_master.tmp_env);
+		del_tmp_env(g_master.tmp_env);
 	}
 }
 

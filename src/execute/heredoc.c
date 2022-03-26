@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 19:56:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:51:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static bool
 	while (42)
 	{
 		input_str = readline("> ");
+		if (!input_str)
+			break ;
 		if (!ft_strcmp(input_str, eof))
 			break ;
 		input_str = ft_strjoin(input_str, "\n");

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:31:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:31:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/25 22:36:48 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		free_set(void **dst, void *src);
 void		instant_free(char **str);
 void		del_token(t_token *token);
 void		*del_token_list(t_token *token);
-void		del_tmp_env(t_environ **envs);
+void		del_tmp_env(t_environ *envs);
 
 /* 
 	free_2.c
