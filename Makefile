@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/26 19:35:51 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/26 20:23:16 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ UTILS		:=	env_utils.c \
 				free_2.c \
 				path.c \
 				path_canonicalisation.c \
-				str.c
+				str.c \
+				init.c
 
 SRCS		:= $(SRCDIR)/main.c \
 				$(addprefix   $(SRCDIR)/builtin/, $(BUILTIN)) \
