@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 19:18:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 20:30:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void
 	info_init(void)
 {
 	g_master.error_flag = FALSE;
+	g_master.error_fork = FALSE;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 }

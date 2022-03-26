@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 13:50:12 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 21:33:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ void
 		exit_execve_error(path);
 }
 
+void
+	exec_cmd(char **args, t_command *cmd)
+{
+	if (is_builtin_cmd(args))
+		exit(exec_builtin_cmd(args));
+	else
+		exec_binary_cmd(args, cmd);
+}
+
 static void
 	exec_cmd_child(t_command *cmd, char **args,
 					t_pipe_state p_state, int old_pipe[])
@@ -43,7 +52,10 @@ static void
 	create_pipe(p_state, new_pipe);
 	pid = fork();
 	if (pid == -1)
-		error_exit(NULL);
+	{
+		g_master.error_fork = TRUE;
+		return ;
+	}
 	else if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -53,10 +65,7 @@ static void
 		if (!set_redirects(cmd) || !dup_redirects(cmd, TRUE))
 			exit(EXIT_FAILURE);
 		dup_pipe(p_state, old_pipe, new_pipe);
-		if (is_builtin_cmd(args))
-			exit(exec_builtin_cmd(args));
-		else
-			exec_binary_cmd(args, cmd);
+		exec_cmd(args, cmd);
 	}
 	else
 		signal(SIGINT, SIG_IGN);

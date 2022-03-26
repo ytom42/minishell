@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
+#    By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/26 19:35:51 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/26 20:13:18 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ EXECUTE		:=	check_executable.c \
 				create_path.c \
 				error_1.c \
 				error_2.c \
+				error_3.c \
 				exec.c \
 				exec_cmd.c \
 				exec_utils.c \
