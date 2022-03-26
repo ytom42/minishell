@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 12:59:02 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 13:49:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 void
 	create_heredoc_pipe(t_redirect *redir)
 {
-	while (redir)
+	t_heredoc	*hdoc;
+
+	hdoc = get_hdoc(redir);
+	if (hdoc)
 	{
-		if (redir->type == D_LESSER)
-		{
-			if (pipe(redir->heredoc->hdoc_pipe) < 0)
-				error_exit(NULL);
-			break ;
-		}
-		redir = redir->next;
+		if (pipe(redir->heredoc->hdoc_pipe) < 0)
+			error_exit(NULL);
 	}
 }
 
@@ -34,11 +32,14 @@ void
 	write_heredoc(t_redirect *redir)
 {
 	t_heredoc	*hdoc;
+	t_token		*start;
 
+	start = NULL;
 	hdoc = get_hdoc(redir);
 	if (hdoc)
 	{
 		close(hdoc->hdoc_pipe[0]);
+		start = hdoc->contents;
 		while (hdoc->contents)
 		{
 			write(hdoc->hdoc_pipe[1], hdoc->contents->str, \
@@ -46,6 +47,7 @@ void
 			hdoc->contents = hdoc->contents->next;
 		}
 		close(hdoc->hdoc_pipe[1]);
+		hdoc->contents = start;
 	}
 }
 
