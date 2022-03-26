@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 13:05:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 20:12:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void		print_fd_error(int fd);
 void		exit_execve_error(char *path);
 void		print_syntax_error(char *token);
 void		print_enclosed_error(void);
+
+/*
+	error_3.c
+*/
+void		print_fork_error(void);
 
 /*
 	redirect.c
