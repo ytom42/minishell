@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 18:47:44 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/22 21:10:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 12:09:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,22 @@ char
 }
 
 bool
-	is_heredoc(t_redirect *redirects)
+	is_heredoc(t_command *cmd)
 {
-	if (redirects == NULL)
+	t_redirect	*redir;
+
+	cmd->is_hdoc = FALSE;
+	redir = cmd->redirects;
+	if (redir == NULL)
 		return (FALSE);
-	while (redirects)
+	while (redir)
 	{
-		if (redirects->type == D_LESSER)
+		if (redir->type == D_LESSER)
+		{
+			cmd->is_hdoc = TRUE;
 			return (TRUE);
-		redirects = redirects->next;
+		}
+		redir = redir->next;
 	}
 	return (FALSE);
 }
