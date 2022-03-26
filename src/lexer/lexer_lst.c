@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:35:53 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:08:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:04:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,4 @@ t_token	*token_lstaddback(t_token *lst, t_token *new)
 		last->next = new;
 	}
 	return (lst);
-}
-
-void	token_lstclear(t_token *lst)
-{
-	t_token	*tmp;
-
-	while (lst)
-	{
-		tmp = lst;
-		lst = lst->next;
-		free(tmp->str);
-		free(tmp);
-	}
 }

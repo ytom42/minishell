@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 16:17:13 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:02:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 static void
 	del_heredoc(t_heredoc **hdoc)
 {
-	token_lstclear((*hdoc)->contents);
-	free(*hdoc);
+	del_token_list((*hdoc)->contents);
+	free_set((void **)&(*hdoc), NULL);
 }
 
 static bool
@@ -54,13 +54,8 @@ static bool
 	while (42)
 	{
 		input_str = readline("> ");
-		if (!input_str)
+		if (!input_str || !ft_strcmp(input_str, eof))
 			break ;
-		if (!ft_strcmp(input_str, eof))
-		{
-			free_set((void **)&input_str, NULL);
-			break ;
-		}
 		tmp = input_str;
 		input_str = ft_strjoin(input_str, "\n");
 		free_set((void **)&tmp, NULL);
@@ -70,6 +65,8 @@ static bool
 								token_lstnew(ft_strdup(input_str))));
 		free_set((void **)&input_str, NULL);
 	}
+	if (input_str)
+		free_set((void **)&input_str, NULL);
 	return (TRUE);
 }
 
