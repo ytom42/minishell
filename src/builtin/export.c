@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 19:51:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 12:40:12 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,17 @@ int
 	declare_envs(void)
 {
 	t_environ	*envs;
-	t_environ	*tmp;
 
 	if (!g_master.environs)
 		return (EXIT_SUCCESS);
-	g_master.tmp_env = dup_envs(g_master.environs);
-	envs = g_master.tmp_env;
+	envs = dup_envs(g_master.environs);
 	if (!envs)
 		error_exit(NULL);
 	sort_envs(&envs);
+	g_master.tmp_env = envs;
 	while (envs)
 	{
 		print_env(envs);
-		tmp = envs;
 		envs = envs->next;
 	}
 	return (EXIT_SUCCESS);
