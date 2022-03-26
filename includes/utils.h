@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:31:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:36:48 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 20:26:26 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ char		*get_env_value(char *key);
 	path_canonicalisation.c
 */
 char		*path_canonicalisation(char *path);
+
+/*
+	init.c
+*/
+int			all_free(void);
+void		info_init(void);
+void		check_newline(char *line);
 
 #endif
