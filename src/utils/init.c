@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:21:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/26 20:25:28 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:40:04 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void
 	info_init(void)
 {
 	g_master.error_flag = FALSE;
+	g_master.error_fork = FALSE;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 }
