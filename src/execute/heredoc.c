@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:51:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 14:04:39 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static bool
 {
 	char	*input_str;
 	char	*eof;
+	char	*tmp;
 
 	input_str = NULL;
 	eof = (*hdoc)->eof;
@@ -57,13 +58,14 @@ static bool
 			break ;
 		if (!ft_strcmp(input_str, eof))
 			break ;
+		tmp = input_str;
 		input_str = ft_strjoin(input_str, "\n");
+		free_set((void **)&tmp, NULL);
 		if (!input_str)
 			error_exit(NULL);
 		(*hdoc)->contents = (token_lstaddback((*hdoc)->contents, \
 								token_lstnew(ft_strdup(input_str))));
-		free(input_str);
-		input_str = NULL;
+		free_set((void **)&input_str, NULL);
 	}
 	return (TRUE);
 }

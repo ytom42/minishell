@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 13:02:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 13:50:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,16 @@ int
 	if (g_master.error_flag)
 	{
 		instant_free(args);
-		print_enclosed_error();
-		return (0);
+		return (print_enclosed_error(), 0);
 	}
 	if (*p_state == NO_PIPE && is_builtin_cmd(args))
 		exit_cd = exec_builtin_parent(cmd, args);
 	else
+	{
 		exec_cmd_child(cmd, args, *p_state, old_pipe);
-	if (cmd->is_hdoc)
-		write_heredoc(cmd->redirects);
+		if (cmd->is_hdoc)
+			write_heredoc(cmd->redirects);
+	}
 	update_info(cmd, p_state, args);
 	return (exit_cd);
 }
