@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 23:10:50 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:28:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,37 @@ typedef struct s_expander
 	char			*str;
 }	t_expander;
 
+/*
+**	expand_rmquote.c
+*/
+void			remove_quote(t_token *token);
+
+/*
+**	expand_str.c
+*/
 char			*create_value_str(char *str);
-char			**split_value(char *value, char delimiter);
+
+/*
+**	expand_token.c
+*/
 void			expand_tokens(t_token **tokens);
+
+/*
+**	expand_utils_1.c
+*/
+char			**split_value(char *value, char delimiter);
+
+/*
+**	expand_utils_2.c
+*/
 t_token_type	get_token_type(char c);
 t_token_state	get_token_state(t_token_state state, t_token_type type);
-char			*expand_env_var(char *str, int index);
-void			remove_quote(t_token *token);
 char			*close_dqoute_value(char *str);
 void			expander_init(t_expander *exper, char *str, int index);
+
+/*
+**	expand_var.c
+*/
+char			*expand_env_var(char *str, int index);
 
 #endif

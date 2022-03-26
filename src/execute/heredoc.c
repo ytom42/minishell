@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 14:04:39 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 16:17:13 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static bool
 		if (!input_str)
 			break ;
 		if (!ft_strcmp(input_str, eof))
+		{
+			free_set((void **)&input_str, NULL);
 			break ;
+		}
 		tmp = input_str;
 		input_str = ft_strjoin(input_str, "\n");
 		free_set((void **)&tmp, NULL);

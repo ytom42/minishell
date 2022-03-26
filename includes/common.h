@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 12:03:44 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 13:23:05 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@
 # include <readline/history.h>
 # include "../libft/includes/libft.h"
 
-# define END             "\033[0m"
-# define BOLD            "\033[1m"
-# define BLACK           "\033[30m"
-# define RED             "\033[31m"
-# define GREEN           "\033[32m"
-# define YELLOW          "\033[33m"
-# define BLUE            "\033[34m"
-# define MAGENTA         "\033[35m"
-# define CYAN            "\033[36m"
-# define WHITE           "\033[37m"
-# define UNDERLINE       "\033[4m"
-# define BOLD_UNDERLINE  "\033[1;4m"
-# define TRUE			1
-# define FALSE			0
-# define MS_PROMPT		"\033[1m\033[32mminishell$ \033[0m"
-# define DELIMITERS		"|<> \t"
+# define END				"\033[0m"
+# define BOLD				"\033[1m"
+# define BLACK				"\033[30m"
+# define RED				"\033[31m"
+# define GREEN				"\033[32m"
+# define YELLOW				"\033[33m"
+# define BLUE				"\033[34m"
+# define MAGENTA			"\033[35m"
+# define CYAN				"\033[36m"
+# define WHITE				"\033[37m"
+# define UNDERLINE			"\033[4m"
+# define BOLD_UNDERLINE		"\033[1;4m"
+# define TRUE				1
+# define FALSE				0
+# define MS_PROMPT			"\033[1m\033[32mminishell$ \033[0m"
 
 enum e_token_type
 {
