@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:35:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 11:47:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 21:29:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void
 	while (nodes->type == NODE_PIPE)
 		nodes = nodes->left;
 	cmd = nodes->command;
-	while (cmd)
+	while (cmd && !g_master.error_fork)
 	{
 		g_master.exit_cd = exec_command(cmd, &pipe_state, pipe);
 		cmd = cmd->next;
 	}
+	if (g_master.error_fork)
+		print_fork_error();
 	wait_process(nodes->command);
 }
 
