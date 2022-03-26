@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 19:57:06 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/26 12:59:02 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #define WRITE	1
 
 void
-	create_heredoc_pipe(t_redirect *redir, int hdoc_pipe[])
+	create_heredoc_pipe(t_redirect *redir)
 {
 	while (redir)
 	{
 		if (redir->type == D_LESSER)
 		{
-			if (pipe(hdoc_pipe) < 0)
+			if (pipe(redir->heredoc->hdoc_pipe) < 0)
 				error_exit(NULL);
 			break ;
 		}
@@ -31,18 +31,21 @@ void
 }
 
 void
-	write_heredoc(t_heredoc *hdoc, int hdoc_pipe[])
+	write_heredoc(t_redirect *redir)
 {
+	t_heredoc	*hdoc;
+
+	hdoc = get_hdoc(redir);
 	if (hdoc)
 	{
-		close(hdoc_pipe[0]);
+		close(hdoc->hdoc_pipe[0]);
 		while (hdoc->contents)
 		{
-			write(hdoc_pipe[1], hdoc->contents->str, \
+			write(hdoc->hdoc_pipe[1], hdoc->contents->str, \
 					ft_strlen(hdoc->contents->str));
 			hdoc->contents = hdoc->contents->next;
 		}
-		close(hdoc_pipe[1]);
+		close(hdoc->hdoc_pipe[1]);
 	}
 }
 
