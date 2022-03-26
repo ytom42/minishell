@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 19:33:43 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/25 22:12:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:04:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_token		*get_token(char *line, int *i);
 t_token		*token_lstnew(char *str);
 t_token		*token_lstlast(t_token *lst);
 t_token		*token_lstaddback(t_token *lst, t_token *new);
-void		token_lstclear(t_token *lst);
 
 /*
 **	lexer_utils
