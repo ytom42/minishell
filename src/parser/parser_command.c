@@ -6,13 +6,14 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:34:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/25 21:50:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:06:24 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "utils.h"
 #include "execute.h"
+#include "expansion.h"
 
 extern t_master	g_master;
 
@@ -20,6 +21,8 @@ static void	add_back(t_node *node, t_redirect *new)
 {
 	t_redirect	*tmp;
 
+	if (new->filename)
+		loop_token_rmquote(new->filename->str, 0, 0);
 	if (node->command->redirects)
 	{
 		tmp = node->command->redirects;

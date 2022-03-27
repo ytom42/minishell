@@ -6,14 +6,14 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:17:26 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/26 12:00:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:54:21 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expansion.h"
 
-static void
-	loop_token(char *str, int state_dq, int state_sq)
+void
+	loop_token_rmquote(char *str, int state_dq, int state_sq)
 {
 	int		i;
 
@@ -42,7 +42,7 @@ void
 {
 	while (token)
 	{
-		loop_token(token->str, 0, 0);
+		loop_token_rmquote(token->str, 0, 0);
 		token = token->next;
 	}
 }

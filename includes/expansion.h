@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 13:28:59 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:55:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_expander
 **	expand_rmquote.c
 */
 void			remove_quote(t_token *token);
+void			loop_token_rmquote(char *str, int state_dq, int state_sq);
 
 /*
 **	expand_str.c
