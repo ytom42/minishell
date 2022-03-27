@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:12:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 13:39:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void
 			if (!append_env(&g_master.environs, new_env(key, new_value)))
 				error_exit(NULL);
 	}
+	free_set((void **)&new_value, NULL);
 }
 
 bool
