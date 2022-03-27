@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/23 19:16:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 13:58:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ bool
 	res = change_directory(path, dir_path, is_canonical);
 	if (!res)
 		update_env("OLDPWD", oldpwd, FALSE);
-	free(path);
+	else
+		free_set((void **)&oldpwd, NULL);
+	free_set((void **)&path, NULL);
 	if (!res)
 		return (TRUE);
 	return (FALSE);
