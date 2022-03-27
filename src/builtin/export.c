@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 12:40:12 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:01:39 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int
 		if (!sep)
 			continue ;
 		if (is_valid_identifier(args[i]))
-			update_env(args[i], value, add_request);
+			update_env(args[i], value, add_request, TRUE);
 		else
 		{
 			restore_arg(sep, add_request);
