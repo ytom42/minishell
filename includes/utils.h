@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:31:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 20:26:26 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 12:19:00 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		del_nodes_list(t_node *nodes);
 */
 bool		str_is_digit(char *str);
 char		*ft_strcpy_forward(char *dest, char *src);
+bool		str_is_sign(char *str);
 
 /* 
 	path.c

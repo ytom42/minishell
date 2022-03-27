@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:00:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 20:22:29 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 12:18:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,19 @@ char
 	}
 	dest[index] = '\0';
 	return (&(dest[index]));
+}
+
+bool
+	str_is_sign(char *str)
+{
+	size_t	i;
+	bool	is_digit;
+
+	i = 0;
+	is_digit = FALSE;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
+		return (TRUE);
+	return (FALSE);
 }
