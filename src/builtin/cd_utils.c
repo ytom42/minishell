@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 13:58:20 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 15:57:23 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, TRUE);
-		update_env("PWD", pwd, FALSE);
+		update_env("PWD", pwd, FALSE, FALSE);
 		return (res);
 	}
 	err = errno;
@@ -92,7 +92,7 @@ static int
 	if (!res)
 	{
 		pwd = get_new_pwd(cd_path, is_canonical, FALSE);
-		update_env("PWD", pwd, FALSE);
+		update_env("PWD", pwd, FALSE, FALSE);
 		return (res);
 	}
 	errno = err;
@@ -112,7 +112,7 @@ bool
 	path = set_cd_path(dir_path, &is_canonical);
 	res = change_directory(path, dir_path, is_canonical);
 	if (!res)
-		update_env("OLDPWD", oldpwd, FALSE);
+		update_env("OLDPWD", oldpwd, FALSE, FALSE);
 	else
 		free_set((void **)&oldpwd, NULL);
 	free_set((void **)&path, NULL);

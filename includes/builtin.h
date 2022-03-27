@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:05:15 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 20:15:13 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 15:59:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void		sort_envs(t_environ **env);
  */
 void		split_key_value(char *arg, char **sep, \
 							char **value, bool *add_request);
-void		update_env(char *key, char *new_value, bool add_request);
+void		update_env(char *key, char *new_value, \
+						bool add_request, bool is_exp);
 bool		replace_dup_env(char *key, char *value, bool is_env);
 void		restore_arg(char *sep, bool add_request);
 int			envs_size(t_environ *env);

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 13:39:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 15:53:53 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void
 }
 
 void
-	update_env(char *key, char *new_value, bool add_request)
+	update_env(char *key, char *new_value, bool add_request, bool is_exp)
 {
 	char		*old_value;
 	t_environ	*env;
@@ -61,7 +61,8 @@ void
 			if (!append_env(&g_master.environs, new_env(key, new_value)))
 				error_exit(NULL);
 	}
-	free_set((void **)&new_value, NULL);
+	if (!is_exp)
+		free_set((void **)&new_value, NULL);
 }
 
 bool
