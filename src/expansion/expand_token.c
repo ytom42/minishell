@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:16:58 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/28 00:08:02 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void
 	while (now)
 	{
 		tmp = now->next;
-		free(now);
+		free_set((void **)&now, NULL);
 		now = tmp;
 	}
 	*tokens = NULL;
@@ -77,6 +77,7 @@ void
 	{
 		expanded_str = expand_env_var(var[NOW]->str, index);
 		var[EXPAND] = lexer(expanded_str);
+		// var[EXPAND] = token_lstnew(ft_strdup(expanded_str));
 		remove_quote(var[EXPAND]);
 		free_set((void **)&expanded_str, NULL);
 		if (!var[RES])

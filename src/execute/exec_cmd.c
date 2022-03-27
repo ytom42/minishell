@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 21:33:06 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 21:56:05 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@
 extern t_master	g_master;
 
 void
-	exec_binary_cmd(char **args, t_command *cmd)
+	exec_binary_cmd(char **args)
 {
 	char		**envs;
 	char		*path;
-	t_heredoc	*hdoc;
 
-	hdoc = get_hdoc(cmd->redirects);
-	if (hdoc)
-		set_hdoc_pipe(hdoc->hdoc_pipe);
 	envs = convert_envs(g_master.environs);
 	path = create_executable_path(args[0]);
 	if (execve(path, args, envs) < 0)
@@ -36,10 +32,15 @@ void
 void
 	exec_cmd(char **args, t_command *cmd)
 {
+	t_heredoc	*hdoc;
+
+	hdoc = get_hdoc(cmd->redirects);
+	if (hdoc)
+		set_hdoc_pipe(hdoc->hdoc_pipe);
 	if (is_builtin_cmd(args))
 		exit(exec_builtin_cmd(args));
 	else
-		exec_binary_cmd(args, cmd);
+		exec_binary_cmd(args);
 }
 
 static void
@@ -91,10 +92,7 @@ int
 
 	exit_cd = EXIT_SUCCESS;
 	if (is_heredoc(cmd))
-	{
 		set_heredoc(cmd);
-		create_heredoc_pipe(cmd->redirects);
-	}
 	require_expansion(cmd, &args);
 	if (g_master.error_flag)
 	{
@@ -105,6 +103,7 @@ int
 		exit_cd = exec_builtin_parent(cmd, args);
 	else
 	{
+		create_heredoc_pipe(cmd->redirects);
 		exec_cmd_child(cmd, args, *p_state, old_pipe);
 		if (cmd->is_hdoc)
 			write_heredoc(cmd->redirects);
