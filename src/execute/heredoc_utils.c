@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:53:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 13:49:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/28 00:08:57 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void
 	t_heredoc	*hdoc;
 
 	hdoc = get_hdoc(redir);
-	if (hdoc)
-	{
-		if (pipe(redir->heredoc->hdoc_pipe) < 0)
-			error_exit(NULL);
-	}
+	if (hdoc && pipe(hdoc->hdoc_pipe) < 0)
+		error_exit(NULL);
 }
 
 void
@@ -38,15 +35,14 @@ void
 	hdoc = get_hdoc(redir);
 	if (hdoc)
 	{
-		close(hdoc->hdoc_pipe[0]);
 		start = hdoc->contents;
+		close(hdoc->hdoc_pipe[READ]);
 		while (hdoc->contents)
 		{
-			write(hdoc->hdoc_pipe[1], hdoc->contents->str, \
+			write(hdoc->hdoc_pipe[WRITE], hdoc->contents->str, \
 					ft_strlen(hdoc->contents->str));
 			hdoc->contents = hdoc->contents->next;
 		}
-		close(hdoc->hdoc_pipe[1]);
 		hdoc->contents = start;
 	}
 }
@@ -58,4 +54,23 @@ void
 		|| dup2(hdoc_pipe[READ], STDIN_FILENO) < 0
 		|| close(hdoc_pipe[READ]) < 0)
 		error_exit(NULL);
+}
+
+void
+	add_heredoc(t_command *cmd, t_heredoc *hdoc)
+{
+	t_redirect	*redir;
+
+	redir = cmd->redirects;
+	while (redir->next)
+		redir = redir->next;
+	while (redir)
+	{
+		if (redir->type == D_LESSER)
+		{
+			redir->heredoc = hdoc;
+			break ;
+		}
+		redir = redir->prev;
+	}
 }
