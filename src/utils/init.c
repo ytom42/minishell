@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:21:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/26 21:40:04 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/27 13:01:39 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lexer.h"
-# include "parser.h"
-# include "builtin.h"
-# include "execute.h"
-# include "expansion.h"
-# include "utils.h"
+#include "lexer.h"
+#include "parser.h"
+#include "builtin.h"
+#include "execute.h"
+#include "expansion.h"
+#include "utils.h"
 
 t_master	g_master;
 

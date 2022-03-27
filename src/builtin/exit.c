@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:25:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 12:41:02 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/27 13:00:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static bool
 	unsigned long long	tmp;
 	unsigned long long	check;
 	bool				sign;
-	
 
 	sign = FALSE;
 	if (str_is_sign(args))
@@ -68,7 +67,6 @@ static bool
 static bool
 	found_error(char **args, int i)
 {
-	
 	if (errno || !str_is_digit(args[i]))
 	{
 		print_num_arg_error(args[i]);
