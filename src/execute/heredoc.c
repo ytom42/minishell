@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 22:57:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/28 18:04:31 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void
 	(*hdoc)->eof = redir->filename->str;
 	if (need_hdoc_expansion((*hdoc)->eof))
 		(*hdoc)->is_expand = TRUE;
+	(*hdoc)->hdoc_pipe[0] = -1;
+	(*hdoc)->hdoc_pipe[1] = -1;
 }
 
 static bool
@@ -94,4 +96,6 @@ void
 		redir = redir->next;
 	}
 	add_heredoc(cmd, heredoc);
+	printf("hdoc_pipe[0]:%d hdoc_pipe[1]:%d\n", heredoc->hdoc_pipe[0], heredoc->hdoc_pipe[1]);
+
 }
