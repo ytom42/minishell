@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 15:55:34 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:01:32 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,12 @@ void			expander_init(t_expander *exper, char *str, int index);
 **	expand_var.c
 */
 char			*expand_env_var(char *str, int index);
+char			*str_search_key(char *str);
+
+/*
+**	expand_filename.c
+*/
+bool			expand_filename(t_redirect *redir);
+
 
 #endif

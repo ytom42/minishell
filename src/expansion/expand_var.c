@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:14:35 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/28 21:35:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void
 	free_set((void **)str, NULL);
 }
 
-static char
+char
 	*str_search_key(char *str)
 {
 	char	*res;

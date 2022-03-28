@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 23:41:49 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/28 22:50:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 #include "expansion.h"
-#include "utils.h"
-#include "libft.h"
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
 #include <stdbool.h>
+
+extern t_master	g_master;
 
 static int
 	open_file(t_redirect *redir)
@@ -93,7 +93,19 @@ bool
 		org_filename = ft_strdup(redir->filename->str);
 		if (!org_filename)
 			error_exit(NULL);
+		if (expand_filename(redir))
+		{
+			free_set((void **)&org_filename, NULL);
+			return (FALSE);
+		}
+		redir->filename->str = close_dqoute_value(redir->filename->str);
 		expand_tokens(&redir->filename);
+		// if (g_master.error_flag)
+		// {
+		// 	print_error_msg("ambiguous redirect", redir->filename->str);
+		// 	free_set((void **)&org_filename, NULL);
+		// 	return (FALSE);
+		// }
 		if (!check_redirect(redir, org_filename))
 		{
 			free_set((void **)&org_filename, NULL);

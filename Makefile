@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
+#    By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/28 18:02:40 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/28 20:58:58 by kfumiya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ EXPANSION	:=	expand.c \
 				expand_utils_1.c \
 				expand_utils_2.c \
 				expand_var.c \
+				expand_filename.c \
 
 LEXER		:=	lexer.c \
 				lexer_lst.c \
