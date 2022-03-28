@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/28 18:04:31 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:43:48 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,4 @@ void
 		redir = redir->next;
 	}
 	add_heredoc(cmd, heredoc);
-	printf("hdoc_pipe[0]:%d hdoc_pipe[1]:%d\n", heredoc->hdoc_pipe[0], heredoc->hdoc_pipe[1]);
-
 }
