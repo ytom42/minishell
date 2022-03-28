@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 15:38:36 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/24 20:08:36 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:07:27 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	is_delimiter(char c)
 		return (1);
 	else if (c == '\t')
 		return (1);
-	else if (c == '\n')
-		return (1);
+	// else if (c == '\n')
+	// 	return (1);
 	else if (c == '\0')
 		return (1);
 	else if (c == '>')
