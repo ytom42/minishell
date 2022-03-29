@@ -6,11 +6,12 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:57:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 22:19:30 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/29 14:12:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+#include "expansion.h"
 
 static void
 	update_hdoc_pipe(t_command *cmd)
@@ -58,4 +59,32 @@ void
 	update_redirects(cmd);
 	update_pipe_state(cmd, p_state);
 	instant_free(args);
+}
+
+t_token_state
+	close_qoute_filename(char *str)
+{
+	t_token_state	state;
+	int				i;
+
+	state = STATE_GENERAL;
+	i = -1;
+	while (str[++i])
+	{
+		if (state == STATE_GENERAL && str[i] == '\"')
+		{
+			state = STATE_IN_DQUOTE;
+			continue ;
+		}
+		else if (state == STATE_GENERAL && str[i] == '\'')
+		{
+			state = STATE_IN_QUOTE;
+			continue ;
+		}
+		if (state == STATE_IN_DQUOTE && str[i] == '\"')
+			state = STATE_GENERAL;
+		else if (state == STATE_IN_QUOTE && str[i] == '\'')
+			state = STATE_GENERAL;
+	}
+	return (state);
 }
