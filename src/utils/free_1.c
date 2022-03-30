@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 22:36:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 21:19:57 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+extern t_master	g_master;
 
 void
 	free_set(void **dst, void *src)
@@ -67,4 +69,5 @@ void
 		free(envs);
 		envs = tmp;
 	}
+	g_master.tmp_env = NULL;
 }
