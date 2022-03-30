@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/30 11:24:14 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/30 17:43:40 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ EXECUTE		:=	check_executable.c \
 				exec_cmd.c \
 				exec_utils.c \
 				exec_utils_2.c \
+				exec_utils_3.c \
 				heredoc.c \
 				heredoc_utils.c \
 				pipe.c \
