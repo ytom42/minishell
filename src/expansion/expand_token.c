@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:53:23 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/28 19:59:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 15:50:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,21 @@ void
 	*tokens = NULL;
 }
 
+static void
+	reset_token(t_token **var, char *expanded_str, int is_heredoc)
+{
+	if (is_heredoc)
+		var[EXPAND] = token_lstnew(expanded_str);
+	else
+	{
+		var[EXPAND] = lexer(expanded_str);
+		remove_quote(var[EXPAND]);
+		free_set((void **)&expanded_str, NULL);
+	}
+}
+
 void
-	expand_tokens(t_token **tokens)
+	expand_tokens(t_token **tokens, int is_heredoc)
 {
 	char	*expanded_str;
 	t_token	*var[4];
@@ -75,10 +88,8 @@ void
 	index = 0;
 	while (var[NOW])
 	{
-		expanded_str = expand_env_var(var[NOW]->str, index);
-		var[EXPAND] = lexer(expanded_str);
-		remove_quote(var[EXPAND]);
-		free_set((void **)&expanded_str, NULL);
+		expanded_str = expand_env_var(var[NOW]->str, index, is_heredoc);
+		reset_token(var, expanded_str, is_heredoc);
 		if (!var[RES])
 			var[RES] = var[EXPAND];
 		join_token(var[LAST], var[EXPAND]);

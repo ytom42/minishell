@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:16:00 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/28 22:44:38 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 15:00:46 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,19 @@ static bool
 bool
 	expand_filename(t_redirect *redir)
 {
-	char	*filename;
-	int		i;
-	bool	err_flag;
+	char			*filename;
+	int				i;
+	bool			err_flag;
+	t_token_state	state;
 
 	err_flag = FALSE;
 	filename = ft_strdup(redir->filename->str);
 	i = -1;
+	state = STATE_GENERAL;
 	while (filename[++i])
 	{
-		if (filename[i] == '$' && filename[i + 1])
+		state = get_token_state(state, get_token_type(filename[i]));
+		if (filename[i] == '$' && filename[i + 1] && state == STATE_GENERAL)
 			if (!check_value(filename, i))
 				err_flag = TRUE;
 	}

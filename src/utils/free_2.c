@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 20:01:49 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 18:47:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:31:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void
 		if (tmp->heredoc)
 		{
 			del_token_list(tmp->heredoc->contents);
+			free_set((void **)&tmp->heredoc->eof, NULL);
 			free_set((void **)&tmp->heredoc, NULL);
 		}
 		free_set((void **)&tmp, NULL);

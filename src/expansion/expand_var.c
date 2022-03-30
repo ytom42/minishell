@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/28 21:35:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 15:18:09 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char
 }
 
 static void
-	call_value(t_expander *exp)
+	call_value(t_expander *exp, int is_heredoc)
 {
 	char	*var_name;
 	char	*value;
@@ -100,7 +100,7 @@ static void
 	value = get_env_value(var_name);
 	if (!value)
 		value = strdup("");
-	else if (exp->arg_index > 0)
+	else if (exp->arg_index > 0 && !is_heredoc)
 		value = close_dqoute_value(value);
 	res = swap_name_value(exp, value, index_after_var);
 	instant_free_call(&var_name, &value, &(exp->str));
@@ -108,7 +108,7 @@ static void
 }
 
 char
-	*expand_env_var(char *str, int index)
+	*expand_env_var(char *str, int index, int is_heredoc)
 {
 	t_expander	exp;
 
@@ -126,7 +126,7 @@ char
 			exp.index++;
 		else if ((exp.state == STATE_GENERAL || exp.state == STATE_IN_DQUOTE)
 			&& exp.str[exp.index] == '$')
-			call_value(&exp);
+			call_value(&exp, is_heredoc);
 		exp.index++;
 	}
 	if (exp.state != STATE_GENERAL)

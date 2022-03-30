@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:34:46 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/19 20:54:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:06:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char
 bool
 	require_expansion(t_command *cmd, char ***args)
 {
-	expand_tokens(&cmd->args);
+	expand_tokens(&cmd->args, FALSE);
 	*args = replace_args(cmd);
 	if (!*args[0])
 		return (FALSE);

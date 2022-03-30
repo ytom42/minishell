@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 21:37:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/26 20:52:05 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 13:25:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_heredoc
 	bool	is_expand;
 	char	*eof;
 	int		hdoc_pipe[2];
+	int		error_flag;
 }	t_heredoc;
 
 typedef struct s_redirect

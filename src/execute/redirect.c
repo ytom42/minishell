@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/29 14:50:21 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 15:45:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,16 @@ bool
 		org_filename = ft_strdup(redir->filename->str);
 		if (!org_filename)
 			error_exit(NULL);
-		if (close_qoute_filename(org_filename) != STATE_GENERAL)
+		if (close_qoute_filename(org_filename) != STATE_GENERAL || \
+						(redir->heredoc && redir->heredoc->error_flag))
 			return (print_syntax_error(org_filename), \
 					free_set((void **)&org_filename, NULL), FALSE);
+		if (redir->type == D_LESSER)
+			return (free_set((void **)&org_filename, NULL), TRUE);
 		if (expand_filename(redir))
 			return (free_set((void **)&org_filename, NULL), FALSE);
-		redir->filename->str = close_dqoute_value(redir->filename->str);
-		expand_tokens(&redir->filename);
+		redir->filename->str = expand_env_var(redir->filename->str, 0, FALSE);
+		remove_quote(redir->filename);
 		if (!check_redirect(redir, org_filename))
 			return (free_set((void **)&org_filename, NULL), FALSE);
 		free_set((void **)&org_filename, NULL);

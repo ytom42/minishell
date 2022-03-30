@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/28 18:43:48 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:34:56 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #include "lexer.h"
 #include "expansion.h"
 
+extern t_master	g_master;
+
 static void
 	del_heredoc(t_heredoc **hdoc)
 {
 	del_token_list((*hdoc)->contents);
+	free_set((void **)&(*hdoc)->eof, NULL);
 	free_set((void **)&(*hdoc), NULL);
 }
 
@@ -37,9 +40,13 @@ static void
 		error_exit(NULL);
 	(*hdoc)->contents = NULL;
 	(*hdoc)->is_expand = FALSE;
-	(*hdoc)->eof = redir->filename->str;
+	(*hdoc)->error_flag = FALSE;
+	if (close_qoute_filename(redir->filename->str) != STATE_GENERAL)
+		(*hdoc)->error_flag = TRUE;
+	(*hdoc)->eof = ft_strdup(redir->filename->str);
 	if (need_hdoc_expansion((*hdoc)->eof))
 		(*hdoc)->is_expand = TRUE;
+	loop_token_rmquote((*hdoc)->eof, 0, 0);
 	(*hdoc)->hdoc_pipe[0] = -1;
 	(*hdoc)->hdoc_pipe[1] = -1;
 }
@@ -91,9 +98,10 @@ void
 			init_heredoc(&heredoc, redir);
 			is_valid_hdoc = save_heredoc(&heredoc);
 			if (is_valid_hdoc && heredoc->is_expand)
-				expand_tokens(&heredoc->contents);
+				expand_tokens(&heredoc->contents, TRUE);
 		}
 		redir = redir->next;
 	}
+	g_master.error_flag = FALSE;
 	add_heredoc(cmd, heredoc);
 }

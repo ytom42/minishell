@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/29 14:08:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 15:16:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char			*create_value_str(char *str);
 /*
 **	expand_token.c
 */
-void			expand_tokens(t_token **tokens);
+void			expand_tokens(t_token **tokens, int is_heredoc);
 
 /*
 **	expand_utils_1.c
@@ -80,7 +80,7 @@ void			expander_init(t_expander *exper, char *str, int index);
 /*
 **	expand_var.c
 */
-char			*expand_env_var(char *str, int index);
+char			*expand_env_var(char *str, int index, int is_heredoc);
 char			*str_search_key(char *str);
 
 /*
