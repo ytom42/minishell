@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:38:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 15:45:19 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:30:22 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ bool
 						(redir->heredoc && redir->heredoc->error_flag))
 			return (print_syntax_error(org_filename), \
 					free_set((void **)&org_filename, NULL), FALSE);
-		if (redir->type == D_LESSER)
-			return (free_set((void **)&org_filename, NULL), TRUE);
+		if (redir->type == D_LESSER && skip_redirect(&redir, org_filename))
+			continue ;
 		if (expand_filename(redir))
 			return (free_set((void **)&org_filename, NULL), FALSE);
 		redir->filename->str = expand_env_var(redir->filename->str, 0, FALSE);

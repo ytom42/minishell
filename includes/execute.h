@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/29 14:12:53 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:37:03 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,10 @@ t_heredoc		*get_hdoc(t_redirect *redir);
 void			update_pipe_state(t_command *cmd, t_pipe_state *p_state);
 void			update_info(t_command *cmd, t_pipe_state *p_state, char **args);
 t_token_state	close_qoute_filename(char *str);
+
+/*
+	exec_utils_2.c
+*/
+bool			skip_redirect(t_redirect **redir, char *org_filename);
 
 #endif
