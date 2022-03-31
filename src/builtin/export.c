@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/31 18:29:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/31 19:55:43 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int
 		{
 			if (!sep)
 				continue ;
-			else
-				update_env(args[i], value, add_request, TRUE);
+			update_env(args[i], value, add_request, TRUE);
 		}
 		else
 		{
