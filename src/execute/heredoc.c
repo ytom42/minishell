@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:12:09 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 15:34:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:18:28 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void
 static bool
 	need_hdoc_expansion(char *str)
 {
-	if (ft_strchr(str, '\''))
+	if (ft_strchr(str, '\'') || ft_strchr(str, '\"'))
 		return (FALSE);
 	return (TRUE);
 }
