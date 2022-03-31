@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:35:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 17:37:03 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/31 20:06:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			update_redirects(t_command *cmd);
 	pipe.c
 */
 void			create_pipe(t_pipe_state p_state, int new_pipe[]);
-void			dup_pipe(t_pipe_state p_state, int old_pipe[], int new_pipe[]);
+int				dup_pipe(t_pipe_state p_state, int old_pipe[], int new_pipe[]);
 void			update_pipe(t_pipe_state p_state, \
 							int old_pipe[], int new_pipe[]);
 

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 21:56:05 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/31 20:05:48 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static void
 		signal(SIGQUIT, SIG_DFL);
 		if (!args[0])
 			exit(EXIT_SUCCESS);
-		if (!set_redirects(cmd) || !dup_redirects(cmd, TRUE))
+		if (!set_redirects(cmd) || dup_pipe(p_state, old_pipe, new_pipe)
+			|| !dup_redirects(cmd, TRUE))
 			exit(EXIT_FAILURE);
-		dup_pipe(p_state, old_pipe, new_pipe);
 		exec_cmd(args, cmd);
 	}
 	else
