@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/31 11:16:24 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:29:25 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ int
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
 		if (is_valid_identifier(args[i]))
-			update_env(args[i], value, add_request, TRUE);
+		{
+			if (!sep)
+				continue ;
+			else
+				update_env(args[i], value, add_request, TRUE);
+		}
 		else
 		{
 			restore_arg(sep, add_request);
