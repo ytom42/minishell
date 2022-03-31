@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:21:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/30 19:00:03 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:29:15 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		g_master.exit_cd = 1;
 	}
 }
 

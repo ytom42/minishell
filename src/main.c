@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 15:00:16 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:26:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
-			system("leaks -q minishell"); //test
 			exit(0);
 		}
 		else if (ft_strlen(line) > 0)

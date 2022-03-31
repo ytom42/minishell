@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 21:28:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:16:24 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int
 	while (args[++i])
 	{
 		split_key_value(args[i], &sep, &value, &add_request);
-		// if (!sep)
-		// 	continue ;
 		if (is_valid_identifier(args[i]))
 			update_env(args[i], value, add_request, TRUE);
 		else

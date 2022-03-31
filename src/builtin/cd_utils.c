@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 11:33:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 15:57:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/31 11:06:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char
 	char	*physical_path;
 	char	*tmp_pwd;
 
-	tmp_pwd = get_env_value("PWD");
+	tmp_pwd = getcwd(NULL, 0);
 	if (*arg == '/')
 		physical_path = ft_strdup(arg);
 	else
