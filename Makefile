@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/03/30 17:43:40 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/03/31 11:37:14 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,14 +84,11 @@ OBJS		:= $(SRCS:.c=.o)
 DEPS		:= $(OBJS:.o=.d)
 LIBFT		:= ./libft/libft.a
 INCLUDES	:= -I./includes -I./libft/includes -I$(HOME)/.brew/opt/readline/include
-# INCLUDES	:= -I./includes -I./libft/includes -I/usr/local/opt/readline/include
 RM			:= rm -rf
 
 CC			:= gcc
 READLINE	:= -L$(HOME)/.brew/opt/readline/lib -lreadline
-# READLINE	:= -L/usr/local/opt/readline/lib -lreadline
-# CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP 
-CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP -g
+CFLAGS		:= -Wall -Wextra -Werror $(INCLUDES) -MMD -MP
 
 all:		$(NAME)
 
