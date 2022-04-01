@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:33:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/25 21:34:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 17:56:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ char
 	char	*tmp;
 
 	res = ft_strjoin("\"", str);
-	free(str);
+	free_set((void **)&str, NULL);
 	tmp = res;
 	res = ft_strjoin(res, "\"");
-	free(tmp);
+	free_set((void **)&tmp, NULL);
 	return (res);
 }
 

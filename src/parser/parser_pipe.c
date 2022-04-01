@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:35:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/04/01 16:38:10 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:00:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ t_node	*loop_pipe(t_token **token)
 		del_token_list(*token);
 		node_top = NULL;
 	}
-	free(info);
+	free_set((void **)&info, NULL);
 	return (node_top);
 }

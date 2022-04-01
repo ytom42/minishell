@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:03:12 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/03 15:52:18 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 17:57:36 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void
 	*free_memory(char **res, int i)
 {
 	while (--i >= 0)
-		free(res[i]);
-	free(res);
+		free_set((void **)&res[i], NULL);
+	free_set((void **)&res, NULL);
 	return (NULL);
 }
 

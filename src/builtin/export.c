@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:19:26 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/31 19:55:43 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 17:59:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void
 		ft_putstr_fd("=\"", STDOUT_FILENO);
 		ft_putstr_fd(expand_value, STDOUT_FILENO);
 		ft_putchar_fd('"', STDOUT_FILENO);
-		free(expand_value);
+		free_set((void **)&expand_value, NULL);
 	}
 	ft_putchar_fd('\n', STDOUT_FILENO);
 }
