@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 14:37:13 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 21:57:57 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/03/31 20:06:29 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void
 	}
 }
 
-void
+int
 	dup_pipe(t_pipe_state p_state, int old_pipe[], int new_pipe[])
 {
 	if (can_read(p_state))
@@ -58,6 +58,7 @@ void
 			|| close(new_pipe[WRITE]) < 0)
 			error_exit(NULL);
 	}
+	return (0);
 }
 
 void

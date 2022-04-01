@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 16:11:56 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 21:56:05 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:32:47 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ void
 	char		*path;
 
 	envs = convert_envs(g_master.environs);
-	path = create_executable_path(args[0]);
-	if (execve(path, args, envs) < 0)
-		exit_execve_error(path);
+	if (args[0])
+	{
+		path = create_executable_path(args[0]);
+		if (execve(path, args, envs) < 0)
+			exit_execve_error(path);
+	}
+	exit(EXIT_SUCCESS);
 }
 
 void
@@ -61,11 +65,9 @@ static void
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		if (!args[0])
-			exit(EXIT_SUCCESS);
-		if (!set_redirects(cmd) || !dup_redirects(cmd, TRUE))
+		if (!set_redirects(cmd) || dup_pipe(p_state, old_pipe, new_pipe)
+			|| !dup_redirects(cmd, TRUE))
 			exit(EXIT_FAILURE);
-		dup_pipe(p_state, old_pipe, new_pipe);
 		exec_cmd(args, cmd);
 	}
 	else
