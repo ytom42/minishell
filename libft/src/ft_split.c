@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 11:15:02 by kfumiya           #+#    #+#             */
-/*   Updated: 2021/06/13 09:07:41 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:23:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char
 	int		i;
 
 	i = 0;
-	tmp = (char *)malloc(sizeof(char) * (len - 1));
+	tmp = (char *)malloc(sizeof(char) * (len + 1));
 	if (tmp == NULL)
 		return (NULL);
 	while (i < len)

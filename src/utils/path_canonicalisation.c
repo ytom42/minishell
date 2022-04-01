@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_canonicalisation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 14:23:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/05 17:56:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:26:28 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static char
 }
 
 static bool
-	edit_path(char **split, char **res)
+	edit_path(char **split, char *res)
 {
 	char	*start;
 	char	*path_pos;
 	size_t	i;
 
-	start = *res;
-	*start = '\0';
+	start = res;
+	start[0] = '\0';
 	path_pos = start;
 	i = -1;
 	while (split[++i])
@@ -63,7 +63,7 @@ char
 	res = (char *)malloc(sizeof(char) * (ft_strlen(path) + 1));
 	if (!split || !res)
 		error_exit(NULL);
-	if (!edit_path(split, &res))
+	if (!edit_path(split, res))
 		free_set((void **)&res, NULL);
 	instant_free((split));
 	return (res);
