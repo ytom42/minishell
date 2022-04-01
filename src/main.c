@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:58:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/31 11:26:34 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:37:45 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void
 		if (line == NULL)
 		{
 			write(1, "exit\n", 5);
-			exit(0);
+			exit(g_master.exit_cd);
 		}
 		else if (ft_strlen(line) > 0)
 			add_history(line);
