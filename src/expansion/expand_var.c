@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 15:18:09 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:56:25 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ char
 	}
 	if (exp.state != STATE_GENERAL)
 		g_master.error_flag = TRUE;
-	free(str);
+	free_set((void **)&str, NULL);
 	return (exp.str);
 }

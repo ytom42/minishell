@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 20:21:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/03/31 11:29:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:53:30 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int
 		next = env->next;
 		free_set((void **)&env->key, NULL);
 		free_set((void **)&env->value, NULL);
-		free(env);
+		free_set((void **)&env, NULL);
 		env = next;
 	}
 	env = NULL;

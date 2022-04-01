@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 09:08:52 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/24 20:20:10 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:55:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void
 		next = tmp->next;
 		free_set((void **)&tmp->key, NULL);
 		free_set((void **)&tmp->value, NULL);
-		free(tmp);
+		free_set((void **)&tmp, NULL);
 		tmp = next;
 	}
 	tmp = NULL;

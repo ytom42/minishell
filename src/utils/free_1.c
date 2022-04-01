@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 07:45:06 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 21:19:57 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:55:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void
 
 	i = -1;
 	while (str[++i])
-		free(str[i]);
-	free(str);
+		free_set((void **)&str[i], NULL);
+	free_set((void **)&str, NULL);
 }
 
 void
@@ -63,10 +63,10 @@ void
 
 	while (envs)
 	{
-		free(envs->key);
-		free(envs->value);
+		free_set((void **)&envs->key, NULL);
+		free_set((void **)&envs->value, NULL);
 		tmp = envs->next;
-		free(envs);
+		free_set((void **)&envs, NULL);
 		envs = tmp;
 	}
 	g_master.tmp_env = NULL;

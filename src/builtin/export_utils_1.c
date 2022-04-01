@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:17:41 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 15:53:53 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/01 17:59:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool
 		{
 			if (!is_env)
 			{
-				free(env->value);
+				free_set((void **)&env->value, NULL);
 				env->value = ft_strdup(value);
 				env->is_env = is_env;
 			}
