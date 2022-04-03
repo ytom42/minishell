@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:48:00 by ytomiyos          #+#    #+#             */
-/*   Updated: 2022/04/01 18:34:44 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/03 17:33:48 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_master	g_master;
 
-int		check_tokenlist(t_token *list)
+int	check_tokenlist(t_token *list)
 {
 	t_token		*prev;
 	t_token		*now;
