@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:16:59 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/04/01 17:56:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/04 14:37:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ char
 
 	if (*str == '?')
 		return (ft_strdup("?"));
-	if (ft_isdigit(*str))
-	{
-		res = ft_strdup("");
-		if (!res)
-			error_exit(NULL);
-	}
 	len = 0;
 	while (ft_isalnum(str[len]) || str[len] == '_')
 		len++;
@@ -99,7 +93,7 @@ static void
 	index_after_var = exp->index + ft_strlen(var_name) + 1;
 	value = get_env_value(var_name);
 	if (!value)
-		value = strdup("");
+		value = ft_strdup("");
 	else if (exp->arg_index > 0 && !is_heredoc)
 		value = close_dqoute_value(value);
 	res = swap_name_value(exp, value, index_after_var);

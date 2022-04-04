@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 10:30:28 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/30 15:16:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:25:54 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "utils.h"
 
-typedef enum e_tokentype{
+typedef enum e_tokentype
+{
 	CHAR_GENERAL = -1,
 	CHAR_PIPE = '|',
 	CHAR_QOUTE = '\'',
