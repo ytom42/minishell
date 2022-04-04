@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/20 12:04:25 by kfumiya           #+#    #+#              #
-#    Updated: 2022/04/03 17:35:46 by ytomiyos         ###   ########.fr        #
+#    Updated: 2022/04/04 16:21:30 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,11 +103,11 @@ $(LIBFT):
 
 clean:
 	$(RM) $(OBJS) $(DEPS) *.o *.d
-	$(RM) $(SRCDIR)/*.o $(SRCDIR)/*.d $(SRCDIR)/*/*.o $(SRCDIR)/*/*.d
+	$(RM) $(SRCDIR)/*.o $(SRCDIR)/*.d
 	make clean -C $(LIBFTDIR)
 
 fclean: clean
-	$(RM) $(NAME)*
+	$(RM) $(NAME)
 	make fclean -C $(LIBFTDIR)
 	$(RM) ~/.inputrc
 
