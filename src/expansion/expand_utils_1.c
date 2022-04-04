@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 12:03:12 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/04/01 17:57:36 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/04 16:42:54 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static size_t
 		if (str[i] == delimiter)
 			size++;
 	}
+	if (!size && *str)
+		size++;
 	if (size)
 		size++;
 	return (size);
