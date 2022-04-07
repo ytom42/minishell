@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:25:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/03/27 13:00:33 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/04/07 14:23:18 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,30 @@ static unsigned long long
 }
 
 static bool
+	over_ull(char *str)
+{
+	int					i;
+	int					len;
+	unsigned long long	ans;
+
+	if (str == NULL)
+		return (FALSE);
+	len = ft_strlen(str);
+	if (len > 20)
+		return (TRUE);
+	else if (len == 20)
+	{
+		ans = 0;
+		i = 1;
+		while (str[i])
+			ans = (ans * 10) + (str[i++] - '0');
+		if (str[0] > '1' || (str[0] == '1' && ans > 8446744073709551615))
+			return (TRUE);
+	}
+	return (FALSE);
+}
+
+static bool
 	check_over_under(char *args)
 {
 	unsigned long long	tmp;
@@ -49,6 +73,8 @@ static bool
 	bool				sign;
 
 	sign = FALSE;
+	if (over_ull(args))
+		return (TRUE);
 	if (str_is_sign(args))
 		sign = TRUE;
 	if (sign)
